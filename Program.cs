@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Fluxor;
 
 namespace Sudoku
 {
@@ -19,7 +20,15 @@ namespace Sudoku
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            loadFluxor(builder);
+
             await builder.Build().RunAsync();
+
+            static void loadFluxor(WebAssemblyHostBuilder builder)
+            {
+                var currentAssembly = typeof(Program).Assembly;
+                builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
+            }
         }
     }
 }
