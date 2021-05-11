@@ -1,5 +1,5 @@
 
 namespace Sudoku.Store.CounterState
 {
-    public class IncrementCounterAction { }
+    public record IncrementCounterAction { }
 }

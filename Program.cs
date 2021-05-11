@@ -27,7 +27,13 @@ namespace Sudoku
             static void loadFluxor(WebAssemblyHostBuilder builder)
             {
                 var currentAssembly = typeof(Program).Assembly;
-                builder.Services.AddFluxor(options => options.ScanAssemblies(currentAssembly));
+                builder.Services.AddFluxor(
+                    options => options
+                        .ScanAssemblies(currentAssembly)
+                        //.UseRouting()
+                        //.AddMiddleware<LoggingMiddleware>()
+                        .UseReduxDevTools()
+                   ); ;
             }
         }
     }

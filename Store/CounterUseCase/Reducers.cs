@@ -6,8 +6,8 @@ namespace Sudoku.Store.CounterState
     public static class Reducers
     {
         [ReducerMethod]
-        public static CounterState ReduceIncrementCounterAction(CounterState state, IncrementCounterAction action) =>
-            new CounterState(clickCount: state.ClickCount + 1);
+        public static CounterState OnIncrementCounterAction(CounterState state, IncrementCounterAction action) =>
+            state with { ClickCount = state.ClickCount + 1 };
     }
 
 }
