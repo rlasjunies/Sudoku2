@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Fluxor;
+using Sudoku.Store.Middlewares;
 
 namespace Sudoku
 {
@@ -31,7 +32,7 @@ namespace Sudoku
                     options => options
                         .ScanAssemblies(currentAssembly)
                         //.UseRouting()
-                        //.AddMiddleware<LoggingMiddleware>()
+                        .AddMiddleware<LoggingMiddleware>()
                         .UseReduxDevTools()
                    ); ;
             }
