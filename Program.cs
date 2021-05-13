@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Fluxor;
 using Sudoku.Store.Middlewares;
+using Blazor.Extensions.Logging;
 
 namespace Sudoku
 {
@@ -20,6 +21,8 @@ namespace Sudoku
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+
+            AddLoggingService(builder);
 
             loadFluxor(builder);
 
@@ -35,6 +38,14 @@ namespace Sudoku
                         .AddMiddleware<LoggingMiddleware>()
                         .UseReduxDevTools()
                    ); ;
+            }
+
+            static void AddLoggingService(WebAssemblyHostBuilder builder)
+            {
+                builder.Services.AddLogging(builder => builder
+                    .AddBrowserConsole()
+                    .SetMinimumLevel(LogLevel.Trace)
+                );
             }
         }
     }
