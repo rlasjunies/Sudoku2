@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Fluxor;
 using Sudoku.Store.Middlewares;
 using Blazor.Extensions.Logging;
+using Blazored.LocalStorage;
 
 namespace Sudoku
 {
@@ -23,8 +24,8 @@ namespace Sudoku
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             AddLoggingService(builder);
-
             AddFluxorService(builder);
+            AddLocalStorageService(builder);
 
             await builder.Build().RunAsync();
 
@@ -36,6 +37,7 @@ namespace Sudoku
                         .ScanAssemblies(currentAssembly)
                         .UseRouting()
                         .AddMiddleware<LoggingMiddleware>()
+                        .AddMiddleware<PersistStateMiddleware>()
                         .UseReduxDevTools()
                    ); ;
             }
@@ -46,6 +48,11 @@ namespace Sudoku
                     .AddBrowserConsole()
                     .SetMinimumLevel(LogLevel.Trace)
                 );
+            }
+
+            static void AddLocalStorageService(WebAssemblyHostBuilder builder)
+            {
+                builder.Services.AddBlazoredLocalStorage();
             }
         }
     }
