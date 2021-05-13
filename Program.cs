@@ -24,11 +24,11 @@ namespace Sudoku
 
             AddLoggingService(builder);
 
-            loadFluxor(builder);
+            AddFluxorService(builder);
 
             await builder.Build().RunAsync();
 
-            static void loadFluxor(WebAssemblyHostBuilder builder)
+            static void AddFluxorService(WebAssemblyHostBuilder builder)
             {
                 var currentAssembly = typeof(Program).Assembly;
                 builder.Services.AddFluxor(
