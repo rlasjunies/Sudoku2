@@ -31,7 +31,7 @@ namespace Sudoku
                 builder.Services.AddFluxor(
                     options => options
                         .ScanAssemblies(currentAssembly)
-                        //.UseRouting()
+                        .UseRouting()
                         .AddMiddleware<LoggingMiddleware>()
                         .UseReduxDevTools()
                    ); ;
