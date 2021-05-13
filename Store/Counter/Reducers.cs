@@ -1,12 +1,12 @@
 
 using Fluxor;
 
-namespace Sudoku.Store.CounterState
+namespace Sudoku.Store.Counter
 {
     public static class Reducers
     {
         [ReducerMethod]
-        public static CounterState OnIncrementCounterAction(CounterState state, IncrementCounterAction action) =>
+        public static StateCounter OnIncrementCounterAction(StateCounter state, Actions.IncrementCounter action) =>
             state with { ClickCount = state.ClickCount + 1 };
     }
 

@@ -1,21 +1,21 @@
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-using Sudoku.Store.CounterState;
 using Fluxor.Blazor.Web.Components;
+using CounterStore = Sudoku.Store.Counter;
 
 namespace Sudoku.Pages
 {
     public partial class Counter
     {
         [Inject]
-        private IState<CounterState> CounterState { get; set; }
+        private IState<CounterStore::StateCounter> CounterState { get; set; }
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }
 
         private void IncrementCount()
         {
-            var action = new IncrementCounterAction();
+            var action = new CounterStore::Actions.IncrementCounter();
             Dispatcher.Dispatch(action);
         }
     }
