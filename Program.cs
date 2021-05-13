@@ -12,6 +12,10 @@ using Sudoku.Store.Middlewares;
 using Blazor.Extensions.Logging;
 using Blazored.LocalStorage;
 
+using Fluxor.Persist.Middleware;
+using Fluxor.Persist.Storage;
+using Sudoku.Shared.Storage;
+
 namespace Sudoku
 {
     public class Program
@@ -23,9 +27,15 @@ namespace Sudoku
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            builder.Services.AddScoped<IStringStateStorage, LocalStateStorageSudoku>();
+            builder.Services.AddScoped<IObjectStateStorage, InMemoryStateStorageSudoku>();
+            builder.Services.AddScoped<IStoreHandler, JsonStoreHandlerSudoku>();
+            // builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
+
             AddLoggingService(builder);
             AddFluxorService(builder);
             AddLocalStorageService(builder);
+
 
             await builder.Build().RunAsync();
 
@@ -37,9 +47,11 @@ namespace Sudoku
                         .ScanAssemblies(currentAssembly)
                         .UseRouting()
                         .AddMiddleware<LoggingMiddleware>()
-                        .AddMiddleware<PersistStateMiddleware>()
+                        .UsePersist()
+                        .UsePersist(options => options.UseInclusionApproach())
+                        .UsePersist(x => x.SetWhiteList(new string[] { "StateCounter" }))
                         .UseReduxDevTools()
-                   ); ;
+                   );
             }
 
             static void AddLoggingService(WebAssemblyHostBuilder builder)
@@ -52,6 +64,7 @@ namespace Sudoku
 
             static void AddLocalStorageService(WebAssemblyHostBuilder builder)
             {
+                // builder.Services.AddBlazoredLocalStorage(config => {config.JsonSerializerOptions.WriteIndented = true;});
                 builder.Services.AddBlazoredLocalStorage();
             }
         }
