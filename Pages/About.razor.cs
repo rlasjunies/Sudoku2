@@ -1,29 +1,36 @@
 using Fluxor;
 using Microsoft.AspNetCore.Components;
-using Fluxor.Blazor.Web.Components;
+using System;
 using Store = Sudoku.Store.About;
-using Microsoft.Extensions.Logging;
 
 namespace Sudoku.Pages
 {
-    public partial class About
+    public partial class AboutBase : ComponentBase, IDisposable
     {
         [Inject]
-        protected ILogger<Counter> Logger { get; set; }
-
-        [Inject]
-        private IState<Store::StateAbout> State { get; set; }
+        protected IState<Store::StateAbout> _State { get; set; }
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }
 
         protected override void OnInitialized()
         {
-            if (!State.Value.Initialized)
+            _State.StateChanged += StateChanged;
+            if (!_State.Value.Initialized)
             {
                 Dispatcher.Dispatch(new Store::Actions.RetrieveAboutInformation());
             }
             base.OnInitialized();
         }
+
+        private void StateChanged(Object sender, Store::StateAbout state)
+        {
+            InvokeAsync(StateHasChanged);
+        }
+        void IDisposable.Dispose()
+        {
+            _State.StateChanged -= StateChanged;
+        }
+
     }
 }
