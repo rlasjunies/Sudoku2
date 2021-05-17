@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\sudokuboard\sudokuboard.csproj" />
+    <ProjectReference Include="..\SudokuBoard\SudokuBoard.csproj" />
   </ItemGroup>
 
 </Project>
