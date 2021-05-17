@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Sudoku.Store.About
+namespace Sudoku.Store.About.Actions
 {
 
-    namespace Actions
+    public record RetrieveAboutInformation { }
+
+    public record AboutInformationRetrieved
     {
-        public record RetrieveAboutInformation { }
-
-        public record AboutInformationRetrieved { 
-            public string Version {get;init;}
-        }
-
+        public string Version { get; init; }
     }
+
 
 }

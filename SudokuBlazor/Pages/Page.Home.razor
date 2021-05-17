@@ -1,0 +1,16 @@
+﻿@page "/"
+@page "/home"
+@inherits Sudoku.Pages.HomeBase
+
+<div id="title">
+    <div>Sudoku</div>
+    <div>Master</div>
+</div>
+
+<div id="bottom">
+    @if (GameOnGoing)
+    {
+        <button id="Continue" @onclick="NavigateToSudokuPage">Continue</button>
+    }
+    <button id="NewGame" @onclick="NavigateToCreateNewBoardPage">New Game</button>
+</div>

@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Fluxor;
 using Sudoku.Store.Middlewares;
@@ -15,6 +12,7 @@ using Blazored.LocalStorage;
 using Fluxor.Persist.Middleware;
 using Fluxor.Persist.Storage;
 using Sudoku.Shared.Storage;
+using Sudoku;
 
 namespace Sudoku
 {

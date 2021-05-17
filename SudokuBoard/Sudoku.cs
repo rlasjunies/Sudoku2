@@ -7,18 +7,22 @@ namespace Sudoku.Board
 
     public record Solution(int cell, int value);
 
-    public record SolutionByRules(Solution[] uniquePossibleValue, Solution[] uniqueOccurrenceInZone);
+    public class SolutionByRules
+    {
+        public List<Solution> uniquePossibleValue;
+        public List<Solution> uniqueOccurrenceInZone;
+    };
 
     public record SudokuWizardConfiguration
     {
-        bool calculatePossibleValues { get; init; }
-        bool showUniquePossibleValueInRowOrColumn { get; init; }
-        bool showUniquePossibleValueInZones { get; init; }
-        bool showErrornousCells { get; init; }
-        bool showIdenticalNumber { get; init; }
+        public bool calculatePossibleValues { get; init; }
+        public bool showUniquePossibleValueInRowOrColumn { get; init; }
+        public bool showUniquePossibleValueInZones { get; init; }
+        public bool showErrornousCells { get; init; }
+        public bool showIdenticalNumber { get; init; }
     }
 
-    [Serializable]  
+    [Serializable]
     public record SudokuBoard
     {
         public SudokuBoardCell[] cells { get; set; }
@@ -242,7 +246,7 @@ namespace Sudoku.Board
 
             return boardWithPossibleValues;
         }
-        
+
         /**
          * looks for solution of each empty cell in the board
          * based on rules
@@ -267,8 +271,8 @@ namespace Sudoku.Board
             // rule#3: unique possibility of value in 3 lines or rows
 
             return (
-            uniquePossibleValue: cellsWithUniquePossibleValue,
-        uniqueOccurenceInZones: uniqueOcurrenceOfPossibleValueInZones
+                uniquePossibleValue: cellsWithUniquePossibleValue,
+                uniqueOccurenceInZones: uniqueOcurrenceOfPossibleValueInZones
             );
 
             static List<(int cell, int value)> rule1_cellsWithUniquePossibleValueParser(SudokuBoard board)
@@ -376,7 +380,7 @@ namespace Sudoku.Board
 
             // for each cells in the block
             // is the the possibleValue in the possibleValues?
-            foreach( var cellIndexInBlock in Helpers.cellsNumberOfTheBlock(block))
+            foreach (var cellIndexInBlock in Helpers.cellsNumberOfTheBlock(block))
             {
                 // incrementNumberOfOccurenceIfItsPossibleValue();
                 if (board.cells[cellIndexInBlock].calculatedPossibleValues.Exists(value => value == possibleValue))
