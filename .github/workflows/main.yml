@@ -22,12 +22,6 @@ jobs:
       with:
         # The path to the directory for which the version should be determined. This should be at or below the directory containing the version.json file. Default is repo root directory.
         path: ./SudokuBlazor/ # optional, default is .
-
-    - uses: dotnet/nbgv@master
-      id: nbgv
-    - run: echo 'Version=${{ steps.nbgv.outputs.Version }}'
-    # - run: echo 'BuildNumber=${{ steps.nbgv.outputs.BuildNumber }}'
-    # - run: echo 'SemVer2=${{ steps.nbgv.outputs.SemVer2 }}'
     
     # sets up .NET Core SDK 5.0.202
     - name: Setup .NET Core SDK
