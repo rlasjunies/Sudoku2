@@ -6,7 +6,7 @@ namespace Sudoku.Board
     public class GeneratorTests
     {
         [Fact]
-        public void should_generate_a_board()
+        public void Should_generate_a_board()
         {
             // 1
             var board = Sudoku.Board.Generator.generateBoard();
@@ -15,7 +15,7 @@ namespace Sudoku.Board
 
             // 3
             var cell = board.cells[0];
-            Assert.Equal(cell.GetType().Name,"SudokuBoardCell");
+            Assert.Equal("SudokuBoardCell", cell.GetType().Name);
         }
     }
 }

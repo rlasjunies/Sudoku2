@@ -15,7 +15,7 @@ namespace Sudoku.Board
 
             // 3
             var cell = board.cells[0];
-            Assert.Equal(cell.GetType().Name,"SudokuBoardCell");
+            Assert.Equal("SudokuBoardCell", cell.GetType().Name);
         }
     }
 }
