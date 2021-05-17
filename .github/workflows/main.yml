@@ -34,7 +34,7 @@ jobs:
       run: dotnet publish ./SudokuBlazor/Sudoku.csproj -c Release -o release --nologo 
       
     - name: Test
-      run: dotnet test --no-restore
+      run: dotnet test --no-restore --verbosity normal
     
     # changes the base-tag in index.html from '/' to 'Sudoku2' to match GitHub Pages repository subdirectory
     - name: Change base-tag in index.html from / to Sudoku2
