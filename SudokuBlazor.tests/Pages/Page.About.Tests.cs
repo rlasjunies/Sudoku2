@@ -8,6 +8,8 @@ using Sudoku.Store.Game.Actions;
 using System;
 using Xunit;
 using Xunit.Abstractions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Sudoku.Pages.Tests
 {
@@ -35,6 +37,10 @@ namespace Sudoku.Pages.Tests
                     .UseRouting();
                     //.AddMiddleware<LoggingMiddleware>();
             });
+            this.Services.AddLogging(builder => builder
+                //.AddBrowserConsole()
+                .SetMinimumLevel(LogLevel.Trace)
+             );
             this.store = this.Services.GetService(typeof(Fluxor.Store)) as IStore;
             this.actionSubscriber = this.Services.GetService(typeof(Fluxor.IActionSubscriber)) as IActionSubscriber;
             this.dispatcher = this.Services.GetService(typeof(Fluxor.IDispatcher)) as IDispatcher;

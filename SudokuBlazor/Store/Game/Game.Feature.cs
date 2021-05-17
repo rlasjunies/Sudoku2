@@ -13,7 +13,7 @@ namespace Sudoku.Store.Game
             new StateGame
             {
                 board = null,
-                boardHistory = new List<Board.SudokuBoard>(),
+                boardHistory = new Stack<Board.SudokuBoard>(),
                 rowSolved = 0,
                 colSolved = 0,
                 blockSolved = 0,

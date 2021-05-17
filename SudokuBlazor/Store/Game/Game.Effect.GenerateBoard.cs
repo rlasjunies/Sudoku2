@@ -14,13 +14,13 @@ namespace Sudoku.Store.Game.Effects
     {
 
         [EffectMethod]
-        // [EffectMethod(typeof(Actions.GenerateBoard))]
         public async Task GenerateBoardEffect(Actions.GenerateBoard action, IDispatcher dispatcher)
         {
             var board = Sudoku.Board.Board.generateSudokuBoard(action.level);
             dispatcher.Dispatch(new Actions.BoardGenerated
             {
-                board = board
+                board = board,
+                level = action.level,
             });
             await Task.CompletedTask;
         }

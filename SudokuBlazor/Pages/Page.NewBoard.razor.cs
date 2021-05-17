@@ -8,8 +8,9 @@ namespace Sudoku.Pages
 {
     public partial class NewBoardBase : PageBase<Store::StateGame>, IDisposable
     {
-        protected void NavigateToSudokuPage()
+        protected void CreateNewBoardAndNavigateToTheGamePage(Sudoku.Board.SudokuLevelType level)
         {
+            Dispatcher.Dispatch(new Store::Actions.GenerateBoard(){level = level});
             Dispatcher.Dispatch(new GoAction(Pages.Sudoku));
         }
 

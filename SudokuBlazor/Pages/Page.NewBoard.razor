@@ -1,7 +1,9 @@
 ﻿@page "/newboard"
 @inherits NewBoardBase
 
-<h1>Create a new board</h1>
-
-<button @onclick="NavigateToHome">Back</button>
-<button @onclick="NavigateToSudokuPage">Create a new board</button>
+<button id="back" class="btn btn-light backBtn pull-left" @onclick="NavigateToHome">Back</button>
+<h1>Create a new Board</h1>
+<button id="easy" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">Easy</button>
+<button id="medium" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">Medium</button>
+<button id="expert" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">Expert</button>
+<button id="master" class="btn  btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">Master</button>

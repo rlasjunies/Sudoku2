@@ -13,6 +13,10 @@ namespace Sudoku.Pages
         {
             Dispatcher.Dispatch(new GoAction(Pages.Home));
         }
+        protected void NavigateToConfiguration()
+        {
+            Dispatcher.Dispatch(new GoAction(Pages.Config));
+        }
 
     }
 }

@@ -9,21 +9,19 @@ You could have access to an online version of the blazor sudoky via the [github 
 - [x] Create a repository that will automatically publish on Github Pages
 - [x] Basic navigation
   - [x] Pages
-  - [ ] Navigation done via the state management
+  - [x] Navigation done via the state management
 - [ ] Change the app icon 
 - [x] Add sudoku engine 
 - [x] Add state management ... fluxor
 - [ ] Testing
-  - [ ] Software Factory
-    - [x] UT
-    - [x] bUnit
-    - [x] specflow / cucumber
-    - [ ] e2e
-  - [ ] Navigation
-- [ ] About page
+  - [x] UT
+  - [x] bUnit
+  - [ ] specflow / cucumber
+  - [ ] e2e
+- [x] About page
+- [x] Home page
+- [x] New Board page
 - [ ] Config page
-- [ ] Home page
-- [ ] New Board page
 - [ ] Game page
 - [ ] Timer Service
 - [ ] Layout / UX / Styling
