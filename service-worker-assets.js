@@ -1,6 +1,10 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
+      "hash": "sha256-g6tiY9Fa0GUFtTtWzPTn5gDPNn4K7KzvV6n6BS2NS5U=",
+      "url": "assets\/caret-left-fill.svg"
+    },
+    {
       "hash": "sha256-CLMwCdXSHqGZJPkmVzrW5AzX0GqL2ZMFG0ZMmKJhCxs=",
       "url": "css\/app.css"
     },
@@ -213,7 +217,7 @@
       "url": "_framework\/SudokuBoard.dll"
     },
     {
-      "hash": "sha256-5IiQVevJKTGYH8Y+F8F8UYj4CJsx0JnRGiCJ1rMO1\/w=",
+      "hash": "sha256-qv6yp6ACcnShwMpvUH5wZDCVc4iAeet5kkCcJe5wrcw=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -349,7 +353,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-aaqWa\/w6pPs+UVw8mXA7WovvBmh4ey3GDEz3COT4kl8=",
+      "hash": "sha256-elq9bPeXejutgNlvw4D7F5EdAXfEBU4ubpYfuiMcjKo=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -357,5 +361,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "HSJzG5bS"
+  "version": "LR34u+Qr"
 };
