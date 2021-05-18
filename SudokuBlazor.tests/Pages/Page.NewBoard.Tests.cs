@@ -55,7 +55,7 @@ namespace Sudoku.Pages.Tests
         // }
 
         [Fact(DisplayName = "Should load new board page")]
-        public void ShouldLoadNewBoardPage()
+        public void should_load_new_board_page()
         {
             // Act
             var cut = RenderComponent<Page_NewBoard>();
@@ -65,7 +65,7 @@ namespace Sudoku.Pages.Tests
         }
 
         [Fact(DisplayName = "Should have 5 only buttons")]
-        public void ShouldHave2ButtonsIfGameIsOnGoing()
+        public void should_have_5_only_buttons()
         {
 
             // Arrange
@@ -81,7 +81,7 @@ namespace Sudoku.Pages.Tests
         }
 
         [Fact(DisplayName = "Should navigate to 'Home' when clicking on 'Back'")]
-        public void ShouldNavigateToHomeWhenClickingOnBack()
+        public void should_navigate_to_home_when_clicking_on_back()
         {
             // Arrange
             var routingFeature = store.Features["@routing"];
@@ -114,7 +114,7 @@ namespace Sudoku.Pages.Tests
 
 
         [Fact(DisplayName = "Should have 4 buttons to create New board")]
-        public void ShouldHave4ButtonsToCreateNewBoard()
+        public void should_have_4_buttons_to_create_new_board()
         {
 
             // Arrange
@@ -136,8 +136,8 @@ namespace Sudoku.Pages.Tests
             cut.Dispose();
         }
 
-        [Fact(DisplayName = "Should navigate to 'Sudoku' and level should be easy when clicking on 'easy'")]
-        public void ShouldNavigateToSudokuAndLevelShouldBe0WhenClickingEasyButton()
+        [Fact(DisplayName = "Should navigate to Sudoku and level should be easy when clicking on easy")]
+        public void should_navigate_to_sudoku_and_level_should_be_easy_when_clicking_on_easy()
         {
             // Arrange
             var routingFeature = store.Features["@routing"];
@@ -175,7 +175,7 @@ namespace Sudoku.Pages.Tests
         }
 
         [Fact(DisplayName = "Should navigate to 'Sudoku' and level should be medium when clicking on 'medium'")]
-        public void ShouldNavigateToSudokuAndLevelShouldBeMediumWhenClickingEasyButton()
+        public void should_navigate_to_sudoku_and_level_should_be_medium_when_clicking_on_medium()
         {
             // Arrange
             var routingFeature = store.Features["@routing"];

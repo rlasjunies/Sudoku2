@@ -12,10 +12,15 @@ namespace Sudoku.Store.Game.Actions
     {
         public SudokuLevelType level { get; init; }
     }
+
+    public record ToggleShowIdenticalNumber { }
+    public record ToggleShowErrornousCells { }
+    public record ToggleHighlightCellWithUniqueCandidate { }
+
     public record BoardGenerated
     {
         public Board.SudokuBoard board { get; init; }
-        public Board.SudokuLevelType level {get;init;}
-}
+        public Board.SudokuLevelType level { get; init; }
+    }
 
 }
