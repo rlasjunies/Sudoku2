@@ -45,9 +45,9 @@ namespace Sudoku
                         .ScanAssemblies(currentAssembly)
                         .UseRouting()
                         .AddMiddleware<LoggingMiddleware>()
-                        .UsePersist()
-                        .UsePersist(options => options.UseInclusionApproach())
-                        .UsePersist(x => x.SetWhiteList(new string[] { "StateCounter" }))
+                        // .UsePersist()
+                        // .UsePersist(options => options.UseInclusionApproach())
+                        // .UsePersist(x => x.SetWhiteList(new string[] { "StateCounter", "StateGame" }))
                         .UseReduxDevTools()
                    );
             }
