@@ -1,0 +1,15 @@
+@inherits AccSwitchBase
+
+<div id="@id"
+    class="@CssClass"
+    @onclick="ToggleSwitch">
+    <label id="label" 
+        for="input">
+        <input id="input" 
+            type="checkbox" 
+            checked="@valueChecked" 
+            @onchange="OnChangeHandler">
+            <span id="roundSlider"></span>
+    </label>
+    <span id="childcontent">@ChildContent</span>
+</div>
