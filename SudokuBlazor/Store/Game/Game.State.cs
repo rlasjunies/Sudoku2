@@ -9,7 +9,7 @@ namespace Sudoku.Store.Game
     public record StateGame
     {
         public SudokuBoard board;
-        public Stack<SudokuBoard> boardHistory;
+        public SudokuBoard[] boardHistory;
         public SudokuLevelType boardLevel;
         public int cellSelected;
         public bool boardJustFinish;

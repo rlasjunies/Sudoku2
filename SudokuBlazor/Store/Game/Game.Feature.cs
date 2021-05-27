@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using Sudoku.Board;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace Sudoku.Store.Game
             new StateGame
             {
                 board = null,
-                boardHistory = new Stack<Board.SudokuBoard>(),
-                rowSolved = 0,
-                colSolved = 0,
-                blockSolved = 0,
+                boardHistory = Array.Empty<SudokuBoard>(),
+                rowSolved = -1,
+                colSolved = -1,
+                blockSolved = -1,
                 boardSolved = false,
                 boardLevel = Board.SudokuLevelType.easy,
                 cellSelected = -1,
