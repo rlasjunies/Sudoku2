@@ -1,8 +1,11 @@
 ﻿@page "/about"
+@using Sudoku.Components
+
 @inherits AboutBase
 
-<h1>Version</h1>
-
-<p>Version: @State.Value.Version</p>
-
-<button id="back" @onclick="NavigateToHome">Back</button>
+<AccPage>
+    <AccHeader backbutton OnClickBackButton="NavigateToHome">
+        About
+    </AccHeader>
+    <h1>Version: @State.Value.Version</h1>
+</AccPage>

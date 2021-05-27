@@ -1,9 +1,27 @@
 ﻿@page "/newboard"
 @inherits NewBoardBase
 
-<button id="back" class="btn btn-light backBtn pull-left" @onclick="NavigateToHome">Back</button>
-<h1>Create a new Board</h1>
-<button id="easy" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">Easy</button>
-<button id="medium" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">Medium</button>
-<button id="expert" class="btn btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">Expert</button>
-<button id="master" class="btn  btn-light" @onclick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">Master</button>
+<AccPage>
+    <AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">
+        Start a new Board
+    </AccHeader>
+    <div id="content">
+        @* <button id="back" class="btn btn-light backBtn pull-left" @onclick="NavigateToHome">Back</button> *@
+        <h1>Which challenge will you succeed?</h1>
+        <AccButton id="easy" 
+            info 
+            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">Easy
+        </AccButton>
+        <AccButton id="medium"
+            info 
+            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">Medium
+        </AccButton>
+        <AccButton id="expert" info
+            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">Expert
+        </AccButton>
+        <AccButton id="master" info
+            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">Master
+        </AccButton>
+
+    </div>
+</AccPage>

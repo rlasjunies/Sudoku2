@@ -2,15 +2,25 @@
 @page "/home"
 @inherits Sudoku.Pages.HomeBase
 
-<div id="title">
-    <div>Sudoku</div>
-    <div>Master</div>
-</div>
+<AccPage>
+    <div id="title">
+        <div>Sudoku</div>
+        <div>Master</div>
+    </div>
 
-<div id="bottom">
-    @if (GameOnGoing)
-    {
-        <button id="Continue" @onclick="NavigateToSudokuPage">Continue</button>
-    }
-    <button id="NewGame" @onclick="NavigateToCreateNewBoardPage">New Game</button>
-</div>
+    <div id="bottom">
+        @if (GameOnGoing)
+        {
+            <AccButton id="Continue" 
+                success
+                OnClickCallback="NavigateToSudokuPage">Continue</AccButton>
+        }
+        <AccButton id="NewGame" 
+            success=@(!GameOnGoing)
+            info=@(GameOnGoing)
+            OnClickCallback="NavigateToCreateNewBoardPage">New Game</AccButton>
+        <AccButton id="About" 
+            info 
+            OnClickCallback="NavigateToAboutPage">About</AccButton>
+    </div>
+</AccPage>

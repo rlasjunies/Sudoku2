@@ -9,8 +9,8 @@ namespace Sudoku.Pages.Tests
     public static class PageConfigHelper
     {
         public static string BackButtonId => "#back";
-        public static string ShowIdenticalNumberId => "#showidenticalnumber";
-        public static string ShowErrornousCellId => "#showerrornouscells";
-        public static string HighlightUniqueCandidateInRowColZoneId => "#highlightuniquecandidateinzone";
+        public static string ShowIdenticalNumberId => "#showidenticalnumber input";
+        public static string ShowErrornousCellId => "#showerrornouscells input";
+        public static string HighlightUniqueCandidateInRowColZoneId => "#highlightuniquecandidateinzone input";
     }
 }

@@ -1,6 +1,99 @@
 ﻿@page "/sudoku"
 @inherits SudokuBase
 
-<button @onclick="NavigateToHome">Back</button>
-<button @onclick="NavigateToConfiguration">Config.</button>
-<h1>Sudoku page</h1>
+@* <button @onclick="NavigateToHome">Back</button>
+    <button @onclick="NavigateToConfiguration">Config.</button> *@
+
+<AccPage>
+    <AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">
+        Timer tick here
+        @if (GameInPause)
+        {
+            <button id="play" @onclick="dispatchResumeGame">
+                <img src="assets/source_icons_play-outline.svg" />
+            </button>
+        }
+        else
+        {
+            <button id="pause" @onclick="dispatchPauseGame">
+                <img src="assets/source_icons_pause-outline.svg" />
+            </button>
+        }
+        <button id="settings" @onclick="NavigateToConfiguration">
+            <img src="assets/source_icons_settings.svg" />
+        </button>
+    </AccHeader>
+    <AccKeyboard></AccKeyboard>
+
+
+    @*<acc-header backbutton
+        @onBackClick="@() => this.onBackClickHandler()">
+        <acc-timer class={this.gameOnGoing ? "" : "hidden" }
+        time={this.timer}></acc-timer>
+        <acc-button class={this.gameOnGoing ? "headeractionbutton" : "headeractionbutton hidden" }
+        onClick={() => this.onTimerSwitch()}>
+        <acc-icon iconUnicodeCode={!this.gameInPause ? ICON_PAUSE : ICON_PLAY}></acc-icon>
+        </acc-button>
+        <acc-button styledanger
+        class={this.gameOnGoing ? "headeractionbutton" : "headeractionbutton hidden" }
+        onClick={() =>
+        this.onWizardClickHandler()}>
+        <acc-icon iconUnicodeCode="f1cd"></acc-icon>
+        </acc-button>
+        </acc-header>*@
+    @*<acc-page name="sudoku-page">
+        {this.header()}
+        {/* <div class="pagecontent">
+        */}
+        <div id="game" class={this.gameInPause ? 'displayNone' : 'displayYes' }>
+        <sudoku-board-component id="sudokuboard"
+        board={this.board}
+        cellSelected={this.cellSelected}
+        lastCellOfTheGame={this.lastCellOfTheGame}
+        incorrectCells={this.incorrectCells}
+        solvedRow={this.rowSolved}
+        solvedCol={this.colSolved}
+        solvedBlock={this.blockSolved}
+        gameOnGoing={this.gameOnGoing}
+        solutionsByRules={this.solutionsByRules}
+        wizardConfiguration={this.wizardConfiguration}
+        onCellSelection={(cellNumberCustomEvent) =>
+        this.dispatchCellSelection(cellNumberCustomEvent)}>
+        </sudoku-board-component>
+        <key-board class={!this.gameOnGoing ? "hidden" : "" }
+        onClearClicked={_ =>
+        this.dispatchClearTyped()}
+        onUndoClicked={_ => this.dispatchUndoTyped()}
+        onNumberClicked={(keyCustomeEvent) => this.dispatchNumberTyped(keyCustomeEvent)}
+        onDraftNumberClicked={(draftNumberClicked) => this.dispatchDraftNumberTyped(draftNumberClicked)}
+        remainingNumbers={this.board.remainingNumbers}
+        hideClearKey={this.cellSelected === -1
+        || !this.gameOnGoing
+        || this.board.cells[this.cellSelected].value === null
+        || this.board.cells[this.cellSelected].seed}
+        hideUndoKey={!this.gameOnGoing}
+        >
+        </key-board>
+        <div id="newGame" class={this.gameOnGoing ? "displayNone" : "" }>
+        {/* <div id="newGameText">
+        */}
+        <p>Good game! Play again?</p>
+        {/*
+        </div> */}
+        <acc-button id="newGame"
+        stylesuccess
+        onClick={this.onNewGameClicked}>
+        Newboard
+        </acc-button>
+        </div>
+        </div>
+        <div id="pause" class={this.gameInPause ? 'displayYes' : 'displayNone' }
+        onClick={() =>
+        this.onTimerSwitch()}>
+        <acc-icon iconUnicodeCode={ICON_PLAY}></acc-icon>
+        </div>
+        {/*
+        </div> */}
+        </acc-page>*@
+
+</AccPage>

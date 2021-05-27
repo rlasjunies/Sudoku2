@@ -63,8 +63,8 @@ namespace Sudoku.Pages.Tests
             cut.Dispose();
         }
 
-        [Fact(DisplayName = "Should have only create new board button")]
-        public void ShouldHaveOnlyCreateNewBoardButton()
+        [Fact(DisplayName = "Should have create new board and about buttons")]
+        public void Should_have_create_new_board_and_about_buttons()
         {
 
             // Act
@@ -72,24 +72,23 @@ namespace Sudoku.Pages.Tests
 
             // Assert
             var buttons = cut.FindAll("button");
-            Assert.Equal(1, buttons.Count);
+            Assert.Equal(2, buttons.Count);
      
             cut.Dispose();
         }
 
-        [Fact(DisplayName = "Should have 2 buttons when game is on going")]
-        public void ShouldHave2ButtonsIfGameIsOnGoing()
+        [Fact(DisplayName = "Should have 3 buttons when game is on going")]
+        public void ShouldHave3ButtonsIfGameIsOnGoing()
         {
 
             // Arrange
             dispatcher.Dispatch(new GenerateBoard { level = SudokuLevelType.easy});
-
             // Act
             var cut = RenderComponent<Page_Home>();
 
             // Assert that create new board is present
             var buttons = cut.FindAll("button");
-            Assert.Equal(2, buttons.Count);
+            Assert.Equal(3, buttons.Count);
 
             cut.Dispose();
         }

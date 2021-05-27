@@ -22,6 +22,25 @@ namespace Sudoku.Board
             Assert.Equal(2, Helpers.rowOfCellNumber(20));
         }
 
+        [Fact]
+        public void Push_should_work()
+        {
+
+            var board1 = Helpers.initializeSudokuBoard();
+            board1.cells[0].value = 1;
+            var board2 = Helpers.initializeSudokuBoard();
+            board2.cells[0].value = 2;
+            var board3 = Helpers.initializeSudokuBoard();
+            board3.cells[0].value = 3;
+
+            var boards = new SudokuBoard[] { board1, board2 };
+            var bPush = Helpers.Push(boards, board3);
+
+            // Test if "Empty board"
+            var boards2 = Array.Empty<SudokuBoard>();
+            var bPush2 = Helpers.Push(boards2, board3);
+
+        }
 
     }
 }

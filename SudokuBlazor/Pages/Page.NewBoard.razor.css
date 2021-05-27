@@ -1,0 +1,26 @@
+#content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    flex: 1;
+    /* font-size: 20vw; */
+    line-height: 15vw;
+    min-height: 15vw;
+    align-self: center;
+    padding: 5px;
+    align-items: center;
+    /* margin:auto; */
+    /* padding:15px; */
+    /* align-content: center; */
+    /* align-items: center; */
+}
+
+::deep button {
+    font-size: 8vh;
+    margin: 5px 0px 5px 0px;
+    display: flex;
+    text-align: center;
+    /* background-color: yellow; */
+    color: white;
+}

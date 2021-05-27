@@ -128,10 +128,11 @@ namespace Sudoku.Pages.Tests
             var buttonComplex = cut.Find(PageNewBoardHelper.CreateExpertButtonId);
             var buttonVeryComplex = cut.Find(PageNewBoardHelper.CreateMasterButtonId);
 
-            Assert.Equal("Easy", buttonEasy.InnerHtml);
-            Assert.Equal("Medium", buttonMedium.InnerHtml);
-            Assert.Equal("Expert", buttonComplex.InnerHtml);
-            Assert.Equal("Master", buttonVeryComplex.InnerHtml);
+            // is the same buttonEasy.TextContent.MarkupMatches("Easy");
+            Assert.Matches("Easy", buttonEasy.InnerHtml);
+            Assert.Matches("Medium", buttonMedium.InnerHtml);
+            Assert.Matches("Expert", buttonComplex.InnerHtml);
+            Assert.Matches("Master", buttonVeryComplex.InnerHtml);
 
             cut.Dispose();
         }
