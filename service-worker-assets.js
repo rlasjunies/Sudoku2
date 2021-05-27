@@ -5,6 +5,34 @@
       "url": "assets\/caret-left-fill.svg"
     },
     {
+      "hash": "sha256-rTjmVuZZRJS9BDwKr4Syl6xvfdEkXJas2C4ydhW\/0AE=",
+      "url": "assets\/source_icons_arrow-left.svg"
+    },
+    {
+      "hash": "sha256-KvNYOoR7gCtevFwxI2cZq\/PUd31UwktrLr7QypEeiTM=",
+      "url": "assets\/source_icons_nav-arrow-left.svg"
+    },
+    {
+      "hash": "sha256-wTmkK2EmKJf6ACu7RFQYa9bLAZpPrXnp79xFCfj\/GmY=",
+      "url": "assets\/source_icons_pause-outline.svg"
+    },
+    {
+      "hash": "sha256-5GV7Qo18PRVoIBE5AQ2J\/s2gNlo8Wf3R5wVHMQpsWWM=",
+      "url": "assets\/source_icons_play-outline.svg"
+    },
+    {
+      "hash": "sha256-Y5naElAOB05ErdbQhC0RENfitJGrOoUgLWhbj3CmMNw=",
+      "url": "assets\/source_icons_settings.svg"
+    },
+    {
+      "hash": "sha256-xfLMmM8+A3t0iv2lvwOA2KSsOnEZWUQaHI7aE8YZwqY=",
+      "url": "assets\/source_icons_trash.svg"
+    },
+    {
+      "hash": "sha256-5jeDSgoKuOeB1Bazh21A9WI3SE+AHLb76ZIqe5mcyK8=",
+      "url": "assets\/source_icons_undo.svg"
+    },
+    {
       "hash": "sha256-CLMwCdXSHqGZJPkmVzrW5AzX0GqL2ZMFG0ZMmKJhCxs=",
       "url": "css\/app.css"
     },
@@ -61,7 +89,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-Hwpk5lXV1cliCLorRy8rHWJH1NLjVO/wVRnI+yMMGZI=",
+      "hash": "sha256-wu4+15eTwvIA4Xu3WYNm4vhXKZ6gwO3340weTuD0fs0=",
       "url": "index.html"
     },
     {
@@ -103,6 +131,10 @@
     {
       "hash": "sha256-Dvb7uXD3+JPPqlsw2duS+FFNQDkFaxhIbSQWSnhODkM=",
       "url": "_framework\/dotnet.5.0.5.js"
+    },
+    {
+      "hash": "sha256-ETlTvPVrwdL5wupoNAtzVFk0RhXiNTswA8B81cedmvU=",
+      "url": "Sudoku.styles.css"
     },
     {
       "hash": "sha256-4Z30ffoVEL4MHC1Nloj8Q31rIvn\/yBvG6SVRWJK55WI=",
@@ -209,15 +241,15 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-cBjTPEjjABE9nlX0zAlFYV2ukMMxwxJNwrIAeSYpTQk=",
+      "hash": "sha256-jUPWHjKOrZ+2kMrFRiLJPZV9LoIerCbPSFSTYu1UPbA=",
       "url": "_framework\/Helper.dll"
     },
     {
-      "hash": "sha256-93tbIH5c3YtolEfwzTrxT38ElSQReZJW1STbaL+5ftQ=",
+      "hash": "sha256-Cd0gsyTVOtwr9yg9ELSpAbkwNRHc6LjSxbaH\/VWRqac=",
       "url": "_framework\/SudokuBoard.dll"
     },
     {
-      "hash": "sha256-qv6yp6ACcnShwMpvUH5wZDCVc4iAeet5kkCcJe5wrcw=",
+      "hash": "sha256-Warzv4y+0vYcU8+LK+wtKk\/6txIddgIBZ0Jjgisfgm4=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -353,7 +385,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-elq9bPeXejutgNlvw4D7F5EdAXfEBU4ubpYfuiMcjKo=",
+      "hash": "sha256-3K42q4RWwiOFZjF5JnLfvkK4NRwzm9vcCLBsFYQdfAk=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -361,5 +393,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "LR34u+Qr"
+  "version": "gRM9t8MH"
 };
