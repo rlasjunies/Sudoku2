@@ -1,0 +1,120 @@
+#keyboard {
+  margin: 0px;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+::deep .keyicon {
+  font-size: var(--keyboard-value-icon-fontsize);
+  color: var(--keyboard-value-color);
+  display: flex;
+}
+
+::deep .value {
+  /* background-color: aqua; */
+  font-size: var(--keyboard-value-fontsize);
+  line-height: var(--keyboard-value-fontsize);
+  color: var(--keyboard-value-color);
+  /* margin: auto; */
+}
+
+::deep .row {
+  display: flex;
+  flex-direction: row;
+}
+
+::deep .row .key {
+  /* background-color: aqua; */
+  /* align-items: stretch;
+  align-content: center; */
+  /* border-style: dotted; */
+  border-radius: 1vw;
+  font-size: var(--keyboard-value-fontsize);
+  /* min-width: 9vw; */
+  /* max-width: 9vw; */
+  /* min-height: 5vh; */
+  /* max-height: 5vh; */
+  flex: 1;
+  /* margin: 0.3vw; */
+  display: flex;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+}
+
+
+::deep .key:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
+  transform: translateY(-2px);
+}
+
+/* .key-board .hidden {
+  visibility: hidden;
+} */
+
+
+::deep .draftkey {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin: 1px;
+  border-style: dotted;
+}
+
+::deep .draftkeyrow {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+  /* background-color: aqua; */
+  /* align-items: center; */
+  /* justify-content: center; */
+  /* flex-direction: column;   */
+  /* text-align: center; */
+  /* vertical-align: middle; */
+  /* margin: auto; */
+}
+
+
+::deep .draftkeyvalue {
+  /* background-color: yellow; */
+  flex: 1;
+  margin: 0px;
+  font-family: 'draft';
+  font-size: var(--keyboard-draftvalue-fontsize);
+  color: var(--keyboard-draftvalue-color);
+}
+
+::deep .ripplex {
+  position: absolute;
+  background: rgba(0, 0, 0, .25);
+  border-radius: 100%;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
+  pointer-events: none;
+}
+
+::deep .ripplex.show {
+  -webkit-animation: ripple .5s ease-out;
+  animation: ripple .5s ease-out;
+}
+
+@-webkit-keyframes ripple {
+  to {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes ripple {
+  to {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

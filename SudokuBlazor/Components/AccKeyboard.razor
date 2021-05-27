@@ -1,0 +1,141 @@
+@inherits AccKeyboardBase
+
+<div id="keyboard">
+    <div class="row">
+        <div class=@(remainingNumbers[0] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(1)">
+            @cellHTML(1, false)</div>
+        <div class=@(remainingNumbers[1] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(2)">
+            @cellHTML(2, false)</div>
+        <div class=@(remainingNumbers[2] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(3)">
+            @cellHTML(3, false)</div>
+        <div class=@(remainingNumbers[3] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(4)">
+            @cellHTML(4, false)</div>
+        <div class=@(remainingNumbers[4] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(5)">
+            @cellHTML(5, false)</div>
+        <div class=@(remainingNumbers[5] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(6)">
+            @cellHTML(6, false)</div>
+        <div class=@(remainingNumbers[6] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(7)">
+            @cellHTML(7, false)</div>
+        <div class=@(remainingNumbers[7] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(8)">
+            @cellHTML(8, false)</div>
+        <div class=@(remainingNumbers[8] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(9)">
+            @cellHTML(9, false)</div>
+        <div class=@(hideClearKey ? "hidden keyicon" : "keyicon") @onclick="(evt) => clearClickedHandler()">
+            <img src="/assets/source_icons_trash.svg"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class=@(remainingNumbers[0] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(1)">
+            @cellHTML(1, true)</div>
+        <div class=@(remainingNumbers[1] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(2)">
+            @cellHTML(2, true)</div>
+        <div class=@(remainingNumbers[2] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(3)">
+            @cellHTML(3, true)</div>
+        <div class=@(remainingNumbers[3] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(4)">
+            @cellHTML(4, true)</div>
+        <div class=@(remainingNumbers[4] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(5)">
+            @cellHTML(5, true)</div>
+        <div class=@(remainingNumbers[5] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(6)">
+            @cellHTML(6, true)</div>
+        <div class=@(remainingNumbers[6] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(7)">
+            @cellHTML(7, true)</div>
+        <div class=@(remainingNumbers[7] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(8)">
+            @cellHTML(8, true)</div>
+        <div class=@(remainingNumbers[8] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(9)">
+            @cellHTML(9, true)</div>
+        <div class=@(hideUndoKey ? "hidden keyicon" : "keyicon") @onclick="(evt) => undoClickedHandler()">
+            <img src="/assets/source_icons_undo.svg"/>
+        </div>
+    </div>
+</div>
+
+@code{
+
+
+
+    private RenderFragment cellHTML(int digit, bool draft)
+
+
+
+
+
+
+
+    {
+
+
+
+
+
+
+
+        RenderFragment result;
+
+
+
+
+
+
+
+        if (draft)
+
+
+
+        {
+
+
+
+
+
+
+
+            result =
+    @<div class='draftkey'>
+        <div class='draftkeyrow'>
+            <div class='draftkeyvalue'>@(digit == 1 ? "1" : "")</div>
+            <div class='draftkeyvalue'>@(digit == 2 ? "2" : "")</div>
+            <div class='draftkeyvalue'>@(digit == 3 ? "3" : "")</div>
+        </div>
+        <div class='draftkeyrow'>
+            <div class='draftkeyvalue'>@(digit == 4 ? '4' : "")</div>
+            <div class='draftkeyvalue'>@(digit == 5 ? '5' : "")</div>
+            <div class='draftkeyvalue'>@(digit == 6 ? '6' : "")</div>
+        </div>
+        <div class='draftkeyrow'>
+            <div class='draftkeyvalue'>@(digit == 7 ? '7' : "")</div>
+            <div class='draftkeyvalue'>@(digit == 8 ? '8' : "")</div>
+            <div class='draftkeyvalue'>@(digit == 9 ? '9' : "")</div>
+        </div>
+    </div>
+    ;
+
+
+
+        }
+
+        else
+
+        {
+
+            result = 
+    @<div class='value'>@digit</div>
+    ;
+
+        }
+
+
+
+
+
+
+
+        return result;
+
+
+
+
+
+
+
+    }
+}
