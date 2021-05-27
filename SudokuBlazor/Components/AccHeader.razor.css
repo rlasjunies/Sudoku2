@@ -23,6 +23,10 @@
   /* background-color: hotpink; */
 }
 
+::deep #backimg {
+  border-bottom: none;
+}
+
 ::deep #back {
   display: flex;
   /* align-items: flex-start; */
