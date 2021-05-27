@@ -1,0 +1,61 @@
+[b-pvhxaak432] {
+  /* overflow: hidden; */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  display: flex;
+  flex-direction: row;
+
+  min-height: 5vh;
+  /* max-height: 10vh; */
+  /* height: 20vh; */
+  /* background-color: burlywood; */
+  align-items: center;
+  /* box-shadow: 0px 1px 0px 0px rgb(0 0 0 / 71%); */
+  border-bottom: gray solid 1px;
+  /* align-content: space-between; */
+  /* align-self: flex-start; */
+  justify-content: space-between;  
+
+  font-size: x-large;
+  /* background-color: hotpink; */
+}
+
+::deep #back {
+  display: flex;
+  /* align-items: flex-start; */
+  width: 40px;
+  height: 40px;
+  background-color: darkmagenta;
+  font-size: var(--header-actionbutton-fontsize);
+
+  border: none;
+  color: inherit;
+  padding: 0px;
+  cursor: pointer;
+  background-color: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  margin: inherit;
+  border-radius: inherit;
+}
+
+::deep #slot {
+  display: flex;
+  
+  /* align-items: center; */
+  /* align-items: stretch; */
+  justify-content: space-around;
+  align-content: center;
+  align-self: center;
+  width: 100%;
+  font-weight: bold;
+  border-bottom: none;
+}
+
+/* AccHeader .default {background-color: #e7e7e7; color: black;} Gray */
+/* AccHeader .default {background-color: burlywood; color: black;} Gray */
+/* AccHeader .default:hover {background: #ddd;} */
