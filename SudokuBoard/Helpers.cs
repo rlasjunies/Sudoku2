@@ -52,7 +52,7 @@ namespace Sudoku.Board
             return ret;
         }
 
-        static SudokuBoardCell EMPTYCELL = new SudokuBoardCell
+        static SudokuBoardCell EMPTYCELL => new SudokuBoardCell
         {
             value = 0,
             drafted = new bool[9],
@@ -157,7 +157,7 @@ namespace Sudoku.Board
             return correctSequenceOfValue == testSequenceStringified;
         }
 
-        static bool isColSolvedx(int col, SudokuBoard board)
+        public static bool isColSolvedx(int col, SudokuBoard board)
         {
             // var rightSequence = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             var colTemp = new int[9];
@@ -170,7 +170,7 @@ namespace Sudoku.Board
             return isZoneSolved(colTemp);
         }
 
-        static bool isBlockSolvedx(int block, SudokuBoard board)
+        public static bool isBlockSolvedx(int block, SudokuBoard board)
         {
             // var rightSequence = new Array(1, 2, 3, 4, 5, 6, 7, 8, 9);
             var blockTemp = new int[9];
@@ -184,17 +184,17 @@ namespace Sudoku.Board
             return isZoneSolved(blockTemp);
         }
 
-        // static bool isBoardSolvedx(SudokuBoard board)
-        // {
-        //     for (var i = 0; i <= 8; i++)
-        //     {
-        //         if (!isBlockSolvedx(i, board) || !isRowSolvedx(i, board) || !isColSolvedx(i, board))
-        //         {
-        //             return false;
-        //         }
-        //     }
-        //     return true;
-        // }
+        public static bool isBoardSolvedx(SudokuBoard board)
+        {
+            for (var i = 0; i <= 8; i++)
+            {
+                if (!isBlockSolvedx(i, board) || !isRowSolvedx(i, board) || !isColSolvedx(i, board))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
         public static int[] remainingNumbers(SudokuBoardCell[] sudokuBoardCells)
         {
@@ -212,6 +212,79 @@ namespace Sudoku.Board
 
             // }, init);
         }
+
+        public static (SudokuBoard board, SudokuBoard[] boards) PopBoard(SudokuBoard[] boards)
+        {
+            if ( boards.Length > 1)
+            {
+                SudokuBoard[] newBoardHistory = new SudokuBoard[boards.Length - 1];
+                Array.Copy(boards, newBoardHistory, boards.Length - 1);
+                return (board: boards[boards.Length - 1], boards: newBoardHistory);
+            }
+            else
+            {
+                return (board: null, boards: boards);
+            }
+        }
+
+        public static SudokuBoard[] Push(SudokuBoard[] boards, SudokuBoard board)
+        {
+            SudokuBoard[] newBoards = new SudokuBoard[boards.Length + 1];
+            Array.Copy(boards, newBoards, boards.Length);
+            newBoards[boards.Length] = board;
+            return newBoards;
+        }
+
+
+        public static SudokuBoard removeDraftedValueInZone(SudokuBoard board, int value, int cellNumber)
+        {
+            var newBoard = Helpers.sudokuBoardClone(board);
+
+            var row = Helpers.rowOfCellNumber(cellNumber);
+            var col = Helpers.colOfCellNumber(cellNumber);
+            var block = Helpers.blockOfCellNumber(cellNumber);
+
+            removeDraftedValueInRow(value, row, newBoard);
+            removeDraftedValueInCol(value, col, newBoard);
+            removeDraftedValueInBlock(value, block, newBoard);
+
+            return newBoard;
+
+            static void removeDraftedValueInRow(int value, int row, SudokuBoard board)
+            {
+                for (var i = 0; i <= 8; i++)
+                {
+                    board.cells[row * 9 + i].drafted = removeDraftedValue(value, board.cells[row * 9 + i].drafted);
+                }
+            }
+
+            static void removeDraftedValueInCol(int value, int col, SudokuBoard board)
+            {
+                for (var i = 0; i <= 8; i++)
+                {
+                    board.cells[col + 9 * i].drafted = removeDraftedValue(value, board.cells[col + 9 * i].drafted);
+                }
+            }
+
+            static void removeDraftedValueInBlock(int value, int block, SudokuBoard board)
+            {
+                for (var i = 0; i <= 8; i++)
+                {
+                    // board.cells[cellIndexFromBlock(block,i)].drafted = removeDraftedValue(value, board.cells[Math.floor(block / 3) * 27 + i % 3 + 9 * Math.floor(i / 3) + 3 * (block % 3)].drafted);
+                    board.cells[Helpers.cellIndexFromBlock(block, i)].drafted = removeDraftedValue(value, board.cells[Helpers.cellIndexFromBlock(block, i)].drafted);
+                }
+            }
+
+            static bool[] removeDraftedValue(int value, bool[] draftedValues)
+            {
+                if (draftedValues[value - 1])
+                {
+                    draftedValues[value - 1] = false;
+                }
+                return draftedValues;
+            }
+        }
+
 
     }
 

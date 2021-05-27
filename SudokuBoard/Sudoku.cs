@@ -7,7 +7,7 @@ namespace Sudoku.Board
 
     public record Solution(int cell, int value);
 
-    public class SolutionByRules
+    public record SolutionByRules
     {
         public List<Solution> uniquePossibleValue;
         public List<Solution> uniqueOccurrenceInZone;
@@ -80,55 +80,6 @@ namespace Sudoku.Board
         static public void visualize(SudokuBoardCell board)
         {
             throw new NotImplementedException();
-        }
-
-        private static SudokuBoard removeDraftedValueInZone(SudokuBoard board, int value, int cellNumber)
-        {
-            var newBoard = Helpers.sudokuBoardClone(board);
-
-            var row = Helpers.rowOfCellNumber(cellNumber);
-            var col = Helpers.colOfCellNumber(cellNumber);
-            var block = Helpers.blockOfCellNumber(cellNumber);
-
-            removeDraftedValueInRow(value, row, newBoard);
-            removeDraftedValueInCol(value, col, newBoard);
-            removeDraftedValueInBlock(value, block, newBoard);
-
-            return newBoard;
-
-            static void removeDraftedValueInRow(int value, int row, SudokuBoard board)
-            {
-                for (var i = 0; i <= 8; i++)
-                {
-                    board.cells[row * 9 + i].drafted = removeDraftedValue(value, board.cells[row * 9 + i].drafted);
-                }
-            }
-
-            static void removeDraftedValueInCol(int value, int col, SudokuBoard board)
-            {
-                for (var i = 0; i <= 8; i++)
-                {
-                    board.cells[col + 9 * i].drafted = removeDraftedValue(value, board.cells[col + 9 * i].drafted);
-                }
-            }
-
-            static void removeDraftedValueInBlock(int value, int block, SudokuBoard board)
-            {
-                for (var i = 0; i <= 8; i++)
-                {
-                    // board.cells[cellIndexFromBlock(block,i)].drafted = removeDraftedValue(value, board.cells[Math.floor(block / 3) * 27 + i % 3 + 9 * Math.floor(i / 3) + 3 * (block % 3)].drafted);
-                    board.cells[Helpers.cellIndexFromBlock(block, i)].drafted = removeDraftedValue(value, board.cells[Helpers.cellIndexFromBlock(block, i)].drafted);
-                }
-            }
-
-            static bool[] removeDraftedValue(int value, bool[] draftedValues)
-            {
-                if (draftedValues[value - 1])
-                {
-                    draftedValues[value - 1] = false;
-                }
-                return draftedValues;
-            }
         }
 
         public static SudokuBoard generateSudokuBoard(SudokuLevelType level)
@@ -253,7 +204,8 @@ namespace Sudoku.Board
          * 
          * @param board 
          */
-        private static (List<(int cell, int value)> uniquePossibleValue, List<(int cell, int value)> uniqueOccurenceInZones) resolveByRules(SudokuBoard board)
+        //public static (List<Solution> uniquePossibleValue, List<Solution> uniqueOccurenceInZones) resolveByRules(SudokuBoard board)
+        public static SolutionByRules resolveByRules(SudokuBoard board)
         {
 
             // calculate the possibleValues of all the cells
@@ -269,33 +221,32 @@ namespace Sudoku.Board
             var uniqueOcurrenceOfPossibleValueInZones = rule2_cellsWithUniqueOccurenceOfPossibleValueInCellZones(boardWithPossibleValues);
 
             // rule#3: unique possibility of value in 3 lines or rows
+            return new SolutionByRules() {
+                uniquePossibleValue = cellsWithUniquePossibleValue,
+                uniqueOccurrenceInZone = uniqueOcurrenceOfPossibleValueInZones 
+            };
 
-            return (
-                uniquePossibleValue: cellsWithUniquePossibleValue,
-                uniqueOccurenceInZones: uniqueOcurrenceOfPossibleValueInZones
-            );
-
-            static List<(int cell, int value)> rule1_cellsWithUniquePossibleValueParser(SudokuBoard board)
+            static List<Solution> rule1_cellsWithUniquePossibleValueParser(SudokuBoard board)
             {
                 // the board should already have the uniquePossibleValuesParsed
                 // var uniquePossibleValues = new int[81];
                 // var uniquePossibleValues = new List<(int cell, int[] value)>();
-                var uniquePossibleValues = new List<(int cell, int value)>();
+                var uniquePossibleValues = new List<Solution>();
                 for (var index = 0; index < board.cells.Length; index++)
                 {
                     if (board.cells[index].calculatedPossibleValues.Count == 1)
                     {
                         var possibleValue = board.cells[index].calculatedPossibleValues[0];
                         // console.log(`cell:${index} unique solution:${possibleValue}}`);
-                        uniquePossibleValues.Add((cell: index, value: possibleValue));
+                        uniquePossibleValues.Add(new Solution(cell: index, value: possibleValue));
                     }
                 }
                 return uniquePossibleValues;
             }
 
-            static List<(int cell, int value)> rule2_cellsWithUniqueOccurenceOfPossibleValueInCellZones(SudokuBoard board)
+            static List<Solution> rule2_cellsWithUniqueOccurenceOfPossibleValueInCellZones(SudokuBoard board)
             {
-                var uniqueOcurrenceOfPossibleValue = new List<(int cell, int value)>();
+                var uniqueOcurrenceOfPossibleValue = new List<Solution>();
                 for (var cellIndex = 0; cellIndex < board.cells.Length; cellIndex++)
                 {
                     // for each possible value
@@ -311,21 +262,21 @@ namespace Sudoku.Board
                             if (uniqueOccurenceInARow)
                             {
                                 // console.log(`21 - Unique occurence in a row ${cellIndex} - value:${possibleValue}`);
-                                uniqueOcurrenceOfPossibleValue.Add((cell: cellIndex, value: possibleValue));
+                                uniqueOcurrenceOfPossibleValue.Add(new Solution(cell: cellIndex, value: possibleValue));
                             }
 
                             var uniqueOccurenceInACol = (1 == numberOfOccurenceInCalculatedPossibleValuesInCol(board, cellIndex, possibleValue));
                             if (uniqueOccurenceInACol)
                             {
                                 // console.log(`22 - Unique occurence in a col ${cellIndex} - value:${possibleValue}`);
-                                uniqueOcurrenceOfPossibleValue.Add((cell: cellIndex, value: possibleValue));
+                                uniqueOcurrenceOfPossibleValue.Add(new Solution(cell: cellIndex, value: possibleValue));
                             }
 
                             var uniqueOccurenceInABlock = (1 == numberOfOccurenceInCalculatedPossibleValuesInBlock(board, cellIndex, possibleValue));
                             if (uniqueOccurenceInABlock)
                             {
                                 // console.log(`23 - Unique occurence in a block ${blockOfCellNumber(cellIndex)} - value:${possibleValue}`);
-                                uniqueOcurrenceOfPossibleValue.Add((cell: cellIndex, value: possibleValue));
+                                uniqueOcurrenceOfPossibleValue.Add(new Solution(cell: cellIndex, value: possibleValue));
                             }
                         }
                     }

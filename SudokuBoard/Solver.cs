@@ -1,6 +1,6 @@
 namespace Sudoku.Board
 {
-    static class Solver{
+    public static class Solver{
         public static (SudokuBoard board, bool finish, bool resolved) resolverWorkForce(int cellNumber, SudokuBoard board)
         {
 
