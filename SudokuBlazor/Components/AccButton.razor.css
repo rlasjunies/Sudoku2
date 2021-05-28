@@ -1,24 +1,8 @@
-[b-x21h8nj8xe] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* margin: 5px; */
-  /* cursor: pointer; */
-  overflow: hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* border-radius: 2px; */
-  align-content: center;
-  /* background-color: #da190b; */
-}
 
 
 button {
   border: none;
-  /* Remove borders */
-  /* color: white; /* Add a text color */
+  justify-content: space-around;
   color: inherit;
   /* Add a text color
     /* cursor: pointer; /* Add a pointer cursor on mouse-over */
@@ -33,7 +17,6 @@ button {
   height: 100%;
   margin: inherit;
   border-radius: inherit;
-  /* background-color: #0b7dda; */
 }
 
 /* AccButton #slot { */
