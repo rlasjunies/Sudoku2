@@ -133,7 +133,7 @@
       "url": "_framework\/dotnet.5.0.5.js"
     },
     {
-      "hash": "sha256-ETlTvPVrwdL5wupoNAtzVFk0RhXiNTswA8B81cedmvU=",
+      "hash": "sha256-Q0VmAlR5fAOMIBB9Hf097vNplFpR9XgPcxS1k1lfojg=",
       "url": "Sudoku.styles.css"
     },
     {
@@ -249,7 +249,7 @@
       "url": "_framework\/SudokuBoard.dll"
     },
     {
-      "hash": "sha256-KC0j3EtxnK7\/ELWCpL6gFP61vYBeY188Y1ctWeNiJ3k=",
+      "hash": "sha256-qp6\/KhqiWXWQ7nUN0njrOsm0mzLXnA3MJNXGmr\/Uf4E=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -385,7 +385,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-\/iNcMB+sojSRYRdi9vS1gv66x6FRxdlCHhPPBFnwXE0=",
+      "hash": "sha256-RbSYKx6mDru0tdJttU6YnRZU4Pjb2ROR8lWNR8+EcC0=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -393,5 +393,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "CodRecpe"
+  "version": "PGm6acZd"
 };
