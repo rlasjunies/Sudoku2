@@ -1,0 +1,85 @@
+@inherits SudokuBoardCellBase
+
+    @if (isThereValueDefined())
+    {
+        // console.log(`value:${this.cell.value} -  ${this.drafted}`);
+        // renderTypedValueOrSeedValue();
+        <div class="sudoku-board-cell">
+            <div class=@(cell.seed == true ? "value initialvalue" : "value")>
+                @(cell.value)
+            </div>
+        </div>
+    }
+    else
+    {
+        // console.log(`draft value:[${this.value}] -  ${this.drafted}`);
+        @if (isThereDraftValues())
+        {
+            renderDraftedValues();
+        }
+        else
+        {
+            renderPossibleValues();
+        }
+    }
+
+@code { 
+    private RenderFragment renderTypedValueOrSeedValue()
+    {
+        // @onClick="(e) => onClickRippleEffect(event)">
+        //return                    @;
+        return
+            @<div class="sudoku-board-cell">
+                <div class=@(cell.seed == true ? "value initialvalue" : "value")>
+                    @(cell.value)@(cell.seed)
+                </div>
+            </div>;
+    }
+    private RenderFragment renderDraftedValues()
+    {
+        // @onClick="(e)) => onClickRippleEffect(event)">
+        //return                    @;
+        return
+            @<div class="sudoku-board-cell-draft">
+                <div class="rowdraft">
+                    <div class="celldraft">@(drafted[0] ? "1" : "")</div>
+                    <div class="celldraft">@(drafted[1] ? "2" : "")</div>
+                    <div class="celldraft">@(drafted[2] ? "3" : "")</div>
+                </div>
+                <div class="rowdraft">
+                    <div class="celldraft">@(drafted[3] ? "4" : "")</div>
+                    <div class="celldraft">@(drafted[4] ? "5" : "")</div>
+                    <div class="celldraft">@(drafted[5] ? "6" : "")</div>
+                </div>
+                <div class="rowdraft">
+                    <div class="celldraft">@(drafted[6] ? "7" : "")</div>
+                    <div class="celldraft">@(drafted[7] ? "8" : "")</div>
+                    <div class="celldraft">@(drafted[8] ? "9" : "")</div>
+                </div>
+            </div>;
+    }
+
+    private RenderFragment renderPossibleValues()
+    {
+        // @onClick="(e) => onClickRippleEffect(event)">
+        //return                    @;
+
+        return  @<div class="sudoku-board-cell-draft">
+        <div class="rowdraft">
+            <div class="possibleValue">@(possibleValue(1))</div>
+            <div class="possibleValue">@(possibleValue(2))</div>
+            <div class="possibleValue">@(possibleValue(3))</div>
+        </div>
+        <div class="rowdraft">
+            <div class="possibleValue">@(possibleValue(4))</div>
+            <div class="possibleValue">@(possibleValue(5))</div>
+            <div class="possibleValue">@(possibleValue(6))</div>
+        </div>
+        <div class="rowdraft">
+            <div class="possibleValue">@(possibleValue(7))</div>
+            <div class="possibleValue">@(possibleValue(8))</div>
+            <div class="possibleValue">@(possibleValue(9))</div>
+        </div>
+    </div>;
+}
+}

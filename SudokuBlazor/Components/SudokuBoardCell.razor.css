@@ -1,0 +1,122 @@
+[b-7i0vnbjja1] {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column;   */
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    /* margin: auto; */
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+    .sudoku-board-cell-draft {
+        display: flex;
+        flex: 1 1 0;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* flex-direction: column;   */
+        /* text-align: center; */
+        /* vertical-align: middle; */
+        /* margin: auto; */
+    }
+
+    .rowdraft {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        /* justify-content: center; */
+        /* flex-direction: column;   */
+        /* text-align: center; */
+        /* vertical-align: middle; */
+        /* margin: auto; */
+    }
+
+    .celldraft {
+        flex: 1;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        font-family: "draft";
+        font-size: var(--draftvalue-fontsize);
+        font-weight: bold;
+        /* color: slategrey; */
+        color: var(--draftvalue-color);
+    }
+
+    .possibleValue {
+        /* background-color: yellow; */
+        flex: 1;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        font-size: var(--draftvalue-fontsize);
+        font-weight: bold;
+        color: black;
+    }
+
+    .sudoku-board-cell {
+        /* background-color: violet; */
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        /* width: 100%; */
+        /* height:100%; */
+    }
+
+        .sudoku-board-cell .value {
+            margin: auto;
+            font-size: var(--value-fontsize);
+            line-height: var(--value-fontsize);
+            /* color: slategrey; */
+            color: var(--value-color);
+        }
+
+
+    .initialvalue {
+        /* text-decoration: underline; */
+        color: slategrey;
+    }
+
+    /**
+*  RIPPLE
+*/
+
+    .ripplex {
+        position: absolute;
+        background: rgba(0, 0, 0, .25);
+        /* background:blue; */
+        border-radius: 100%;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        pointer-events: none;
+    }
+
+        .ripplex.show {
+            -webkit-animation: ripple .5s ease-out;
+            animation: ripple .5s ease-out;
+        }
+
+@-webkit-keyframes ripple {
+    to {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes ripple {
+    to {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
