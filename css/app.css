@@ -1,4 +1,72 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+﻿
+@font-face {
+    font-family: "localFontAwesome";
+    src: url("/assets/icon/fontawesome-free-5.11.2-web/webfonts/fa-solid-900.woff2") format("woff2")
+}
+
+@font-face {
+    font-family: "draft";
+    src: url("/assets/fonts/cheveuxdange.medium.ttf")
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.pagecontent {
+    display: flex;
+    /* flex: 1; */
+    flex-direction: column;
+    /* align-content: center; */
+    /* align-items: center; */
+    /* justify-items: center; */
+    justify-content: center;
+    height: 100%;
+}
+
+:root {
+    /* --value-fontsize: 10vmin;
+  --draftvalue-fontsize: 2.5vmin;
+  --keyboard-value-fontsize: 10vmin;
+  --keyboard-draftvalue-fontsize: 2.5vmin;
+  --header-actionbutton-fontsize: 4vmin; */
+
+    --value-fontsize: 7vh;
+    /* #2f4f4f Color Hex Dark Slate Gray*/
+    --value-color: #2f4f4f;
+    --draftvalue-fontsize: 2vh;
+    --draftvalue-fontfamily: 'draft';
+    /* #778899 Color Hex Light Slate Gray */
+    /* lighter than light slate gray*/
+    --draftvalue-color: #a3afba;
+    --keyboard-value-fontsize: 7vh;
+    --keyboard-value-icon-fontsize: 5vh;
+    --keyboard-value-color: var(--value-color);
+    --keyboard-draftvalue-fontsize: 2vh;
+    --keyboard-draftvalue-color: var(--draftvalue-color);
+    --header-actionbutton-fontsize: 3vh;
+}
+
+.displayNone {
+    display: none;
+    visibility: hidden;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.flex-hidden {
+    display: none;
+    visibility: hidden;
+}
+
+
+/*@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');*/
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -20,7 +88,7 @@ app {
     flex-direction: column;
 }
 
-.top-row {
+/*.top-row {
     height: 3.5rem;
     display: flex;
     align-items: center;
@@ -44,9 +112,9 @@ app {
 .main .top-row a:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
-}
+}*/
 
-.sidebar {
+/*.sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
@@ -95,9 +163,9 @@ app {
             .sidebar .nav-item a:hover {
                 background-color: rgba(255,255,255,0.1);
                 color: white;
-            }
+            }*/
 
-.content {
+/*.content {
     padding-top: 1.1rem;
 }
 
@@ -115,7 +183,7 @@ app {
 
 .validation-message {
     color: red;
-}
+}*/
 
 #blazor-error-ui {
     background: lightyellow;
@@ -136,7 +204,7 @@ app {
     top: 0.5rem;
 }
 
-@media (max-width: 767.98px) {
+/*@media (max-width: 767.98px) {
     .main .top-row:not(.auth) {
         display: none;
     }
@@ -176,8 +244,8 @@ app {
         display: none;
     }
 
-    .sidebar .collapse {
+    .sidebar .collapse {*/
         /* Never collapse the sidebar for wide screens */
-        display: block;
+        /*display: block;
     }
-}
+}*/

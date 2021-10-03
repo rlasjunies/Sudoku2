@@ -5,6 +5,10 @@
       "url": "assets\/caret-left-fill.svg"
     },
     {
+      "hash": "sha256-Pk\/BUUx785a6cwzZaCzHNQ+cokMBtbKYbhOVccgpfGo=",
+      "url": "assets\/fonts\/cheveuxdange.medium.ttf"
+    },
+    {
       "hash": "sha256-rTjmVuZZRJS9BDwKr4Syl6xvfdEkXJas2C4ydhW\/0AE=",
       "url": "assets\/source_icons_arrow-left.svg"
     },
@@ -33,7 +37,7 @@
       "url": "assets\/source_icons_undo.svg"
     },
     {
-      "hash": "sha256-CLMwCdXSHqGZJPkmVzrW5AzX0GqL2ZMFG0ZMmKJhCxs=",
+      "hash": "sha256-WHXS42xB\/Qb7MFgVRcHnWx8+PXBx8rRuLkrokIrdVp4=",
       "url": "css\/app.css"
     },
     {
@@ -133,7 +137,7 @@
       "url": "_framework\/dotnet.5.0.5.js"
     },
     {
-      "hash": "sha256-Q0VmAlR5fAOMIBB9Hf097vNplFpR9XgPcxS1k1lfojg=",
+      "hash": "sha256-Rryv60XckPKfI9QkyEKC1XoVUKGjsB88RlCFE\/B+DBI=",
       "url": "Sudoku.styles.css"
     },
     {
@@ -241,15 +245,15 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-jUPWHjKOrZ+2kMrFRiLJPZV9LoIerCbPSFSTYu1UPbA=",
+      "hash": "sha256-eB7ojRqPSR2PY5qViFpezHB\/KlyRlabtuapF+K3NZ5Q=",
       "url": "_framework\/Helper.dll"
     },
     {
-      "hash": "sha256-Cd0gsyTVOtwr9yg9ELSpAbkwNRHc6LjSxbaH\/VWRqac=",
+      "hash": "sha256-UP\/hgUWbBPwImV8HBsV+Lur0pDgzJTxu+ocChIpkAEw=",
       "url": "_framework\/SudokuBoard.dll"
     },
     {
-      "hash": "sha256-qp6\/KhqiWXWQ7nUN0njrOsm0mzLXnA3MJNXGmr\/Uf4E=",
+      "hash": "sha256-79XxPQKNA4\/kR0VkSqRl7m4acVozeKHjpvvXPGP46bw=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -381,11 +385,11 @@
       "url": "_framework\/System.Text.RegularExpressions.dll"
     },
     {
-      "hash": "sha256-bHPYHupOBss\/ZiCAWjWFd4Cguutq1blMh4\/AN\/vFcCA=",
+      "hash": "sha256-A13u\/DFZsJWSkaGMO8AXMCG94+gFEoZkGTYu+ZwexL4=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-RbSYKx6mDru0tdJttU6YnRZU4Pjb2ROR8lWNR8+EcC0=",
+      "hash": "sha256-nwavq7EpWrKssis4xLUHsJXnY2LBCZJ+7D1OBraujvE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -393,5 +397,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "PGm6acZd"
+  "version": "UdLmTlUZ"
 };
