@@ -21,8 +21,8 @@ You could have access to an online version of the blazor sudoky via the [github 
 - [x] About page
 - [x] Home page
 - [x] New Board page
-- [ ] Config page
-- [ ] Game page
+- [x] Config page
+- [x] Game page
 - [ ] Timer Service
 - [ ] Layout / UX / Styling
 - [ ] Localization
