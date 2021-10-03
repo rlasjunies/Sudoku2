@@ -66,5 +66,11 @@ Take the array with size decreased in one and repeat the whole process till you 
         }
         return temp;
     }
+    public static bool Find<T>(this T[] arr, Predicate<T> P)
+    {   
+        // TODO to remove when test suite passed
+        foreach (var val in arr) { if ( P(val) ) return true;}
+        return false;
+    }
 
 }
