@@ -1,0 +1,116 @@
+@inherits SudokuBoardBase
+@using Sudoku.Components
+
+<div class="sudoku-board">
+            <div class="row">
+                <div class=@(returnClassForTheCell(0)) 
+                    @onclick="() => cellSelectedHandler(0)">
+                    <SudokuBoardCell
+                        cell=@(board.cells[0])>
+                        drafted=@(board.cells[0].drafted)>
+                    </SudokuBoardCell>
+                </div>
+                <div class=@(returnClassForTheCell(1)) @onclick="() => cellSelectedHandler(1)"><SudokuBoardCell cell=@(board.cells[1]) drafted=@(board.cells[1].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(2)) @onclick="() => cellSelectedHandler(2)"><SudokuBoardCell cell=@(board.cells[2]) drafted=@(board.cells[2].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(3)) @onclick="() => cellSelectedHandler(3)"><SudokuBoardCell cell=@(board.cells[3]) drafted=@(board.cells[3].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(4)) @onclick="() => cellSelectedHandler(4)"><SudokuBoardCell cell=@(board.cells[4]) drafted=@(board.cells[4].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(5)) @onclick="() => cellSelectedHandler(5)"><SudokuBoardCell cell=@(board.cells[5]) drafted=@(board.cells[5].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(6)) @onclick="() => cellSelectedHandler(6)"><SudokuBoardCell cell=@(board.cells[6]) drafted=@(board.cells[6].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(7)) @onclick="() => cellSelectedHandler(7)"><SudokuBoardCell cell=@(board.cells[7]) drafted=@(board.cells[7].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(8)) @onclick="() => cellSelectedHandler(8)"><SudokuBoardCell cell=@(board.cells[8]) drafted=@(board.cells[8].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(9)) @onclick="() => cellSelectedHandler(9)"><SudokuBoardCell cell=@(board.cells[9]) drafted=@(board.cells[9].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(10)) @onclick="() => cellSelectedHandler(10)"><SudokuBoardCell cell=@(board.cells[10]) drafted=@(board.cells[10].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(11)) @onclick="() => cellSelectedHandler(11)"><SudokuBoardCell cell=@(board.cells[11]) drafted=@(board.cells[11].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(12)) @onclick="() => cellSelectedHandler(12)"><SudokuBoardCell cell=@(board.cells[12]) drafted=@(board.cells[12].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(13)) @onclick="() => cellSelectedHandler(13)"><SudokuBoardCell cell=@(board.cells[13]) drafted=@(board.cells[13].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(14)) @onclick="() => cellSelectedHandler(14)"><SudokuBoardCell cell=@(board.cells[14]) drafted=@(board.cells[14].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(15)) @onclick="() => cellSelectedHandler(15)"><SudokuBoardCell cell=@(board.cells[15]) drafted=@(board.cells[15].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(16)) @onclick="() => cellSelectedHandler(16)"><SudokuBoardCell cell=@(board.cells[16]) drafted=@(board.cells[16].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(17)) @onclick="() => cellSelectedHandler(17)"><SudokuBoardCell cell=@(board.cells[17]) drafted=@(board.cells[17].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(18)) @onclick="() => cellSelectedHandler(18)"><SudokuBoardCell cell=@(board.cells[18]) drafted=@(board.cells[18].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(19)) @onclick="() => cellSelectedHandler(19)"><SudokuBoardCell cell=@(board.cells[19]) drafted=@(board.cells[19].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(20)) @onclick="() => cellSelectedHandler(20)"><SudokuBoardCell cell=@(board.cells[20]) drafted=@(board.cells[20].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(21)) @onclick="() => cellSelectedHandler(21)"><SudokuBoardCell cell=@(board.cells[21]) drafted=@(board.cells[21].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(22)) @onclick="() => cellSelectedHandler(22)"><SudokuBoardCell cell=@(board.cells[22]) drafted=@(board.cells[22].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(23)) @onclick="() => cellSelectedHandler(23)"><SudokuBoardCell cell=@(board.cells[23]) drafted=@(board.cells[23].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(24)) @onclick="() => cellSelectedHandler(24)"><SudokuBoardCell cell=@(board.cells[24]) drafted=@(board.cells[24].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(25)) @onclick="() => cellSelectedHandler(25)"><SudokuBoardCell cell=@(board.cells[25]) drafted=@(board.cells[25].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(26)) @onclick="() => cellSelectedHandler(26)"><SudokuBoardCell cell=@(board.cells[26]) drafted=@(board.cells[26].drafted)></SudokuBoardCell></div>
+            </div>
+
+            <div class="row">
+                <div class=@(returnClassForTheCell(27)) @onclick="() => cellSelectedHandler(27)"><SudokuBoardCell cell=@(board.cells[27]) drafted=@(board.cells[27].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(28)) @onclick="() => cellSelectedHandler(28)"><SudokuBoardCell cell=@(board.cells[28]) drafted=@(board.cells[28].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(29)) @onclick="() => cellSelectedHandler(29)"><SudokuBoardCell cell=@(board.cells[29]) drafted=@(board.cells[29].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(30)) @onclick="() => cellSelectedHandler(30)"><SudokuBoardCell cell=@(board.cells[30]) drafted=@(board.cells[30].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(31)) @onclick="() => cellSelectedHandler(31)"><SudokuBoardCell cell=@(board.cells[31]) drafted=@(board.cells[31].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(32)) @onclick="() => cellSelectedHandler(32)"><SudokuBoardCell cell=@(board.cells[32]) drafted=@(board.cells[32].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(33)) @onclick="() => cellSelectedHandler(33)"><SudokuBoardCell cell=@(board.cells[33]) drafted=@(board.cells[33].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(34)) @onclick="() => cellSelectedHandler(34)"><SudokuBoardCell cell=@(board.cells[34]) drafted=@(board.cells[34].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(35)) @onclick="() => cellSelectedHandler(35)"><SudokuBoardCell cell=@(board.cells[35]) drafted=@(board.cells[35].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(36)) @onclick="() => cellSelectedHandler(36)"><SudokuBoardCell cell=@(board.cells[36]) drafted=@(board.cells[36].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(37)) @onclick="() => cellSelectedHandler(37)"><SudokuBoardCell cell=@(board.cells[37]) drafted=@(board.cells[37].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(38)) @onclick="() => cellSelectedHandler(38)"><SudokuBoardCell cell=@(board.cells[38]) drafted=@(board.cells[38].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(39)) @onclick="() => cellSelectedHandler(39)"><SudokuBoardCell cell=@(board.cells[39]) drafted=@(board.cells[39].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(40)) @onclick="() => cellSelectedHandler(40)"><SudokuBoardCell cell=@(board.cells[40]) drafted=@(board.cells[40].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(41)) @onclick="() => cellSelectedHandler(41)"><SudokuBoardCell cell=@(board.cells[41]) drafted=@(board.cells[41].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(42)) @onclick="() => cellSelectedHandler(42)"><SudokuBoardCell cell=@(board.cells[42]) drafted=@(board.cells[42].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(43)) @onclick="() => cellSelectedHandler(43)"><SudokuBoardCell cell=@(board.cells[43]) drafted=@(board.cells[43].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(44)) @onclick="() => cellSelectedHandler(44)"><SudokuBoardCell cell=@(board.cells[44]) drafted=@(board.cells[44].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(45)) @onclick="() => cellSelectedHandler(45)"><SudokuBoardCell cell=@(board.cells[45]) drafted=@(board.cells[45].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(46)) @onclick="() => cellSelectedHandler(46)"><SudokuBoardCell cell=@(board.cells[46]) drafted=@(board.cells[46].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(47)) @onclick="() => cellSelectedHandler(47)"><SudokuBoardCell cell=@(board.cells[47]) drafted=@(board.cells[47].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(48)) @onclick="() => cellSelectedHandler(48)"><SudokuBoardCell cell=@(board.cells[48]) drafted=@(board.cells[48].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(49)) @onclick="() => cellSelectedHandler(49)"><SudokuBoardCell cell=@(board.cells[49]) drafted=@(board.cells[49].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(50)) @onclick="() => cellSelectedHandler(50)"><SudokuBoardCell cell=@(board.cells[50]) drafted=@(board.cells[50].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(51)) @onclick="() => cellSelectedHandler(51)"><SudokuBoardCell cell=@(board.cells[51]) drafted=@(board.cells[51].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(52)) @onclick="() => cellSelectedHandler(52)"><SudokuBoardCell cell=@(board.cells[52]) drafted=@(board.cells[52].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(53)) @onclick="() => cellSelectedHandler(53)"><SudokuBoardCell cell=@(board.cells[53]) drafted=@(board.cells[53].drafted)></SudokuBoardCell></div>
+            </div>
+
+            <div class="row">
+                <div class=@(returnClassForTheCell(54)) @onclick="() => cellSelectedHandler(54)"><SudokuBoardCell cell=@(board.cells[54]) drafted=@(board.cells[54].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(55)) @onclick="() => cellSelectedHandler(55)"><SudokuBoardCell cell=@(board.cells[55]) drafted=@(board.cells[55].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(56)) @onclick="() => cellSelectedHandler(56)"><SudokuBoardCell cell=@(board.cells[56]) drafted=@(board.cells[56].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(57)) @onclick="() => cellSelectedHandler(57)"><SudokuBoardCell cell=@(board.cells[57]) drafted=@(board.cells[57].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(58)) @onclick="() => cellSelectedHandler(58)"><SudokuBoardCell cell=@(board.cells[58]) drafted=@(board.cells[58].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(59)) @onclick="() => cellSelectedHandler(59)"><SudokuBoardCell cell=@(board.cells[59]) drafted=@(board.cells[59].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(60)) @onclick="() => cellSelectedHandler(60)"><SudokuBoardCell cell=@(board.cells[60]) drafted=@(board.cells[60].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(61)) @onclick="() => cellSelectedHandler(61)"><SudokuBoardCell cell=@(board.cells[61]) drafted=@(board.cells[61].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(62)) @onclick="() => cellSelectedHandler(62)"><SudokuBoardCell cell=@(board.cells[62]) drafted=@(board.cells[62].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(63)) @onclick="() => cellSelectedHandler(63)"><SudokuBoardCell cell=@(board.cells[63]) drafted=@(board.cells[63].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(64)) @onclick="() => cellSelectedHandler(64)"><SudokuBoardCell cell=@(board.cells[64]) drafted=@(board.cells[64].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(65)) @onclick="() => cellSelectedHandler(65)"><SudokuBoardCell cell=@(board.cells[65]) drafted=@(board.cells[65].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(66)) @onclick="() => cellSelectedHandler(66)"><SudokuBoardCell cell=@(board.cells[66]) drafted=@(board.cells[66].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(67)) @onclick="() => cellSelectedHandler(67)"><SudokuBoardCell cell=@(board.cells[67]) drafted=@(board.cells[67].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(68)) @onclick="() => cellSelectedHandler(68)"><SudokuBoardCell cell=@(board.cells[68]) drafted=@(board.cells[68].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(69)) @onclick="() => cellSelectedHandler(69)"><SudokuBoardCell cell=@(board.cells[69]) drafted=@(board.cells[69].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(70)) @onclick="() => cellSelectedHandler(70)"><SudokuBoardCell cell=@(board.cells[70]) drafted=@(board.cells[70].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(71)) @onclick="() => cellSelectedHandler(71)"><SudokuBoardCell cell=@(board.cells[71]) drafted=@(board.cells[71].drafted)></SudokuBoardCell></div>
+            </div>
+            <div class="row">
+                <div class=@(returnClassForTheCell(72)) @onclick="() => cellSelectedHandler(72)"><SudokuBoardCell cell=@(board.cells[72]) drafted=@(board.cells[72].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(73)) @onclick="() => cellSelectedHandler(73)"><SudokuBoardCell cell=@(board.cells[73]) drafted=@(board.cells[73].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(74)) @onclick="() => cellSelectedHandler(74)"><SudokuBoardCell cell=@(board.cells[74]) drafted=@(board.cells[74].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(75)) @onclick="() => cellSelectedHandler(75)"><SudokuBoardCell cell=@(board.cells[75]) drafted=@(board.cells[75].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(76)) @onclick="() => cellSelectedHandler(76)"><SudokuBoardCell cell=@(board.cells[76]) drafted=@(board.cells[76].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(77)) @onclick="() => cellSelectedHandler(77)"><SudokuBoardCell cell=@(board.cells[77]) drafted=@(board.cells[77].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(78)) @onclick="() => cellSelectedHandler(78)"><SudokuBoardCell cell=@(board.cells[78]) drafted=@(board.cells[78].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(79)) @onclick="() => cellSelectedHandler(79)"><SudokuBoardCell cell=@(board.cells[79]) drafted=@(board.cells[79].drafted)></SudokuBoardCell></div>
+                <div class=@(returnClassForTheCell(80)) @onclick="() => cellSelectedHandler(80)"><SudokuBoardCell cell=@(board.cells[80]) drafted=@(board.cells[80].drafted)></SudokuBoardCell></div>
+            </div>
+        </div>
+
+@code {
+
+}
