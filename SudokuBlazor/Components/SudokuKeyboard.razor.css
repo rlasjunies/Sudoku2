@@ -6,9 +6,10 @@
 }
 
 ::deep .keyicon {
-  font-size: var(--keyboard-value-icon-fontsize);
-  color: var(--keyboard-value-color);
-  display: flex;
+    font-size: var(--keyboard-value-icon-fontsize);
+    line-height: var(--keyboard-value-icon-fontsize);
+    color: var(--keyboard-value-color);
+    display: flex;
 }
 
 ::deep .value {

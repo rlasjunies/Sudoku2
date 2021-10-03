@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace Sudoku.Components
 {
-    public partial class AccKeyboardBase : AccComponentBase
+    public partial class SudokuKeyboardBase : AccComponentBase
     {
 
         [Parameter]
