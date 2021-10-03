@@ -1,31 +1,76 @@
 ﻿@page "/sudoku"
-@inherits SudokuBase
-
-@* <button @onclick="NavigateToHome">Back</button>
-    <button @onclick="NavigateToConfiguration">Config.</button> *@
+@inherits SudokuPageBase
+@using Sudoku.Components
 
 <AccPage>
     <AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">
         Timer tick here
         @if (GameInPause)
         {
-            <button id="play" @onclick="dispatchResumeGame">
+            <button id="play"
+                    @onclick="ResumeGame">
                 <img src="assets/source_icons_play-outline.svg" />
             </button>
         }
         else
         {
-            <button id="pause" @onclick="dispatchPauseGame">
+            <button id="pause"
+                    @onclick="PauseGame">
                 <img src="assets/source_icons_pause-outline.svg" />
             </button>
         }
-        <button id="settings" @onclick="NavigateToConfiguration">
+        <button id="settings"
+                @onclick="NavigateToConfiguration">
             <img src="assets/source_icons_settings.svg" />
         </button>
     </AccHeader>
-    <AccKeyboard></AccKeyboard>
 
+    <div id="game"
+         class=@(GameInPause ? "displayNone" : "displayYes")>
 
+        <SudokuBoard id="sudokuboard"
+                     board=@(Board)
+                     cellSelected=@(CellSelected)
+                     lastCellOfTheGame=@(LastCellOfTheGame)
+                     incorrectCells=@(IncorrectCells)
+                     solvedRow=@(RowSolved)
+                     solvedCol=@(ColSolved)
+                     solvedBlock=@(BlockSolved)
+                     gameOnGoing=@(GameOnGoing)
+                     solutionsByRules=@(SolutionsByRules)
+                     wizardConfiguration=@(WizardConfiguration)
+                     OnCellSelection="(cellNumberCustomEvent) => dispatchCellSelection(cellNumberCustomEvent)">
+        </SudokuBoard>
+        <SudokuKeyboard id="keyboard"
+                        class=@(!GameOnGoing ? "hidden" : "")
+                        OnClearClicked="ClearCellClicked"
+                        OnUndoClicked="UndoClicked"
+                        OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
+                        OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
+                        remainingNumbers=@(RemainingNumbers)
+                        hideClearKey=@(ShouldHideClearKey())
+                        hideUndoKey=@(!GameOnGoing)>
+        </SudokuKeyboard>
+        <div id="newGame"
+             class=@(GameOnGoing ? "displayNone" : "displayYes")>
+            <p>Good game! Play again?</p>
+            <AccButton id="newGame" 
+                       stylesuccess
+                       OnClickCallback="NavigateToNewboard">
+                Newboard
+            </AccButton>
+        </div>
+    </div>
+    <div id="pause"
+         class=@(GameInPause ? "displayYes" : "displayNone")
+         @onclick="ResumeGame">
+        <img id="playimg" src="assets/source_icons_play-outline.svg" />
+    </div>
+
+    @*
+        || board.cells[this.cellSelected].value == null
+    *@
+    
     @*<acc-header backbutton
         @onBackClick="@() => this.onBackClickHandler()">
         <acc-timer class={this.gameOnGoing ? "" : "hidden" }

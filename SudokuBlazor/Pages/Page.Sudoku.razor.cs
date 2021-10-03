@@ -8,12 +8,27 @@ using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages
 {
-    public partial class SudokuBase : PageBase<Store::StateGame>, IDisposable
+    public partial class SudokuPageBase : PageBase<Store::StateGame>, IDisposable
     {
+        // TODO important test case, when the board is not loaded
 
         //public bool ShowIdenticalNumber => State.Value.wizardConfiguration.showIdenticalNumber;
         public Sudoku.Board.SudokuBoard Board => State.Value.board;
+
+        // TODO trial to avoid control explosion when no Board is loaded
+        // TODO replace to have centralized initialized or be sure there is something in the control at loading time
+        // or it accept not initialized board
+        public int[] RemainingNumbers => new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
+
         public int[] IncorrectCells => State.Value.board.incorrectCells;
+
+        // TODO remove seee control to check if that the reason of the crash
+        //public bool ShouldHideClearKey => CellSelected == Sudoku.Store.Game.Const.NoCellSelected || !GameOnGoing || Board.cells[CellSelected].seed;
+        public bool ShouldHideClearKey() {
+            if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return false;
+            if (Board.cells[CellSelected].seed) return false;
+            return true;
+        }
 
         public int CellSelected => State.Value.cellSelected;
         public int LastCellOfTheGame => State.Value.lastCellOfTheGame;
@@ -29,31 +44,31 @@ namespace Sudoku.Pages
         public bool GameInPause => State.Value.gameInPause;
         public SolutionByRules SolutionsByRules => State.Value.solutionsByRules;
         public SudokuWizardConfiguration WizardConfiguration => State.Value.wizardConfiguration;
-
+        
 
         protected void dispatchCellSelection(int cell)
         {
             Dispatcher.Dispatch(new Store::Actions.SelectCell() { SelectedCell = cell });
         }
 
-        protected void dispatchPauseGame()
+        protected void PauseGame()
         {
-                Dispatcher.Dispatch(new Store::Actions.PauseGame());
+            Dispatcher.Dispatch(new Store::Actions.PauseGame());
         }
-        protected void dispatchResumeGame()
+        protected void ResumeGame()
         {
-                Dispatcher.Dispatch(new Store::Actions.ResumeGame());
+            Dispatcher.Dispatch(new Store::Actions.ResumeGame());
         }
-        protected void dispatchNumberTyped(int keyTyped)
+        protected void NumberTyped(int keyTyped)
         {
             Dispatcher.Dispatch(new Store::Actions.ValueTyped() { valueTyped = keyTyped });
         }
-        protected void dispatchDraftNumberTyped(int keyTyped)
+        protected void DraftNumberTyped(int keyTyped)
         {
             //   dispatchDraftNumberTyped({ detail: keyTyped }) {
             Dispatcher.Dispatch(new Store::Actions.DraftValueTyped() { ValueTyped = keyTyped });
         }
-        protected void dispatchClearTyped()
+        protected void ClearCellClicked()
         {
             // store.dispatch(sudokuClearTyped.action());
             Dispatcher.Dispatch(new Store::Actions.ClearTyped());
@@ -74,7 +89,7 @@ namespace Sudoku.Pages
         //    // store.dispatch(navigateToSplashScreen_PauseTimer.action());
         //}
 
-        protected void onUndoClickHandler()
+        protected void UndoClicked()
         {
             Dispatcher.Dispatch(new Store::Actions.Undo());
         }
@@ -91,14 +106,9 @@ namespace Sudoku.Pages
             }
         }
 
-        protected void onNewGameClicked()
+        protected void NavigateToNewboard()
         {
-            // store.dispatch(navigateTo.action(navigateTo.pages.newGame));
-        }
-
-        protected void onWizardClickHandler()
-        {
-            // store.dispatch(navigateToWizard.action());
+            Dispatcher.Dispatch(new GoAction(Pages.NewBoard));
         }
 
         protected void onCalculatePossibleValuesClickHandler()
