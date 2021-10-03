@@ -35,7 +35,7 @@ namespace Sudoku.Store.Game.Reducers
             var value = Action.valueTyped;
             // TODO: algo a revoir quand fonctionnel avancé, il faut mettre dans des sous fonctions l'ensemeble des cas
 
-            if ((currentCell == 0) ||
+            if ((currentCell == Const.NoCellSelected) ||
             (state.board.cells[currentCell].seed) ||
             (state.board.cells[currentCell].value == value))
             {

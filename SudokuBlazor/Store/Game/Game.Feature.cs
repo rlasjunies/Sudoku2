@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Store.Game
 {
+    
+
     public class Feature : Feature<StateGame>
     {
         public override string GetName() => nameof(StateGame);
@@ -20,7 +22,7 @@ namespace Sudoku.Store.Game
                 blockSolved = -1,
                 boardSolved = false,
                 boardLevel = Board.SudokuLevelType.easy,
-                cellSelected = -1,
+                cellSelected = Const.NoCellSelected,
                 draftMode = false,
                 gameOnGoing = false,
                 lastCellOfTheGame = -1,

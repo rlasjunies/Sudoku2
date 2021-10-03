@@ -6,6 +6,11 @@ using Sudoku.Board;
 
 namespace Sudoku.Store.Game
 {
+    public static class Const
+    {
+        // TODO candidate to move to OneOf<NotCelleSelected, or [0-80]
+        public const int NoCellSelected = -1;
+    }
     public record StateGame
     {
         public SudokuBoard board;
@@ -27,3 +32,5 @@ namespace Sudoku.Store.Game
         public SudokuWizardConfiguration wizardConfiguration;
     }
 }
+
+
