@@ -22,9 +22,9 @@ namespace Sudoku.Pages
         protected void ToggleHighlightCellWithUniqueCandidate(){
             Dispatcher.Dispatch(new Store::Actions.ToggleHighlightCellWithUniqueCandidate());
         }
-        protected void NavigateToHome()
+        protected void NavigateToGame()
         {
-            Dispatcher.Dispatch(new GoAction(Pages.Home));
+            Dispatcher.Dispatch(new GoAction(Pages.Sudoku));
         }
 
     }
