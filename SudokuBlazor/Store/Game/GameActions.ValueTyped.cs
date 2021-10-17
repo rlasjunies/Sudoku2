@@ -66,7 +66,7 @@ namespace Sudoku.Store.Game.Reducers
                 {
                     newBoard.cells[currentCell].value = value;
                     (_, isValueCorrect, _) = Sudoku.Board.Solver.resolverWorkForce(currentCell, newBoard);
-                    newBoard.incorrectCells[currentCell] = isValueCorrect;
+                    newBoard.incorrectCells[currentCell] = !isValueCorrect;
                 }
                 else
                 {
