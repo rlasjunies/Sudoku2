@@ -8,15 +8,12 @@ namespace Sudoku.Components
 {
     public partial class AccSwitchBase : AccComponentBase
     {
-        // ElementReference InputCheckbox;
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
-
         [Parameter]
         public EventCallback<ChangeEventArgs> OnChangeCallback { get; set; }
-        //private string TitleCssClass => ContainerTabSet.ActiveTab == this ? "active" : null;
 
         [Parameter]
         public bool valueChecked { get; set; } = false;
@@ -27,10 +24,8 @@ namespace Sudoku.Components
         }
 
         protected void ToggleSwitch(){
-            // InputCheckbox.
             valueChecked = !valueChecked;
             OnChangeHandler(new ChangeEventArgs());
-            // await OnChangeCallback.InvokeAsync()
         }
     }
 }

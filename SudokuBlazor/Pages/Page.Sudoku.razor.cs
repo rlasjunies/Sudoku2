@@ -12,7 +12,6 @@ namespace Sudoku.Pages
     {
         // TODO important test case, when the board is not loaded
 
-        //public bool ShowIdenticalNumber => State.Value.wizardConfiguration.showIdenticalNumber;
         public Sudoku.Board.SudokuBoard Board => State.Value.board;
 
         // TODO trial to avoid control explosion when no Board is loaded
@@ -22,8 +21,6 @@ namespace Sudoku.Pages
 
         public bool[] IncorrectCells => State.Value.board.incorrectCells;
 
-        // TODO remove seed control to check if that the reason of the crash
-        //public bool ShouldHideClearKey => CellSelected == Sudoku.Store.Game.Const.NoCellSelected || !GameOnGoing || Board.cells[CellSelected].seed;
         public bool ShouldHideClearKey() {
             if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return true;
             if (Board.cells[CellSelected].seed) return true;
@@ -66,29 +63,12 @@ namespace Sudoku.Pages
         }
         protected void DraftNumberTyped(int keyTyped)
         {
-            //   dispatchDraftNumberTyped({ detail: keyTyped }) {
             Dispatcher.Dispatch(new Store::Actions.DraftValueTyped() { ValueTyped = keyTyped });
         }
         protected void ClearCellClicked()
         {
-            // store.dispatch(sudokuClearTyped.action());
             Dispatcher.Dispatch(new Store::Actions.ClearTyped());
         }
-
-        //protected void dispatchUndoTyped()
-        //{
-        //    Dispatcher.Dispatch(new Store::Actions.Undo());
-        //}
-
-        //protected void dispatchNavigateToWizardPage()
-        //{
-        //    // store.dispatch(navigateToWizard.action());
-        //}
-
-        //protected void onBackClickHandler()
-        //{
-        //    // store.dispatch(navigateToSplashScreen_PauseTimer.action());
-        //}
 
         protected void UndoClicked()
         {

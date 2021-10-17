@@ -19,7 +19,6 @@ namespace Sudoku.Pages
 
         protected override void OnInitialized()
         {
-            // Logger?.LogDebug($"{typeof(T)} initialization");
             Logger?.LogDebug($"{this.GetType().FullName} initialization");
             State.StateChanged += StateChanged;
             base.OnInitialized();

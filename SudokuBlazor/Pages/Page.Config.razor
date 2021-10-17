@@ -10,28 +10,12 @@
             class="switch"
             valueChecked="@ShowIdenticalNumber"
             OnChangeCallback="ToggleShowIdenticalNumber">Show identical number</AccSwitch>
-        @* <div class="container-xxl my-md-4 bd-layout"> *@
 
-            @* <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" 
-                id="showidenticalnumber" 
-                checked="@ShowIdenticalNumber"
-                    @onchange="ToggleShowIdenticalNumber">
-                <label class="form-check-label" for="showidenticalnumber">Show identical number</label>
-            </div> *@
         <AccSwitch id="showerrornouscells"
             class="switch"
             valueChecked="@ShowErrornousCells"
             OnChangeCallback="ToggleShowErrornousCells"
             >Show errornous cells</AccSwitch>
-
-            @* <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" 
-                id="showerrornouscells" 
-                checked="@ShowErrornousCells"
-                    @onchange="ToggleShowErrornousCells">
-                <label class="form-check-label" for="showerrornouscells">Show errornous cells</label>
-            </div> *@
 
         <AccSwitch id="highlightuniquecandidateinzone"
             class="switch"
@@ -40,11 +24,5 @@
             OnChangeCallback="ToggleHighlightCellWithUniqueCandidate"
             >Show errornous cells</AccSwitch>
 
-            @* <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="highlightuniquecandidateinzone"
-                    checked="@HighlightCellWithUniqueCandidate" @onchange="ToggleHighlightCellWithUniqueCandidate">
-                <label class="form-check-label" for="highlightuniquecandidateinzone">Highlight unique candidate in row,
-                    column or zone</label>
-            </div> *@
     </div>
 </AccPage>
