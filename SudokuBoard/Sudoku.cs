@@ -26,7 +26,7 @@ namespace Sudoku.Board
     public record SudokuBoard
     {
         public SudokuBoardCell[] cells { get; set; }
-        public int[] incorrectCells { get; set; }
+        public bool[] incorrectCells { get; set; }
         public int[] remainingNumbers { get; set; }
     }
 

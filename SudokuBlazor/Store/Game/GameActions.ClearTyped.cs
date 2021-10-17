@@ -44,7 +44,7 @@ namespace Sudoku.Store.Game.Reducers
                 newBoard.cells[currentCell].drafted = new bool[9] { false, false, false, false, false, false, false, false, false };
                 newBoard.cells[currentCell].value = -1;
                 // remove the cell of the incorrect cells
-                newBoard.incorrectCells = newBoard.incorrectCells.Filter((cellNumber) => cellNumber != currentCell);
+                newBoard.incorrectCells[currentCell] = false;
 
                 // check if zones are solved in order to provide animation for the player
                 rowSolved = hlpr.isRowSolvedx(row, newBoard) ? row : -1;

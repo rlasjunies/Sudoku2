@@ -20,7 +20,7 @@ namespace Sudoku.Pages
         // or it accept not initialized board
         public int[] RemainingNumbers => new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
-        public int[] IncorrectCells => State.Value.board.incorrectCells;
+        public bool[] IncorrectCells => State.Value.board.incorrectCells;
 
         // TODO remove seee control to check if that the reason of the crash
         //public bool ShouldHideClearKey => CellSelected == Sudoku.Store.Game.Const.NoCellSelected || !GameOnGoing || Board.cells[CellSelected].seed;

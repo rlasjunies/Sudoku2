@@ -59,24 +59,23 @@ namespace Sudoku.Store.Game.Reducers
                 // const isValueCorrect = (value == newBoard.cells[currentCell].expectedValue) ? true : false;
 
                 var isValuePossible = hlpr.isPossibleNumberx(currentCell, value, oldBoard);
+                
+                // TODO: check if incorrect should be done in the library if, the state is there
                 var isValueCorrect = false;
                 if (isValuePossible)
                 {
                     newBoard.cells[currentCell].value = value;
                     (_, isValueCorrect, _) = Sudoku.Board.Solver.resolverWorkForce(currentCell, newBoard);
+                    newBoard.incorrectCells[currentCell] = isValueCorrect;
+                }
+                else
+                {
+                    newBoard.incorrectCells[currentCell] = true;
                 }
 
                 // remove the value from the list if already exists
                 // TODO: create an array library - retrieve the one from uacommander
                 //testEnvironment && console.debug(...DEV_MODE,`isValuePossible:${ isValuePossible} -isValueCorrect:${ isValueCorrect} incorrect cells before:`,newBoard.incorrectCells);
-
-                //remove from cell from IncorrectCell list, if value is correct
-
-                newBoard.incorrectCells = newBoard.incorrectCells.Filter((cellNumber) => cellNumber != currentCell);
-                if (!isValueCorrect)
-                {
-                    newBoard.incorrectCells = newBoard.incorrectCells.ClonePush(currentCell);
-                }
 
                 //testEnvironment && console.debug(...DEV_MODE,`isValuePossible:${ isValuePossible}-isValueCorrect:${ isValueCorrect} incorrect cells AFTER:`,newBoard.incorrectCells);
 

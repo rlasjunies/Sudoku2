@@ -74,7 +74,7 @@ namespace Sudoku.Board
                     EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,
                     EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,EMPTYCELL,
                     EMPTYCELL},
-                incorrectCells = new int[81],
+                incorrectCells = new bool[81],
                 remainingNumbers = new int[9]
             };
         }
