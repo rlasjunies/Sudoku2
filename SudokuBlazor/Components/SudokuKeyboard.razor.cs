@@ -31,6 +31,11 @@ namespace Sudoku.Components
             await OnNumberClicked.InvokeAsync(numberClicked);
         }
 
+        protected async void draftNumberClickedHandler(int numberClicked)
+        {
+            await OnDraftNumberClicked.InvokeAsync(numberClicked);
+        }
+
         protected async void  clearClickedHandler(){
             await OnClearClicked.InvokeAsync();
         }

@@ -56,7 +56,7 @@ namespace Sudoku
             {
                 builder.Services.AddLogging(builder => builder
                     .AddBrowserConsole()
-                    .SetMinimumLevel(LogLevel.Trace)
+                    .SetMinimumLevel(LogLevel.Information)
                 );
             }
 

@@ -3,13 +3,7 @@
 
 <div class="sudoku-board">
             <div class="row">
-                <div class=@(returnClassForTheCell(0)) 
-                    @onclick="() => cellSelectedHandler(0)">
-                    <SudokuBoardCell
-                        cell=@(board.cells[0])>
-                        drafted=@(board.cells[0].drafted)>
-                    </SudokuBoardCell>
-                </div>
+                <div class=@(returnClassForTheCell(0)) @onclick="() => cellSelectedHandler(0)"><SudokuBoardCell cell=@(board.cells[0]) drafted=@(board.cells[0].drafted)></SudokuBoardCell></div>
                 <div class=@(returnClassForTheCell(1)) @onclick="() => cellSelectedHandler(1)"><SudokuBoardCell cell=@(board.cells[1]) drafted=@(board.cells[1].drafted)></SudokuBoardCell></div>
                 <div class=@(returnClassForTheCell(2)) @onclick="() => cellSelectedHandler(2)"><SudokuBoardCell cell=@(board.cells[2]) drafted=@(board.cells[2].drafted)></SudokuBoardCell></div>
                 <div class=@(returnClassForTheCell(3)) @onclick="() => cellSelectedHandler(3)"><SudokuBoardCell cell=@(board.cells[3]) drafted=@(board.cells[3].drafted)></SudokuBoardCell></div>

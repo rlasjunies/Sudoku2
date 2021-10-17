@@ -25,23 +25,23 @@
         </div>
     </div>
     <div class="row">
-        <div class=@(remainingNumbers[0] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(1)">
+        <div class=@(remainingNumbers[0] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(1)">
             @cellHTML(1, true)</div>
-        <div class=@(remainingNumbers[1] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(2)">
+        <div class=@(remainingNumbers[1] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(2)">
             @cellHTML(2, true)</div>
-        <div class=@(remainingNumbers[2] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(3)">
+        <div class=@(remainingNumbers[2] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(3)">
             @cellHTML(3, true)</div>
-        <div class=@(remainingNumbers[3] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(4)">
+        <div class=@(remainingNumbers[3] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(4)">
             @cellHTML(4, true)</div>
-        <div class=@(remainingNumbers[4] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(5)">
+        <div class=@(remainingNumbers[4] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(5)">
             @cellHTML(5, true)</div>
-        <div class=@(remainingNumbers[5] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(6)">
+        <div class=@(remainingNumbers[5] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(6)">
             @cellHTML(6, true)</div>
-        <div class=@(remainingNumbers[6] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(7)">
+        <div class=@(remainingNumbers[6] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(7)">
             @cellHTML(7, true)</div>
-        <div class=@(remainingNumbers[7] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(8)">
+        <div class=@(remainingNumbers[7] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(8)">
             @cellHTML(8, true)</div>
-        <div class=@(remainingNumbers[8] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(9)">
+        <div class=@(remainingNumbers[8] > 0 ? "key" : "key hidden") @onclick="(evt) => draftNumberClickedHandler(9)">
             @cellHTML(9, true)</div>
         <div class=@(hideUndoKey ? "hidden keyicon" : "keyicon") @onclick="(evt) => undoClickedHandler()">
             <img src="assets/source_icons_undo.svg" />

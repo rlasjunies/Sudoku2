@@ -39,17 +39,18 @@
         /* margin: auto; */
     }
 
-    .celldraft {
-        flex: 1;
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        font-family: "draft";
-        font-size: var(--draftvalue-fontsize);
-        font-weight: bold;
-        /* color: slategrey; */
-        color: var(--draftvalue-color);
-    }
+.celldraft {
+    flex: 1;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "draft";
+    font-size: var(--draftvalue-fontsize);
+    font-weight: bold;
+    /* color: slategrey; */
+    color: var(--draftvalue-color);
+}
 
     .possibleValue {
         /* background-color: yellow; */

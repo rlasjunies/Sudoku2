@@ -1,6 +1,6 @@
 @inherits SudokuBoardCellBase
 
-    @if (isThereValueDefined())
+@if (isThereValueDefined())
 {
     <div class="sudoku-board-cell">
         <div class=@(cell.seed == true ? "value initialvalue" : "value")>
@@ -10,52 +10,38 @@
 }
 else
 {
-    // console.log(`draft value:[${this.value}] -  ${this.drafted}`);
+    @*Console.WriteLine($"No value");*@
+
     @if (isThereDraftValues())
     {
-        renderDraftedValues();
+        @*Console.WriteLine($"No value - draft");*@
+
+        @*renderDraftedValues();*@
+        <div class="sudoku-board-cell-draft">
+            <div class="rowdraft">
+                    <div class="celldraft">@(drafted[0] ? "1" : "")</div>
+                    <div class="celldraft">@(drafted[1] ? "2" : "")</div>
+                    <div class="celldraft">@(drafted[2] ? "3" : "")</div>
+                </div>
+                <div class="rowdraft">
+                    <div class="celldraft">@(drafted[3] ? "4" : "")</div>
+                    <div class="celldraft">@(drafted[4] ? "5" : "")</div>
+                    <div class="celldraft">@(drafted[5] ? "6" : "")</div>
+                </div>
+                <div class="rowdraft">
+                    <div class="celldraft">@(drafted[6] ? "7" : "")</div>
+                    <div class="celldraft">@(drafted[7] ? "8" : "")</div>
+                    <div class="celldraft">@(drafted[8] ? "9" : "")</div>
+                </div>
+            </div>
     }
-    else
+    
+    @*else
     {
+        Console.WriteLine($"No value - possible value");
+
         renderPossibleValues();
-    }
-}
-
-@code {
-    private RenderFragment renderTypedValueOrSeedValue()
-    {
-        return
-    @<div class="sudoku-board-cell">
-        <div class=@(cell.seed == true ? "value initialvalue" : "value")>
-            @(cell.value)@(cell.seed)
-        </div>
-    </div>;
-    }
-    private RenderFragment renderDraftedValues()
-    {
-        return
-    @<div class="sudoku-board-cell-draft">
-        <div class="rowdraft">
-            <div class="celldraft">@(drafted[0] ? "1" : "")</div>
-            <div class="celldraft">@(drafted[1] ? "2" : "")</div>
-            <div class="celldraft">@(drafted[2] ? "3" : "")</div>
-        </div>
-        <div class="rowdraft">
-            <div class="celldraft">@(drafted[3] ? "4" : "")</div>
-            <div class="celldraft">@(drafted[4] ? "5" : "")</div>
-            <div class="celldraft">@(drafted[5] ? "6" : "")</div>
-        </div>
-        <div class="rowdraft">
-            <div class="celldraft">@(drafted[6] ? "7" : "")</div>
-            <div class="celldraft">@(drafted[7] ? "8" : "")</div>
-            <div class="celldraft">@(drafted[8] ? "9" : "")</div>
-        </div>
-    </div>;
-    }
-
-    private RenderFragment renderPossibleValues()
-    {
-        return  @<div class="sudoku-board-cell-draft">
+        <div class="sudoku-board-cell-draft">
         <div class="rowdraft">
             <div class="possibleValue">@(possibleValue(1))</div>
             <div class="possibleValue">@(possibleValue(2))</div>
@@ -72,5 +58,59 @@ else
             <div class="possibleValue">@(possibleValue(9))</div>
         </div>
     </div>;
-    }
+    }*@
+}
+
+@code {
+    //private RenderFragment renderTypedValueOrSeedValue()
+    //{
+    //    return
+    //        @<div class="sudoku-board-cell">
+    //            <div class=@(cell.seed == true ? "value initialvalue" : "value")>
+    //                @(cell.value)@(cell.seed)
+    //            </div>
+    //        </div>;
+    //}
+    //private RenderFragment renderDraftedValues()
+    //{
+    //    return
+    //        @<div class="sudoku-board-cell-draft">
+    //            <div class="rowdraft">
+    //                <div class="celldraft">@(drafted[0] ? "1" : "")</div>
+    //                <div class="celldraft">@(drafted[1] ? "2" : "")</div>
+    //                <div class="celldraft">@(drafted[2] ? "3" : "")</div>
+    //            </div>
+    //            <div class="rowdraft">
+    //                <div class="celldraft">@(drafted[3] ? "4" : "")</div>
+    //                <div class="celldraft">@(drafted[4] ? "5" : "")</div>
+    //                <div class="celldraft">@(drafted[5] ? "6" : "")</div>
+    //            </div>
+    //            <div class="rowdraft">
+    //                <div class="celldraft">@(drafted[6] ? "7" : "")</div>
+    //                <div class="celldraft">@(drafted[7] ? "8" : "")</div>
+    //                <div class="celldraft">@(drafted[8] ? "9" : "")</div>
+    //            </div>
+    //        </div>;
+    //}
+
+    //private RenderFragment renderPossibleValues()
+    //{
+    //    return  @<div class="sudoku-board-cell-draft">
+    //    <div class="rowdraft">
+    //        <div class="possibleValue">@(possibleValue(1))</div>
+    //        <div class="possibleValue">@(possibleValue(2))</div>
+    //        <div class="possibleValue">@(possibleValue(3))</div>
+    //    </div>
+    //    <div class="rowdraft">
+    //        <div class="possibleValue">@(possibleValue(4))</div>
+    //        <div class="possibleValue">@(possibleValue(5))</div>
+    //        <div class="possibleValue">@(possibleValue(6))</div>
+    //    </div>
+    //    <div class="rowdraft">
+    //        <div class="possibleValue">@(possibleValue(7))</div>
+    //        <div class="possibleValue">@(possibleValue(8))</div>
+    //        <div class="possibleValue">@(possibleValue(9))</div>
+    //    </div>
+    //</div>;
+    //}
 }

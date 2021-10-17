@@ -3,12 +3,16 @@
 // using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 // using Sudoku.Board;
 
 namespace Sudoku.Components
 {
     public partial class SudokuBoardCellBase : AccComponentBase
     {
+        [Inject]
+        protected ILogger<SudokuBoardCellBase> Logger { get; set; }
+
         [Parameter]
         public bool[] drafted { get; set; }
 
@@ -49,13 +53,15 @@ namespace Sudoku.Components
 
         protected bool isThereValueDefined()
         {
-            return cell.value != 0 ? true : false;
+            return cell.value != Sudoku.Store.Game.Const.NoValueInTheCell ? true : false;
         }
 
         protected bool isThereDraftValues()
         {
             // console.log(`drafted values?:${this.cell.drafted.find(val => val === true) || false}`,this.cell.drafted,)
-            return cell.drafted.Find(val => val == true);
+            var isThereDraftedValues = cell.drafted.Find(val => val == true);
+            if (isThereDraftedValues) Logger.LogInformation($"there is drafted value");
+            return isThereDraftedValues;
         }
 
         protected string possibleValue(int value)
