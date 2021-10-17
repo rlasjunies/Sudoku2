@@ -27,7 +27,7 @@ namespace Sudoku.Store.Game.Reducers
 
             // TODO: algo a revoir quand fonctionnel avancé, il faut mettre dans des sous fonctions l'ensemeble des cas
 
-            if (currentCell == -1)
+            if (currentCell == Sudoku.Store.Game.Const.NoCellSelected)
             {
                 // noting done
             }

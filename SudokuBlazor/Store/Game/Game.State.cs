@@ -10,6 +10,8 @@ namespace Sudoku.Store.Game
     {
         // TODO candidate to move to OneOf<NotCelleSelected, or [0-80]
         public const int NoCellSelected = -1;
+        public const int NoValueInTheCell = 0;
+        public const int NothingSolved = -1;
     }
     public record StateGame
     {

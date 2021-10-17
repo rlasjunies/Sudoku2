@@ -2,30 +2,14 @@ using System;
 
 public static class ArrayExtensions
 {
-    //     public static int Push<T>(this T[] source, T value)
-    //     {
-    //         var index = Array.IndexOf(source, default(T));
-
-    //         if (index != -1)
-    //         {
-    //             source[index] = value;
-    //         }
-
-    //         return index;
-    //     }
-
-    //     public static string StringifyInt(this int[] source)
-    //     {
-    //         return String.Join("", Array.ConvertAll<int, string>(source, Convert.ToString));
-    //     }
 
     /**
-The Fisher-Yates algorithms orders the array in place with a cost of of O(n) following this procedure:
+    The Fisher-Yates algorithms orders the array in place with a cost of of O(n) following this procedure:
 
-Start from the last element
-Randomly select one element of the array and swap it with the last element
-Take the array with size decreased in one and repeat the whole process till you reach the first element.
-*/
+    Start from the last element
+    Randomly select one element of the array and swap it with the last element
+    Take the array with size decreased in one and repeat the whole process till you reach the first element.
+    */
     public static T[] Shuffle_knuthfisheryates2<T>(this T[] arr)
     {
         //var temp = arr.Length;

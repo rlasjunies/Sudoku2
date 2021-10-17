@@ -115,10 +115,10 @@ namespace Sudoku.Components
         // }
 
         [Parameter]
-        public int cellSelected { get; set; } = -1;
+        public int cellSelected { get; set; } = Sudoku.Store.Game.Const.NoCellSelected;
 
         [Parameter]
-        public int lastCellOfTheGame { get; set; } = -1;
+        public int lastCellOfTheGame { get; set; } = Sudoku.Store.Game.Const.NoCellSelected;
 
         [Parameter]
         public bool[] incorrectCells { get; set; } = new bool[81];
@@ -231,10 +231,10 @@ namespace Sudoku.Components
         //     chenillardSouthWest(this.element, col, row, block, true, 0);
         // }
 
-        protected string selectedCellValue()
-        {
-            return cellSelected != -1 ? board.cells[cellSelected].value + "" : "";
-        }
+        //protected string selectedCellValue()
+        //{
+        //    return cellSelected != Sudoku.Store.Game.Const.NoCellSelected ? board.cells[cellSelected].value + "" : "";
+        //}
 
         // classboard:string[] = []
 
@@ -245,15 +245,14 @@ namespace Sudoku.Components
 
             //logger.LogDebug($"cell[{cell}] - cellSelected:{this.cellSelected}");
 
-            // conversion to .NET var isCellSelectedCorrect = (cellSelected != -1) && (cellSelected is null);
-            var isCellSelectedCorrect = (cellSelected != -1);
+            var isCellSelectedCorrect = (cellSelected != Sudoku.Store.Game.Const.NoCellSelected);
 
             // conversion to .ENT var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : null;
-            var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : -1;
+            var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : Sudoku.Store.Game.Const.NoValueInTheCell;
             var cellValue = this.board.cells[cell].value;
 
             // conversion to .NET var modeEntry = isNullOrEmpty(selectedCellValue) ;
-            var modeEntry = selectedCellValue == -1;
+            var modeEntry = selectedCellValue == Sudoku.Store.Game.Const.NoValueInTheCell;
 
             var modeHighlightNumber = !modeEntry;
             // testEnvironment && console.debug(...BOARD_DEV_MODE,`cellSelected:${this.cellSelected} - SelectedValue:${selectedCellValue} - cellValue:${cellValue} - modeEntry:${modeEntry}`);
@@ -266,7 +265,6 @@ namespace Sudoku.Components
             var rowOfCellSelected = hlpr.rowOfCellNumber(cellSelected);
             var blockOfCellSelected = hlpr.blockOfCellNumber(cellSelected);
 
-            // Conversion to .NET var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells.lastIndexOf(cell) !== -1 : false;
             // TODO not so sure about this conversion ... need to be double checked
             var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells[cell] : false;
             //logger.LogDebug($"cell[{cell}] - isIncorrectCells:{incorrectCells[cell]}");

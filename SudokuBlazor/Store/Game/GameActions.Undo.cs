@@ -5,7 +5,6 @@ using hlpr = Sudoku.Board.Helpers;
 namespace Sudoku.Store.Game.Actions
 {
     public record Undo {}
-
 }
 
 namespace Sudoku.Store.Game.Reducers
@@ -32,22 +31,6 @@ namespace Sudoku.Store.Game.Reducers
                     board = board,
                     boardHistory = boards,
                 };
-
-
-            //if (state.boardHistory.Length > 1)
-            //{ // 1st element cannot be undone
-            //    var (_, newHistory) = hlpr.PopBoard(state.boardHistory);
-            //    state = state with
-            //    {
-            //        board = state.boardHistory[state.boardHistory.Length-1],
-            //        boardHistory = newHistory,
-            //    };
-            //}
-            //else
-            //{
-            //    // 1st element cannot be undone
-            //}
-            //return state;
         }
     }
 }

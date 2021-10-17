@@ -33,7 +33,7 @@ namespace Sudoku.Store.Game.Reducers
                 board = Action.board,
                 boardLevel = Action.level,
                 boardHistory = newHistory,
-                cellSelected = -1,
+                cellSelected = Sudoku.Store.Game.Const.NoCellSelected,
                 gameOnGoing = true,
                 gameInPause = false, // TODO check if gameOnGoing and GameInPause are not equivalent
             };

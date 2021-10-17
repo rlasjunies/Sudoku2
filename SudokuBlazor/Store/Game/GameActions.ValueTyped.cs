@@ -26,10 +26,6 @@ namespace Sudoku.Store.Game.Reducers
             var col = hlpr.colOfCellNumber(currentCell);
             var block = hlpr.blockOfCellNumber(currentCell);
 
-            var rowSolved = -1;
-            var colSolved = -1;
-            var blockSolved = -1;
-            var boardSolved = false;
             var solutionsByRules = new SolutionByRules();
 
             var value = Action.valueTyped;
@@ -85,10 +81,10 @@ namespace Sudoku.Store.Game.Reducers
                 newBoard.cells[currentCell].value = value;
 
                 // check if zones are solved in order to provide animation for the player
-                rowSolved = hlpr.isRowSolvedx(row, newBoard) ? row : -1;
-                colSolved = hlpr.isColSolvedx(col, newBoard) ? col : -1;
-                blockSolved = hlpr.isBlockSolvedx(block, newBoard) ? block : -1;
-                boardSolved = hlpr.isBoardSolvedx(newBoard) ? true : false;
+                var rowSolved = hlpr.isRowSolvedx(row, newBoard) ? row : Sudoku.Store.Game.Const.NothingSolved;
+                var colSolved = hlpr.isColSolvedx(col, newBoard) ? col : Sudoku.Store.Game.Const.NothingSolved;
+                var blockSolved = hlpr.isBlockSolvedx(block, newBoard) ? block : Sudoku.Store.Game.Const.NothingSolved;
+                var boardSolved = hlpr.isBoardSolvedx(newBoard) ? true : false;
 
                 // remove equal drafted in the related zones
                 // only when the value is correct
