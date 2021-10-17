@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace Sudoku.Store.Weather
-{
+//namespace Sudoku.Store.Weather
+//{
 
-    namespace Actions
-    {
-        public record LoadForecasts { }
+//    namespace Actions
+//    {
+//        public record LoadForecasts { }
 
-        public record SetInitialized { }
+//        public record SetInitialized { }
 
-        public record SetForecasts
-        {
-            public WeatherForecast[] Forecasts { get; }
+//        public record SetForecasts
+//        {
+//            public WeatherForecast[] Forecasts { get; }
 
-            public SetForecasts(WeatherForecast[] forecasts)
-            {
-                Forecasts = forecasts;
-            }
-        }
+//            public SetForecasts(WeatherForecast[] forecasts)
+//            {
+//                Forecasts = forecasts;
+//            }
+//        }
 
-        public record StartLoading { }
+//        public record StartLoading { }
 
-        public record StopLoading { }
-    }
+//        public record StopLoading { }
+//    }
 
-}
+//}
