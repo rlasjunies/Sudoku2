@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using Sudoku.Board;
 using hlpr = Sudoku.Board.Helpers;
 
@@ -12,6 +13,10 @@ namespace Sudoku.Components
 {
     public partial class SudokuBoardBase : AccComponentBase
     {
+
+        [Inject]
+        protected ILogger<SudokuBoardBase> logger { get; set; }
+
         // @Element() element: HTMLSudokuBoardComponentElement;
 
         [Parameter]
@@ -116,7 +121,7 @@ namespace Sudoku.Components
         public int lastCellOfTheGame { get; set; } = -1;
 
         [Parameter]
-        public int[] incorrectCells { get; set; } = new int[] { };
+        public bool[] incorrectCells { get; set; } = new bool[81];
 
         // TODO centralize initializer for SolutionByRules or support null
         [Parameter]
@@ -236,7 +241,10 @@ namespace Sudoku.Components
 
         protected string returnClassForTheCell(int cell)
         {
-            // console.log("this.cellSelected",this.cellSelected);
+            //console.log("this.cellSelected",this.cellSelected);
+
+            //logger.LogDebug($"cell[{cell}] - cellSelected:{this.cellSelected}");
+
             // conversion to .NET var isCellSelectedCorrect = (cellSelected != -1) && (cellSelected is null);
             var isCellSelectedCorrect = (cellSelected != -1);
 
@@ -260,17 +268,18 @@ namespace Sudoku.Components
 
             // Conversion to .NET var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells.lastIndexOf(cell) !== -1 : false;
             // TODO not so sure about this conversion ... need to be double checked
-            var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells[cell] != -1 : false;
+            var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells[cell] : false;
+            //logger.LogDebug($"cell[{cell}] - isIncorrectCells:{incorrectCells[cell]}");
             var incorrectClass = isIncorrectCell ? " incorrect " : "";
-
-            // console.log(`cell:${cell} - selected:${this.cellSelected} - ${((this.cellSelected !== -1) && (this.cellSelected !== null))}`);
 
             var isNotTheSelectedCell = this.cellSelected != cell;
             var isTheSelectedCell = this.cellSelected == cell;
+            //logger.LogDebug($"cell[{cell}] - isTheCellSelected:{isTheSelectedCell}");
+
             var isColRowOrBlockSelected = (colOfCell == colOfCellSelected) || (rowOfCell == rowOfCellSelected) || (blockOfCell == blockOfCellSelected);
         
 
-    var areaSelectedClass = (modeEntry && isCellSelectedCorrect && isNotTheSelectedCell && isColRowOrBlockSelected) ? " area-selected " : "";
+            var areaSelectedClass = (modeEntry && isCellSelectedCorrect && isNotTheSelectedCell && isColRowOrBlockSelected) ? " area-selected " : "";
             var cellSelectedClass = isTheSelectedCell ? " selected " : "";
             var sameValueAsTheSelectedCellClass = modeHighlightNumber
                                                     && cellValue == selectedCellValue
