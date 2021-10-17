@@ -5,14 +5,15 @@
   flex-direction: column;
 }
 
-::deep .keyicon {
+.keyicon {
     font-size: var(--keyboard-value-icon-fontsize);
     line-height: var(--keyboard-value-icon-fontsize);
     color: var(--keyboard-value-color);
     display: flex;
+    flex:1;
 }
 
-::deep .value {
+.value {
   /* background-color: aqua; */
   font-size: var(--keyboard-value-fontsize);
   line-height: var(--keyboard-value-fontsize);
@@ -20,12 +21,12 @@
   /* margin: auto; */
 }
 
-::deep .row {
+.row {
   display: flex;
   flex-direction: row;
 }
 
-::deep .row .key {
+.row .key {
   /* background-color: aqua; */
   /* align-items: stretch;
   align-content: center; */
@@ -45,7 +46,7 @@
 }
 
 
-::deep .key:hover {
+.key:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
   transform: translateY(-2px);
 }
@@ -55,7 +56,7 @@
 } */
 
 
-::deep .draftkey {
+.draftkey {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -63,7 +64,7 @@
   border-style: dotted;
 }
 
-::deep .draftkeyrow {
+.draftkeyrow {
   display: flex;
   flex: 1;
   flex-direction: row;
@@ -80,7 +81,7 @@
 }
 
 
-::deep .draftkeyvalue {
+ .draftkeyvalue {
   /* background-color: yellow; */
   flex: 1;
   margin: 0px;
@@ -89,7 +90,7 @@
   color: var(--keyboard-draftvalue-color);
 }
 
-::deep .ripplex {
+ .ripplex {
   position: absolute;
   background: rgba(0, 0, 0, .25);
   border-radius: 100%;
@@ -99,7 +100,7 @@
   pointer-events: none;
 }
 
-::deep .ripplex.show {
+ .ripplex.show {
   -webkit-animation: ripple .5s ease-out;
   animation: ripple .5s ease-out;
 }

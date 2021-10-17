@@ -22,12 +22,13 @@ namespace Sudoku.Pages
 
         public bool[] IncorrectCells => State.Value.board.incorrectCells;
 
-        // TODO remove seee control to check if that the reason of the crash
+        // TODO remove seed control to check if that the reason of the crash
         //public bool ShouldHideClearKey => CellSelected == Sudoku.Store.Game.Const.NoCellSelected || !GameOnGoing || Board.cells[CellSelected].seed;
         public bool ShouldHideClearKey() {
-            if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return false;
-            if (Board.cells[CellSelected].seed) return false;
-            return true;
+            if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return true;
+            if (Board.cells[CellSelected].seed) return true;
+            if (Board.cells[CellSelected].value == 0) return true;
+            return false;
         }
 
         public int CellSelected => State.Value.cellSelected;
