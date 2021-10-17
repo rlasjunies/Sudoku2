@@ -11,12 +11,12 @@ namespace helper.tests
         {
 
             // Arrange
-            var arr = new int[] {1,2,3};
+            var arr = new int[] { 1, 2, 3 };
             // Act
             arr.ClonePush(1);
 
             // Assert
-            var expectedFinalArr = new int[] {1,2,3,1}; 
+            var expectedFinalArr = new int[] { 1, 2, 3, 1 };
             // Assert.Equal(expectedFinalArr, arr);
             Assert.Equal(expectedFinalArr.ToString(), arr.ToString());
         }
@@ -25,26 +25,54 @@ namespace helper.tests
         public void find_should_be_true_if_predicate_is_confirm()
         {
             // Arrange
-            var arr = new int[] {1,2,3};
+            var arr = new int[] { 1, 2, 3 };
 
             // Act
-            var result = arr.Find<int>( val => val == 2);
+            var result = arr.Find<int>(val => val == 2);
 
             // Assert
-            Assert.True(result,"Arr.Find method should be true if predicated is ok");
+            Assert.True(result, "Arr.Find method should be true if predicated is ok");
         }
 
         [Fact]
-        public void find_should_be_false_if_predicate_is_confirmed()
+        public void find_should_be_false_if_predicate_is_not_confirmed()
         {
             // Arrange
-            var arr = new int[] {1,2,3};
+            var arr = new int[] { 1, 2, 3 };
 
             // Act
-            var result = arr.Find<int>( val => val == 4);
+            var result = arr.Find<int>(val => val == 4);
 
             // Assert
-            Assert.False(result,"Arr.Find method should be false if predicated is ko");
+            Assert.False(result, "Arr.Find method should be false if predicated is ko");
         }
+
+        [Fact]
+        public void find_should_be_true_if_bool_predicate_is_confirmed()
+        {
+            // Arrange
+            var arr = new bool[] { false, false, false, true };
+
+            // Act
+            var result = arr.Find<bool>(val => val == true);
+
+            // Assert
+            Assert.True(result, "Arr.Find method should be true if predicated is ko");
+
+        }
+        [Fact]
+        public void find_should_be_false_if_bool_predicate_is_not_confirmed()
+        {
+            // Arrange
+            var arr = new bool[] { false, false, false, false };
+
+            // Act
+            var result = arr.Find<bool>(val => val == true);
+
+            // Assert
+            Assert.False(result, "Arr.Find method should be false if predicated is ko");
+
+        }
+
     }
 }
