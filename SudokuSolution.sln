@@ -7,13 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuBoard", "SudokuBoard\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper", "Helper\Helper.csproj", "{46BDE132-462F-4806-9AA0-D20AE32B6969}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper.Tests", "Helper.tests\Helper.Tests.csproj", "{5D026BF5-BFBE-4749-8C89-376FED8228C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper.Tests", "Helper.Tests\Helper.Tests.csproj", "{5D026BF5-BFBE-4749-8C89-376FED8228C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuBoard.Tests", "SudokuBoard.Tests\SudokuBoard.Tests.csproj", "{1BD05545-C37D-4A45-9731-2CDC072216EB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku", "SudokuBlazor\Sudoku.csproj", "{AE417F03-748B-4A0D-B646-0F2BE8CE128D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Tests", "SudokuBlazor.tests\Sudoku.Tests.csproj", "{821C4972-7D64-4656-A7A8-F1AACF83B430}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Tests", "SudokuBlazor.Tests\Sudoku.Tests.csproj", "{821C4972-7D64-4656-A7A8-F1AACF83B430}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DB12E662-2C74-49A0-A17E-58E7F77CA7E6}"
 	ProjectSection(SolutionItems) = preProject
