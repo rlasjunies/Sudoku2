@@ -1,5 +1,5 @@
 using System;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
+//using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using Xunit;
 
 namespace helper.tests

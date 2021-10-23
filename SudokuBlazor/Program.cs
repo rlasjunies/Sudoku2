@@ -9,7 +9,7 @@ using Sudoku.Store.Middlewares;
 using Blazor.Extensions.Logging;
 using Blazored.LocalStorage;
 
-using Fluxor.Persist.Middleware;
+//using Fluxor.Persist.Middleware;
 using Fluxor.Persist.Storage;
 using Sudoku.Shared.Storage;
 using Sudoku;
@@ -25,9 +25,9 @@ namespace Sudoku
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddScoped<IStringStateStorage, LocalStateStorageSudoku>();
-            builder.Services.AddScoped<IObjectStateStorage, InMemoryStateStorageSudoku>();
-            builder.Services.AddScoped<IStoreHandler, JsonStoreHandlerSudoku>();
+            //builder.Services.AddScoped<IStringStateStorage, LocalStateStorageSudoku>();
+            //builder.Services.AddScoped<IObjectStateStorage, InMemoryStateStorageSudoku>();
+            //builder.Services.AddScoped<IStoreHandler, JsonStoreHandlerSudoku>();
             // builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
 
             AddLoggingService(builder);
@@ -48,7 +48,7 @@ namespace Sudoku
                         // .UsePersist()
                         // .UsePersist(options => options.UseInclusionApproach())
                         // .UsePersist(x => x.SetWhiteList(new string[] { "StateCounter", "StateGame" }))
-                        .UseReduxDevTools()
+                        //.UseReduxDevTools()
                    );
             }
 
