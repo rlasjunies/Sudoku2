@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 namespace Sudoku.Store.About.Actions
 {
 
-    public record RetrieveAboutInformation { }
+    //public record RetrieveAboutInformation { }
 
-    public record AboutInformationRetrieved
-    {
-        public string Version { get; init; }
-    }
+    //public record AboutInformationRetrieved
+    //{
+    //    public string Version { get; init; }
+    //}
 
 
 }

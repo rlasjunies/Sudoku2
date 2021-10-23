@@ -10,33 +10,33 @@ using System.Reflection;
 
 namespace Sudoku.Store.About.Effects
 {
-    public class RetrieveAssemblyInformation
-    {
+    //public class RetrieveAssemblyInformation
+    //{
 
-        // public RetrieveAssemblyInformation(HttpClient http)
-        // {
-        //     Http = http;
-        // }
+    //    // public RetrieveAssemblyInformation(HttpClient http)
+    //    // {
+    //    //     Http = http;
+    //    // }
 
-        [EffectMethod(typeof(Actions.RetrieveAboutInformation))]
-        public async Task RetrieveAboutInformation(IDispatcher dispatcher)
-        {
+    //    [EffectMethod(typeof(Actions.RetrieveAboutInformation))]
+    //    public async Task RetrieveAboutInformation(IDispatcher dispatcher)
+    //    {
 
-            // var infoVersion = Assembly
-            //                 .GetExecutingAssembly()
-            //                 .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
-            //                 .InformationalVersion;
+    //        // var infoVersion = Assembly
+    //        //                 .GetExecutingAssembly()
+    //        //                 .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+    //        //                 .InformationalVersion;
 
-            var FileVersion = Assembly
-                            .GetExecutingAssembly()
-                            .GetCustomAttribute<AssemblyFileVersionAttribute>()
-                            .Version;
+    //        var FileVersion = Assembly
+    //                        .GetExecutingAssembly()
+    //                        .GetCustomAttribute<AssemblyFileVersionAttribute>()
+    //                        .Version;
 
-            dispatcher.Dispatch(new Actions.AboutInformationRetrieved
-            {
-                Version = FileVersion
-            });
-            await Task.CompletedTask;
-        }
-    }
+    //        dispatcher.Dispatch(new Actions.AboutInformationRetrieved
+    //        {
+    //            Version = FileVersion
+    //        });
+    //        await Task.CompletedTask;
+    //    }
+    //}
 }

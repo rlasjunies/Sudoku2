@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Store.About
 {
-    public record StateAbout
-    {
-        public string Version { get; init; }
-        public bool Initialized { get; init; }
+    //public record StateAbout
+    //{
+    //    public string Version { get; init; }
+    //    public bool Initialized { get; init; }
 
-    }
+    //}
 }

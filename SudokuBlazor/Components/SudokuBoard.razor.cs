@@ -22,9 +22,18 @@ namespace Sudoku.Components
         [Parameter]
         public EventCallback<int> OnCellSelection { get; set; }
 
+        private int _SolvedRow;
         [Parameter]
-        public int solvedRow { get; set; }
-
+        public int SolvedRow { 
+            get => _SolvedRow;
+            set {
+                if (_SolvedRow != value)
+                {
+                    //this.chenillardRow(this.cellSelected);
+                    _SolvedRow = value;
+                }; 
+        }
+}
         // TODO manage the setter replacement of Stencil Watch
         // @Watch("solvedRow")
         // solvedRowWatcher(newValue: number, _oldValue: number) {
@@ -143,78 +152,78 @@ namespace Sudoku.Components
         };
 
         // TODO activate chenillard
-        protected void chenillardBoard(int cell)
-        {
-            var startCell = cell;
-            var col = hlpr.colOfCellNumber(startCell);
-            var row = hlpr.rowOfCellNumber(startCell);
-            var block = hlpr.blockOfCellNumber(startCell);
+        //protected void chenillardBoard(int cell)
+        //{
+        //    var startCell = cell;
+        //    var col = hlpr.colOfCellNumber(startCell);
+        //    var row = hlpr.rowOfCellNumber(startCell);
+        //    var block = hlpr.blockOfCellNumber(startCell);
 
-            var coeff = 6;
-            var i = coeff * 0;
-            // chenillardNorth(this.element, col, row, block, false, 0);
-            // chenillardSouth(this.element, col, row, block, false, 0);
-            // chenillardWest(this.element, col, row, block, false, 0);
-            // chenillardEast(this.element, col, row, block, false, 0);
-            // chenillardNorthEast(this.element, col, row, block, false, 0);
-            // chenillardSouthEast(this.element, col, row, block, false, 0);
-            // chenillardNorthWest(this.element, col, row, block, false, 0);
-            // chenillardSouthWest(this.element, col, row, block, false, 0);
-            // i = coeff * 1;
-            // chenillardNorth(this.element, col, row, block, false, i);
-            // chenillardSouth(this.element, col, row, block, false, i);
-            // chenillardWest(this.element, col, row, block, false, i);
-            // chenillardEast(this.element, col, row, block, false, i);
-            // chenillardNorthEast(this.element, col, row, block, false, i);
-            // chenillardSouthEast(this.element, col, row, block, false, i);
-            // chenillardNorthWest(this.element, col, row, block, false, i);
-            // chenillardSouthWest(this.element, col, row, block, false, i);
-            // i = coeff * 2;
-            // chenillardNorth(this.element, col, row, block, false, i);
-            // chenillardSouth(this.element, col, row, block, false, i);
-            // chenillardWest(this.element, col, row, block, false, i);
-            // chenillardEast(this.element, col, row, block, false, i);
-            // chenillardNorthEast(this.element, col, row, block, false, i);
-            // chenillardSouthEast(this.element, col, row, block, false, i);
-            // chenillardNorthWest(this.element, col, row, block, false, i);
-            // chenillardSouthWest(this.element, col, row, block, false, i);
-        }
+        //    var coeff = 6;
+        //    var i = coeff * 0;
+        //    // chenillardNorth(this.element, col, row, block, false, 0);
+        //    // chenillardSouth(this.element, col, row, block, false, 0);
+        //    // chenillardWest(this.element, col, row, block, false, 0);
+        //    // chenillardEast(this.element, col, row, block, false, 0);
+        //    // chenillardNorthEast(this.element, col, row, block, false, 0);
+        //    // chenillardSouthEast(this.element, col, row, block, false, 0);
+        //    // chenillardNorthWest(this.element, col, row, block, false, 0);
+        //    // chenillardSouthWest(this.element, col, row, block, false, 0);
+        //    // i = coeff * 1;
+        //    // chenillardNorth(this.element, col, row, block, false, i);
+        //    // chenillardSouth(this.element, col, row, block, false, i);
+        //    // chenillardWest(this.element, col, row, block, false, i);
+        //    // chenillardEast(this.element, col, row, block, false, i);
+        //    // chenillardNorthEast(this.element, col, row, block, false, i);
+        //    // chenillardSouthEast(this.element, col, row, block, false, i);
+        //    // chenillardNorthWest(this.element, col, row, block, false, i);
+        //    // chenillardSouthWest(this.element, col, row, block, false, i);
+        //    // i = coeff * 2;
+        //    // chenillardNorth(this.element, col, row, block, false, i);
+        //    // chenillardSouth(this.element, col, row, block, false, i);
+        //    // chenillardWest(this.element, col, row, block, false, i);
+        //    // chenillardEast(this.element, col, row, block, false, i);
+        //    // chenillardNorthEast(this.element, col, row, block, false, i);
+        //    // chenillardSouthEast(this.element, col, row, block, false, i);
+        //    // chenillardNorthWest(this.element, col, row, block, false, i);
+        //    // chenillardSouthWest(this.element, col, row, block, false, i);
+        //}
 
-        protected void chenillardRow(int startCell)
-        {
-            var col = hlpr.colOfCellNumber(startCell);
-            var row = hlpr.rowOfCellNumber(startCell);
-            var block = hlpr.blockOfCellNumber(startCell);
+        //protected void chenillardRow(int startCell)
+        //{
+        //    var col = hlpr.colOfCellNumber(startCell);
+        //    var row = hlpr.rowOfCellNumber(startCell);
+        //    var block = hlpr.blockOfCellNumber(startCell);
 
-            // chenillardWest(this.element, col, row, block, false, 0);
-            // chenillardEast(this.element, col, row, block, false, 0);
-        }
+        //    chenillardWest(this.element, col, row, block, false, 0);
+        //    chenillardEast(this.element, col, row, block, false, 0);
+        //}
 
-        protected void chenillardCol(int startCell)
-        {
-            var col = hlpr.colOfCellNumber(startCell);
-            var row = hlpr.rowOfCellNumber(startCell);
-            var block = hlpr.blockOfCellNumber(startCell);
+        //protected void chenillardCol(int startCell)
+        //{
+        //    var col = hlpr.colOfCellNumber(startCell);
+        //    var row = hlpr.rowOfCellNumber(startCell);
+        //    var block = hlpr.blockOfCellNumber(startCell);
 
-            // chenillardNorth(this.element, col, row, block, false, 0);
-            // chenillardSouth(this.element, col, row, block, false, 0);
-        }
+        //    // chenillardNorth(this.element, col, row, block, false, 0);
+        //    // chenillardSouth(this.element, col, row, block, false, 0);
+        //}
 
-        protected void chenillardBlock(int startCell)
-        {
-            var col = hlpr.colOfCellNumber(startCell);
-            var row = hlpr.rowOfCellNumber(startCell);
-            var block = hlpr.blockOfCellNumber(startCell);
+        //protected void chenillardBlock(int startCell)
+        //{
+        //    var col = hlpr.colOfCellNumber(startCell);
+        //    var row = hlpr.rowOfCellNumber(startCell);
+        //    var block = hlpr.blockOfCellNumber(startCell);
 
-            // chenillardNorth(this.element, col, row, block, true, 0);
-            // chenillardSouth(this.element, col, row, block, true, 0);
-            // chenillardWest(this.element, col, row, block, true, 0);
-            // chenillardEast(this.element, col, row, block, true, 0);
-            // chenillardNorthEast(this.element, col, row, block, true, 0);
-            // chenillardSouthEast(this.element, col, row, block, true, 0);
-            // chenillardNorthWest(this.element, col, row, block, true, 0);
-            // chenillardSouthWest(this.element, col, row, block, true, 0);
-        }
+        //    // chenillardNorth(this.element, col, row, block, true, 0);
+        //    // chenillardSouth(this.element, col, row, block, true, 0);
+        //    // chenillardWest(this.element, col, row, block, true, 0);
+        //    // chenillardEast(this.element, col, row, block, true, 0);
+        //    // chenillardNorthEast(this.element, col, row, block, true, 0);
+        //    // chenillardSouthEast(this.element, col, row, block, true, 0);
+        //    // chenillardNorthWest(this.element, col, row, block, true, 0);
+        //    // chenillardSouthWest(this.element, col, row, block, true, 0);
+        //}
 
         // chenillardBoard(startCell: number) {
         //     const col = colOfCellNumber(startCell);

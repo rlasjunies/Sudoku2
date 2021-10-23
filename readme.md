@@ -2,7 +2,7 @@
 
 The repository is the Blazor version of the Sudoku [http://github.com/rlasjunies/sudoku](http://github.com/rlasjunies/sudoku) that is using Typescript/StencilJS technologies.
 
-You could have access to an online version of the blazor sudoky via the [github io page](https://rlasjunies.github.io/Sudoku2/)
+You could have access to an online version of the blazor sudoku via the [github io page](https://rlasjunies.github.io/Sudoku2/)
 
 # Goal
 
@@ -16,7 +16,7 @@ You could have access to an online version of the blazor sudoky via the [github 
 - [ ] Testing
   - [x] UT
   - [x] bUnit
-  - [ ] specflow / cucumber
+  - [ ] SpecFlow / cucumber
   - [ ] e2e
 - [x] About page
 - [x] Home page

@@ -38,12 +38,12 @@ namespace Sudoku.Store.Middlewares
 
         public override void BeforeDispatch(object action)
         {
-            _logger.LogDebug(nameof(BeforeDispatch) + ObjectInfo(action));
+            // _logger.LogDebug(nameof(BeforeDispatch) + ObjectInfo(action));
         }
 
         public override void AfterDispatch(object action)
         {
-            _logger.LogDebug(nameof(AfterDispatch) + ObjectInfo(action));
+            //_logger.LogDebug(nameof(AfterDispatch) + ObjectInfo(action));
         }
 
         private string ObjectInfo(object obj)
