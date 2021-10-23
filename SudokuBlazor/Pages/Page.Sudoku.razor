@@ -1,5 +1,5 @@
 ﻿@page "/sudoku"
-@inherits SudokuPageBase
+@inherits SudokuPage
 @using Sudoku.Components
 
 <AccPage>
@@ -24,7 +24,6 @@
             <img src="assets/source_icons_settings.svg" />
         </div>
     </AccHeader>
-
     <div id="game"
          class=@(GameInPause ? "displayNone" : "displayYes")>
 
@@ -41,16 +40,17 @@
                      wizardConfiguration=@(WizardConfiguration)
                      OnCellSelection="(cellNumberCustomEvent) => dispatchCellSelection(cellNumberCustomEvent)">
         </SudokuBoard>
-        <SudokuKeyboard id="keyboard"
-                        class=@(!GameOnGoing ? "hidden" : "")
-                        OnClearClicked="ClearCellClicked"
-                        OnUndoClicked="UndoClicked"
-                        OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
-                        OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
-                        remainingNumbers=@(RemainingNumbers)
-                        hideClearKey=@(ShouldHideClearKey())
-                        hideUndoKey=@(!GameOnGoing)>
-        </SudokuKeyboard>
+
+            <SudokuKeyboard id="keyboard"
+                            class=@(GameOnGoing ? "displayYes" : "displayNone")
+                            OnClearClicked="ClearCellClicked"
+                            OnUndoClicked="UndoClicked"
+                            OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
+                            OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
+                            remainingNumbers=@(RemainingNumbers)
+                            hideClearKey=@(ShouldHideClearKey())
+                            hideUndoKey=@(!GameOnGoing)>
+            </SudokuKeyboard>
         <div id="newGame"
              class=@(GameOnGoing ? "displayNone" : "displayYes")>
             <p>Good game! Play again?</p>

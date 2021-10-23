@@ -1,7 +1,7 @@
 #keyboard {
   margin: 0px;
   border: none;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
 }
 

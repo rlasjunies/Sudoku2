@@ -2,13 +2,14 @@ using System;
 using Fluxor;
 using Fluxor.Blazor.Web.Middlewares.Routing;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sudoku.Board;
 using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages
 {
-    public partial class SudokuPageBase : PageBase<Store::StateGame>, IDisposable
+    public partial class SudokuPage : PageBase<Store::StateGame, SudokuPage>, IDisposable
     {
         // TODO important test case, when the board is not loaded
 
@@ -35,14 +36,51 @@ namespace Sudoku.Pages
         public int ColSolved => State.Value.colSolved;
         public int RowSolved => State.Value.rowSolved;
         public int BlockSolved => State.Value.blockSolved;
-        public bool BoardSolved => State.Value.boardSolved;
+        //public bool BoardSolved => State.Value.boardSolved;
+        
+        public bool _BoardSolved = false;
+        public bool BoardSolved
+        {
+            get => _BoardSolved;
+            set
+            {
+                Logger?.LogDebug($"BoardSolved 6 property:_BoardSolved={_BoardSolved} StateValue={value}");
+
+                if ( !_BoardSolved && value)
+                {
+                    _BoardSolved = true;
+                    Dispatcher.Dispatch(new Store::Actions.EndGame());
+                    //Logger?.LogDebug($"Board is solved, EndGame action triggered ");
+                }
+            }
+        }
 
         public bool GameOnGoing => State.Value.gameOnGoing;
         public int Timer => State.Value.timer;
         public bool GameInPause => State.Value.gameInPause;
         public SolutionByRules SolutionsByRules => State.Value.solutionsByRules;
         public SudokuWizardConfiguration WizardConfiguration => State.Value.wizardConfiguration;
-        
+
+        protected override void OnInitialized()
+        {
+            State.StateChanged += StateChanged;
+            base.OnInitialized();
+        }
+
+        private void StateChanged(Object sender, Store::StateGame state)
+        {
+            //Logger?.LogDebug($"{this.GetType().FullName} State Is changing");
+            this.BoardSolved = state.boardSolved;
+            InvokeAsync(StateHasChanged);
+        }
+
+        void IDisposable.Dispose()
+        {
+            Logger?.LogDebug($"{this.GetType().FullName} dispose handler");
+            State.StateChanged -= StateChanged;
+        }
+
+
 
         protected void dispatchCellSelection(int cell)
         {

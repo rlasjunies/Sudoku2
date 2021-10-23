@@ -4,7 +4,6 @@ using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using Sudoku.Board;
 using hlpr = Sudoku.Board.Helpers;
@@ -13,9 +12,8 @@ namespace Sudoku.Components
 {
     public partial class SudokuBoardBase : AccComponentBase
     {
-
         [Inject]
-        protected ILogger<SudokuBoardBase> logger { get; set; }
+        protected ILogger<SudokuBoardBase> Logger { get; set; }
 
         // @Element() element: HTMLSudokuBoardComponentElement;
 
@@ -27,9 +25,9 @@ namespace Sudoku.Components
         public int SolvedRow { 
             get => _SolvedRow;
             set {
+                // Logger.LogDebug($"SolvedRow:{value} OldSolvedRow:{_SolvedRow}");
                 if (_SolvedRow != value)
                 {
-                    //this.chenillardRow(this.cellSelected);
                     _SolvedRow = value;
                 }; 
         }

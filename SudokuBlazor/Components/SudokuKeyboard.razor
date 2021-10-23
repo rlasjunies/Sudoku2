@@ -1,6 +1,6 @@
 @inherits SudokuKeyboardBase
 
-<div id="keyboard">
+<div id="keyboard" class="@CssClass">
     <div class="row">
         <div class=@(remainingNumbers[0] > 0 ? "key" : "key hidden") @onclick="(evt) => numberClickedHandler(1)">
             @cellHTML(1, false)</div>

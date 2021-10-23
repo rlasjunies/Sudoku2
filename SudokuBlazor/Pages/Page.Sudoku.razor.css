@@ -75,14 +75,6 @@ div#game {
     /* padding: 0 12px; */
   }
   
-  .displayYes {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    /* height: 100%; */
-  
-  }
-  
   #pause, #settings, #play {
     /*background-color: aqua;*/
      display: flex; 

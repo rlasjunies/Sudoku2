@@ -5,14 +5,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Sudoku.Pages
 {
-    public class PageBase<T> : ComponentBase, IDisposable
+    public class PageBase<TState, T> : ComponentBase, IDisposable
     {
 
         [Inject]
         protected ILogger<T> Logger { get; set; }
 
         [Inject]
-        protected IState<T> State { get; set; }
+        protected IState<TState> State { get; set; }
 
         [Inject]
         public IDispatcher Dispatcher { get; set; }
@@ -24,7 +24,7 @@ namespace Sudoku.Pages
             base.OnInitialized();
         }
 
-        private void StateChanged(Object sender, T state)
+        private void StateChanged(Object sender, TState state)
         {
             InvokeAsync(StateHasChanged);
         }
