@@ -19,8 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Fluxor\Source\Fluxor.Blazor.Web\Fluxor.Blazor.Web.csproj" />
-    <ProjectReference Include="..\..\Fluxor\Source\Fluxor\Fluxor.csproj" />
+    <ProjectReference Include="..\Fluxor.Blazor.Web.ReduxDevTools\Fluxor.Blazor.Web.ReduxDevTools.csproj" />
+    <ProjectReference Include="..\Fluxor.Blazor.Web\Fluxor.Blazor.Web.csproj" />
+    <ProjectReference Include="..\Fluxor.Persist\Fluxor.Persist.csproj" />
+    <ProjectReference Include="..\Fluxor\Fluxor.csproj" />
     <ProjectReference Include="..\SudokuBoard\SudokuBoard.csproj" />
   </ItemGroup>
 </Project>

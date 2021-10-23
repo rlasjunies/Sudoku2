@@ -9,7 +9,7 @@ using Sudoku.Store.Middlewares;
 using Blazor.Extensions.Logging;
 using Blazored.LocalStorage;
 
-//using Fluxor.Persist.Middleware;
+using Fluxor.Persist.Middleware;
 using Fluxor.Persist.Storage;
 using Sudoku.Shared.Storage;
 using Sudoku;

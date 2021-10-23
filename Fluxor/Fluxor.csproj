@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+
+    <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp3.1;net5.0;net6.0;</TargetFrameworks>
+
+    <Product>Fluxor</Product>
+    <Description>A zero boilerplate Redux/Flux framework for .NET</Description>
+    <PackageIcon>fluxor-small-logo.png</PackageIcon>
+    <PackageTags>Redux Flux DotNet CSharp</PackageTags>
+    <SignAssembly>False</SignAssembly>
+
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\Images\fluxor-small-logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+  </ItemGroup>
+
+</Project>
