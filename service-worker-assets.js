@@ -41,7 +41,7 @@
       "url": "assets\/source_icons_undo.svg"
     },
     {
-      "hash": "sha256-WHXS42xB\/Qb7MFgVRcHnWx8+PXBx8rRuLkrokIrdVp4=",
+      "hash": "sha256-zHhrKwHtCTwPcVsKgkOQjCovzOS3X2D1ZObEb4LglxI=",
       "url": "css\/app.css"
     },
     {
@@ -141,7 +141,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-WGFEJT8Da6VS3k2dT9QQCqtZpgdaLuThaJwHMA8y1JM=",
+      "hash": "sha256-LvIOFtu8M82L5bf5+P20\/18cjLa9HyKo2aK7q4u69Gs=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -245,7 +245,7 @@
       "url": "_framework\/Newtonsoft.Json.dll"
     },
     {
-      "hash": "sha256-Q\/Tw4wNjne2VMarjV3MzbiyDLzDD8o3X1J7rnhCcBxw=",
+      "hash": "sha256-qHVHbKowyoN9gGw6ajDfHrdo3zcmRec\/zt9QXA+q6Nw=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -409,7 +409,7 @@
       "url": "_framework\/System.Threading.Timer.dll"
     },
     {
-      "hash": "sha256-xhIjQuE8CRW7tndKnB3uT6dYmYhzhU\/Fk0LAYZSVNLk=",
+      "hash": "sha256-uGmYeupHbyFa\/cn8LxBMjM11DtYpuTv7isec7LQpuDM=",
       "url": "Sudoku.styles.css"
     },
     {
@@ -421,5 +421,5 @@
       "url": "_content\/Fluxor.Blazor.Web\/scripts\/index.js"
     }
   ],
-  "version": "cuZNbEcU"
+  "version": "OYhLnTvQ"
 };

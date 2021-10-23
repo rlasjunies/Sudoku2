@@ -487,7 +487,7 @@ button[b-3ovlsysl72] {
 #keyboard[b-ff6bp2mnsi] {
   margin: 0px;
   border: none;
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
 }
 
@@ -765,14 +765,6 @@ div#game[b-p2q3rw3d2m] {
     font-size: 4vh;
     color: black;
     /* padding: 0 12px; */
-  }
-  
-  .displayYes[b-p2q3rw3d2m] {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    /* height: 100%; */
-  
   }
   
   #pause[b-p2q3rw3d2m], #settings[b-p2q3rw3d2m], #play[b-p2q3rw3d2m] {
