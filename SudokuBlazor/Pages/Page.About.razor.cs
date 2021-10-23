@@ -6,7 +6,7 @@ using Store = Sudoku.Store.App;
 
 namespace Sudoku.Pages
 {
-    public partial class AboutBase : PageBase<Store::StateApp> , IDisposable
+    public partial class AboutPage : PageBase<Store::StateApp, AboutPage> , IDisposable
     {
 
         protected override void OnInitialized()

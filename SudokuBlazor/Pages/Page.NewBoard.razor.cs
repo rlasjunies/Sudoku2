@@ -6,7 +6,7 @@ using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages 
 {
-    public partial class NewBoardBase : PageBase<Store::StateGame>, IDisposable
+    public partial class NewBoardPage : PageBase<Store::StateGame, NewBoardPage>, IDisposable
     {
         protected void CreateNewBoardAndNavigateToTheGamePage(Sudoku.Board.SudokuLevelType level)
         {

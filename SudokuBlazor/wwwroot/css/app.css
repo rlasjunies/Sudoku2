@@ -56,6 +56,13 @@ body {
     visibility: hidden;
 }
 
+.displayYes {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    /* height: 100%; */
+}
+
 .hidden {
     visibility: hidden;
 }

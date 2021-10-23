@@ -6,7 +6,7 @@ using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages
 {
-    public partial class ConfigBase : PageBase<Store::StateGame>, IDisposable
+    public partial class ConfigPage : PageBase<Store::StateGame, ConfigPage>, IDisposable
     {
 
         public bool ShowIdenticalNumber => State.Value.wizardConfiguration.showIdenticalNumber;

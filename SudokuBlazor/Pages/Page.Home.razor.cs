@@ -5,7 +5,7 @@ using Store= Sudoku.Store.Game;
 using Fluxor.Blazor.Web.Middlewares.Routing;
 namespace Sudoku.Pages
 {
-    public partial class HomeBase : PageBase<Store::StateGame>
+    public partial class HomePage : PageBase<Store::StateGame, HomePage>
     {
         protected bool GameOnGoing => base.State.Value.gameOnGoing;
         protected string styling => GameOnGoing ? "" : "success";
