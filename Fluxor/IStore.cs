@@ -19,6 +19,8 @@ namespace Fluxor
 		/// <seealso cref="IEffect.HandleAsync(object, IDispatcher)"/>
 		void AddEffect(IEffect effect);
 
+		void AddEffectWithState(IEffectWithState effectWithState);
+
 		/// <summary>
 		/// Adds a feature to the store. Once added, the feature will be notified of all actions dispatched
 		/// via the store so that it can keep its state up to date.

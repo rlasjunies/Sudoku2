@@ -49,7 +49,7 @@ namespace Fluxor.DependencyInjection
 								| BindingFlags.Static
 								| BindingFlags.FlattenHierarchy)
 							.Where(m =>
-								m.GetCustomAttributes(true).Any(a => a is ReducerMethodAttribute || a is EffectMethodAttribute))
+								m.GetCustomAttributes(true).Any(a => a is ReducerMethodAttribute || a is EffectMethodAttribute || a is EffectWithStateMethodAttribute))
 					})
 				.SelectMany(x => x.Methods
 					.Select(m => new TypeAndMethodInfo(x.Type, m)))

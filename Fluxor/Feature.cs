@@ -4,126 +4,177 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Fluxor
 {
-	/// <see cref="IFeature{TState}"/>
-	public abstract class Feature<TState> : IFeature<TState>
-	{
-		/// <see cref="IFeature.MaximumStateChangedNotificationsPerSecond"/>
-		public byte MaximumStateChangedNotificationsPerSecond { get; set; }
+    /// <see cref="IFeature{TState}"/>
+    public abstract class Feature<TState> : IFeature<TState>
+    {
+        /// <see cref="IFeature.MaximumStateChangedNotificationsPerSecond"/>
+        public byte MaximumStateChangedNotificationsPerSecond { get; set; }
 
-		/// <see cref="IFeature.GetName"/>
-		public abstract string GetName();
+        public event EventHandler<Exceptions.UnhandledExceptionEventArgs> UnhandledException;
 
-		/// <see cref="IFeature.GetState"/>
-		public virtual object GetState() => State;
+        /// <see cref="IFeature.GetName"/>
+        public abstract string GetName();
 
-		/// <see cref="IFeature.RestoreState(object)"/>
-		public virtual void RestoreState(object value) => State = (TState)value;
+        /// <see cref="IFeature.GetState"/>
+        public virtual object GetState() => State;
 
-		/// <see cref="IFeature.GetStateType"/>
-		public virtual Type GetStateType() => typeof(TState);
+        /// <see cref="IFeature.RestoreState(object)"/>
+        public virtual void RestoreState(object value) => State = (TState)value;
 
-		/// <summary>
-		/// Gets the initial state for the feature
-		/// </summary>
-		/// <returns>The initial state</returns>
-		protected abstract TState GetInitialState();
+        /// <see cref="IFeature.GetStateType"/>
+        public virtual Type GetStateType() => typeof(TState);
 
-		/// <summary>
-		/// A list of reducers registered with this feature
-		/// </summary>
-		protected readonly List<IReducer<TState>> Reducers = new List<IReducer<TState>>();
+        /// <summary>
+        /// Gets the initial state for the feature
+        /// </summary>
+        /// <returns>The initial state</returns>
+        protected abstract TState GetInitialState();
 
-		private SpinLock SpinLock = new SpinLock();
-		private ThrottledInvoker TriggerStateChangedCallbacksThrottler;
+        /// <summary>
+        /// A list of reducers registered with this feature
+        /// </summary>
+        protected readonly List<IReducer<TState>> Reducers = new List<IReducer<TState>>();
 
-		/// <summary>
-		/// Creates a new instance
-		/// </summary>
-		public Feature()
-		{
-			TriggerStateChangedCallbacksThrottler = new ThrottledInvoker(TriggerStateChangedCallbacks);
-			State = GetInitialState();
-		}
+        private SpinLock SpinLock = new SpinLock();
+        private ThrottledInvoker TriggerStateChangedCallbacksThrottler;
 
-		private EventHandler untypedStateChanged;
-		event EventHandler IFeature.StateChanged
-		{
-			add
-			{
-				SpinLock.ExecuteLocked(() => untypedStateChanged += value );
-			}
+        /// <summary>
+        /// Creates a new instance
+        /// </summary>
+        public Feature()
+        {
+            TriggerStateChangedCallbacksThrottler = new ThrottledInvoker(TriggerStateChangedCallbacks);
+            State = GetInitialState();
+        }
 
-			remove
-			{
-				SpinLock.ExecuteLocked(() => untypedStateChanged -= value);
-			}
-		}
+        private EventHandler untypedStateChanged;
+        event EventHandler IFeature.StateChanged
+        {
+            add
+            {
+                SpinLock.ExecuteLocked(() => untypedStateChanged += value);
+            }
 
-		private TState _State;
+            remove
+            {
+                SpinLock.ExecuteLocked(() => untypedStateChanged -= value);
+            }
+        }
 
-		private EventHandler<TState> stateChanged;
-		/// <summary>
-		/// Event that is executed whenever the state changes
-		/// </summary>
-		public event EventHandler<TState> StateChanged
-		{
-			add
-			{
-				SpinLock.ExecuteLocked(() => stateChanged += value);
-			}
+        private TState _State;
 
-			remove
-			{
-				SpinLock.ExecuteLocked(() => stateChanged -= value);
-			}
-		}
+        private EventHandler<TState> stateChanged;
+        /// <summary>
+        /// Event that is executed whenever the state changes
+        /// </summary>
+        public event EventHandler<TState> StateChanged
+        {
+            add
+            {
+                SpinLock.ExecuteLocked(() => stateChanged += value);
+            }
 
-		/// <see cref="IFeature{TState}.State"/>
-		public virtual TState State
-		{
-			get => _State;
-			protected set
-			{
-				SpinLock.ExecuteLocked(() =>
-				{
-					bool stateHasChanged = !Object.ReferenceEquals(_State, value);
-					_State = value;
-					if (stateHasChanged)
-						TriggerStateChangedCallbacksThrottler.Invoke(MaximumStateChangedNotificationsPerSecond);
-				});
-			}
-		}
+            remove
+            {
+                SpinLock.ExecuteLocked(() => stateChanged -= value);
+            }
+        }
 
-		/// <see cref="IFeature{TState}.AddReducer(IReducer{TState})"/>
-		public virtual void AddReducer(IReducer<TState> reducer)
-		{
-			if (reducer == null)
-				throw new ArgumentNullException(nameof(reducer));
-			Reducers.Add(reducer);
-		}
+        /// <see cref="IFeature{TState}.State"/>
+        public virtual TState State
+        {
+            get => _State;
+            protected set
+            {
+                SpinLock.ExecuteLocked(() =>
+                {
+                    bool stateHasChanged = !Object.ReferenceEquals(_State, value);
+                    _State = value;
+                    if (stateHasChanged)
+                        TriggerStateChangedCallbacksThrottler.Invoke(MaximumStateChangedNotificationsPerSecond);
+                });
+            }
+        }
 
-		/// <see cref="IFeature.ReceiveDispatchNotificationFromStore(object)"/>
-		public virtual void ReceiveDispatchNotificationFromStore(object action)
-		{
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+        /// <see cref="IFeature{TState}.AddReducer(IReducer{TState})"/>
+        public virtual void AddReducer(IReducer<TState> reducer)
+        {
+            if (reducer == null)
+                throw new ArgumentNullException(nameof(reducer));
+            Reducers.Add(reducer);
+        }
 
-			IEnumerable<IReducer<TState>> applicableReducers = Reducers.Where(x => x.ShouldReduceStateForAction(action));
-			TState newState = State;
-			foreach (IReducer<TState> currentReducer in applicableReducers)
-			{
-				newState = currentReducer.Reduce(newState, action);
-			}
-			State = newState;
-		}
+        /// <see cref="IFeature.ReceiveDispatchNotificationFromStore(object)"/>
+        public virtual void ReceiveDispatchNotificationFromStore(object action)
+        {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
 
-		private void TriggerStateChangedCallbacks()
-		{
-			stateChanged?.Invoke(this, State);
-			untypedStateChanged?.Invoke(this, EventArgs.Empty);
-		}
-	}
+            IEnumerable<IReducer<TState>> applicableReducers = Reducers.Where(x => x.ShouldReduceStateForAction(action));
+            TState newState = State;
+            foreach (IReducer<TState> currentReducer in applicableReducers)
+            {
+                newState = currentReducer.Reduce(newState, action);
+            }
+            State = newState;
+        }
+
+        public void TriggerEffectsWithState(object action, List<IEffectWithState> EffectWithStates, IDispatcher dispatcher)
+        {
+            var recordedExceptions = new List<Exception>();
+            var effectsWithStateToExecute = EffectWithStates
+                .Where(x => x.ShouldReactToAction(action))
+                .ToArray();
+
+            var executedEffects = new List<Task>();
+            TState newState = State;
+
+            Action<Exception> collectExceptions = e =>
+            {
+                if (e is AggregateException aggregateException)
+                    recordedExceptions.AddRange(aggregateException.Flatten().InnerExceptions);
+                else
+                    recordedExceptions.Add(e);
+            };
+
+            foreach (IEffectWithState effect in effectsWithStateToExecute)
+            {
+                try
+                {
+                    executedEffects.Add(effect.HandleAsyncWithState(action, newState, dispatcher));
+                }
+                catch (Exception e)
+                {
+                    collectExceptions(e);
+                }
+            }
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await Task.WhenAll(executedEffects);
+                }
+                catch (Exception e)
+                {
+                    collectExceptions(e);
+                }
+
+                // Let the UI decide if it wishes to deal with any unhandled exceptions.
+                // By default it should throw the exception if it is not handled.
+                foreach (Exception exception in recordedExceptions)
+                    UnhandledException?.Invoke(this, new Exceptions.UnhandledExceptionEventArgs(exception));
+            });
+        }
+
+
+        private void TriggerStateChangedCallbacks()
+        {
+            stateChanged?.Invoke(this, State);
+            untypedStateChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
 }

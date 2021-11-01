@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Fluxor
 {
@@ -50,6 +51,7 @@ namespace Fluxor
 		/// </summary>
 		/// <param name="action">The action dispatched via the store</param>
 		void ReceiveDispatchNotificationFromStore(object action);
+		void TriggerEffectsWithState(object action, List<IEffectWithState> EffectWithStates, IDispatcher dispatcher);
 
 		/// <summary>
 		/// Event that is executed whenever the state changes

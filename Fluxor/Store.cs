@@ -5,290 +5,314 @@ using System.Threading.Tasks;
 
 namespace Fluxor
 {
-	/// <see cref="IStore"/>
-	public class Store : IStore, IDispatcher, IActionSubscriber
-	{
-		/// <see cref="IStore.Features"/>
-		public IReadOnlyDictionary<string, IFeature> Features => FeaturesByName;
-		/// <see cref="IStore.Initialized"/>
-		public Task Initialized => InitializedCompletionSource.Task;
+    /// <see cref="IStore"/>
+    public class Store : IStore, IDispatcher, IActionSubscriber
+    {
+        /// <see cref="IStore.Features"/>
+        public IReadOnlyDictionary<string, IFeature> Features => FeaturesByName;
+        /// <see cref="IStore.Initialized"/>
+        public Task Initialized => InitializedCompletionSource.Task;
 
-		private object SyncRoot = new object();
-		private readonly Dictionary<string, IFeature> FeaturesByName = new Dictionary<string, IFeature>(StringComparer.InvariantCultureIgnoreCase);
-		private readonly List<IEffect> Effects = new List<IEffect>();
-		private readonly List<IMiddleware> Middlewares = new List<IMiddleware>();
-		private readonly List<IMiddleware> ReversedMiddlewares = new List<IMiddleware>();
-		private readonly Queue<object> QueuedActions = new Queue<object>();
-		private readonly TaskCompletionSource<bool> InitializedCompletionSource = new TaskCompletionSource<bool>();
-		private readonly ActionSubscriber ActionSubscriber;
+        private object SyncRoot = new object();
+        private readonly Dictionary<string, IFeature> FeaturesByName = new Dictionary<string, IFeature>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly List<IEffect> Effects = new List<IEffect>();
+        private readonly List<IEffectWithState> EffectWithStates = new List<IEffectWithState>();
 
-		private volatile bool IsDispatching;
-		private volatile int BeginMiddlewareChangeCount;
-		private volatile bool HasActivatedStore;
-		private bool IsInsideMiddlewareChange => BeginMiddlewareChangeCount > 0;
+        private readonly List<IMiddleware> Middlewares = new List<IMiddleware>();
+        private readonly List<IMiddleware> ReversedMiddlewares = new List<IMiddleware>();
+        private readonly Queue<object> QueuedActions = new Queue<object>();
+        private readonly TaskCompletionSource<bool> InitializedCompletionSource = new TaskCompletionSource<bool>();
+        private readonly ActionSubscriber ActionSubscriber;
 
-		/// <summary>
-		/// Creates an instance of the store
-		/// </summary>
-		public Store()
-		{
-			ActionSubscriber = new ActionSubscriber();
-			Dispatch(new StoreInitializedAction());
-		}
+        private volatile bool IsDispatching;
+        private volatile int BeginMiddlewareChangeCount;
+        private volatile bool HasActivatedStore;
+        private bool IsInsideMiddlewareChange => BeginMiddlewareChangeCount > 0;
 
-		/// <see cref="IStore.GetMiddlewares"/>
-		public IEnumerable<IMiddleware> GetMiddlewares() => Middlewares;
+        /// <summary>
+        /// Creates an instance of the store
+        /// </summary>
+        public Store()
+        {
+            ActionSubscriber = new ActionSubscriber();
+            Dispatch(new StoreInitializedAction());
+        }
 
-		/// <see cref="IStore.AddFeature(IFeature)"/>
-		public void AddFeature(IFeature feature)
-		{
-			if (feature == null)
-				throw new ArgumentNullException(nameof(feature));
+        /// <see cref="IStore.GetMiddlewares"/>
+        public IEnumerable<IMiddleware> GetMiddlewares() => Middlewares;
 
-			lock (SyncRoot)
-			{
-				FeaturesByName.Add(feature.GetName(), feature);
-			}
-		}
+        /// <see cref="IStore.AddFeature(IFeature)"/>
+        public void AddFeature(IFeature feature)
+        {
+            if (feature == null)
+                throw new ArgumentNullException(nameof(feature));
 
-		/// <see cref="IDispatcher.Dispatch(object)"/>
-		public void Dispatch(object action)
-		{
-			if (action == null)
-				throw new ArgumentNullException(nameof(action));
+            lock (SyncRoot)
+            {
+                FeaturesByName.Add(feature.GetName(), feature);
+            }
+        }
 
-			lock (SyncRoot)
-			{
-				// Do not allow task dispatching inside a middleware-change.
-				// These change cycles are for things like "jump to state" in Redux Dev Tools
-				// and should be short lived.
-				// We avoid dispatching inside a middleware change because we don't want UI events (like component Init)
-				// that trigger actions (such as fetching data from a server) to execute
-				if (IsInsideMiddlewareChange)
-					return;
+        /// <see cref="IDispatcher.Dispatch(object)"/>
+        public void Dispatch(object action)
+        {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
 
-				// If a dequeue is already in progress, we will just
-				// let this new action be added to the queue and then exit
-				// Note: This is to cater for the following scenario
-				//	1: An action is dispatched
-				//	2: An effect is triggered
-				//	3: The effect immediately dispatches a new action
-				// The Queue ensures it is processed after its triggering action has completed rather than immediately
-				QueuedActions.Enqueue(action);
+            lock (SyncRoot)
+            {
+                // Do not allow task dispatching inside a middleware-change.
+                // These change cycles are for things like "jump to state" in Redux Dev Tools
+                // and should be short lived.
+                // We avoid dispatching inside a middleware change because we don't want UI events (like component Init)
+                // that trigger actions (such as fetching data from a server) to execute
+                if (IsInsideMiddlewareChange)
+                    return;
 
-				// HasActivatedStore is set to true when the page finishes loading
-				// At which point DequeueActions will be called
-				if (!HasActivatedStore)
-					return;
+                // If a dequeue is already in progress, we will just
+                // let this new action be added to the queue and then exit
+                // Note: This is to cater for the following scenario
+                //	1: An action is dispatched
+                //	2: An effect is triggered
+                //	3: The effect immediately dispatches a new action
+                // The Queue ensures it is processed after its triggering action has completed rather than immediately
+                QueuedActions.Enqueue(action);
 
-				DequeueActions();
-			};
-		}
+                // HasActivatedStore is set to true when the page finishes loading
+                // At which point DequeueActions will be called
+                if (!HasActivatedStore)
+                    return;
 
-		/// <see cref="IStore.AddEffect(IEffect)"/>
-		public void AddEffect(IEffect effect)
-		{
-			if (effect == null)
-				throw new ArgumentNullException(nameof(effect));
+                DequeueActions();
+            };
+        }
 
-			lock (SyncRoot)
-			{
-				Effects.Add(effect);
-			}
-		}
+        /// <see cref="IStore.AddEffect(IEffect)"/>
+        public void AddEffect(IEffect effect)
+        {
+            if (effect == null)
+                throw new ArgumentNullException(nameof(effect));
 
-		/// <see cref="IStore.AddMiddleware(IMiddleware)"/>
-		public void AddMiddleware(IMiddleware middleware)
-		{
-			lock (SyncRoot)
-			{
-				Middlewares.Add(middleware);
-				ReversedMiddlewares.Insert(0, middleware);
-				// Initialize the middleware immediately if the store has already been initialized, otherwise this will be
-				// done the first time Dispatch is called
-				if (HasActivatedStore)
-				{
-					middleware
-						.InitializeAsync(this)
-						.ContinueWith(t =>
-						{
-							if (!t.IsFaulted)
-								middleware.AfterInitializeAllMiddlewares();
-						});
-				}
-			}
-		}
+            lock (SyncRoot)
+            {
+                Effects.Add(effect);
+            }
+        }
 
-		/// <see cref="IStore.BeginInternalMiddlewareChange"/>
-		public IDisposable BeginInternalMiddlewareChange()
-		{
-			IDisposable[] disposables = null;
-			lock (SyncRoot)
-			{
-				BeginMiddlewareChangeCount++;
-				disposables = Middlewares
-					.Select(x => x.BeginInternalMiddlewareChange())
-					.ToArray();
-			}
+        public void AddEffectWithState(IEffectWithState effectWithState)
+        {
+            if (effectWithState == null)
+                throw new ArgumentNullException(nameof(effectWithState));
 
-			return new DisposableCallback(
-				id: $"{nameof(Store)}.{nameof(BeginInternalMiddlewareChange)}",
-				() => EndMiddlewareChange(disposables));
-		}
+            lock (SyncRoot)
+            {
+                EffectWithStates.Add(effectWithState);
+            }
+        }
 
-		/// <see cref="IStore.InitializeAsync"/>
-		public async Task InitializeAsync()
-		{
-			if (HasActivatedStore)
-				return;
-			await ActivateStoreAsync();
-		}
+        /// <see cref="IStore.AddMiddleware(IMiddleware)"/>
+        public void AddMiddleware(IMiddleware middleware)
+        {
+            lock (SyncRoot)
+            {
+                Middlewares.Add(middleware);
+                ReversedMiddlewares.Insert(0, middleware);
+                // Initialize the middleware immediately if the store has already been initialized, otherwise this will be
+                // done the first time Dispatch is called
+                if (HasActivatedStore)
+                {
+                    middleware
+                        .InitializeAsync(this)
+                        .ContinueWith(t =>
+                        {
+                            if (!t.IsFaulted)
+                                middleware.AfterInitializeAllMiddlewares();
+                        });
+                }
+            }
+        }
 
-		public event EventHandler<Exceptions.UnhandledExceptionEventArgs> UnhandledException;
+        /// <see cref="IStore.BeginInternalMiddlewareChange"/>
+        public IDisposable BeginInternalMiddlewareChange()
+        {
+            IDisposable[] disposables = null;
+            lock (SyncRoot)
+            {
+                BeginMiddlewareChangeCount++;
+                disposables = Middlewares
+                    .Select(x => x.BeginInternalMiddlewareChange())
+                    .ToArray();
+            }
 
-		/// <see cref="IActionSubscriber.SubscribeToAction{TAction}(object, Action{TAction})"/>
-		public void SubscribeToAction<TAction>(object subscriber, Action<TAction> callback)
-		{
-			ActionSubscriber.SubscribeToAction(subscriber, callback);
-		}
+            return new DisposableCallback(
+                id: $"{nameof(Store)}.{nameof(BeginInternalMiddlewareChange)}",
+                () => EndMiddlewareChange(disposables));
+        }
 
-		/// <see cref="IActionSubscriber.UnsubscribeFromAllActions(object)"/>
-		public void UnsubscribeFromAllActions(object subscriber)
-		{
-			ActionSubscriber.UnsubscribeFromAllActions(subscriber);
-		}
+        /// <see cref="IStore.InitializeAsync"/>
+        public async Task InitializeAsync()
+        {
+            if (HasActivatedStore)
+                return;
+            await ActivateStoreAsync();
+        }
 
-		/// <see cref="IActionSubscriber.GetActionUnsubscriberAsIDisposable(object)"/>
-		public IDisposable GetActionUnsubscriberAsIDisposable(object subscriber) =>
-			ActionSubscriber.GetActionUnsubscriberAsIDisposable(subscriber);
+        public event EventHandler<Exceptions.UnhandledExceptionEventArgs> UnhandledException;
 
-		private void EndMiddlewareChange(IDisposable[] disposables)
-		{
-			lock (SyncRoot)
-			{
-				BeginMiddlewareChangeCount--;
-				if (BeginMiddlewareChangeCount == 0)
-					disposables.ToList().ForEach(x => x.Dispose());
-			}
-		}
+        /// <see cref="IActionSubscriber.SubscribeToAction{TAction}(object, Action{TAction})"/>
+        public void SubscribeToAction<TAction>(object subscriber, Action<TAction> callback)
+        {
+            ActionSubscriber.SubscribeToAction(subscriber, callback);
+        }
 
-		private void TriggerEffects(object action)
-		{
-			var recordedExceptions = new List<Exception>();
-			var effectsToExecute = Effects
-				.Where(x => x.ShouldReactToAction(action))
-				.ToArray();
-			var executedEffects = new List<Task>();
+        /// <see cref="IActionSubscriber.UnsubscribeFromAllActions(object)"/>
+        public void UnsubscribeFromAllActions(object subscriber)
+        {
+            ActionSubscriber.UnsubscribeFromAllActions(subscriber);
+        }
 
-			Action<Exception> collectExceptions = e =>
-			{
-				if (e is AggregateException aggregateException)
-					recordedExceptions.AddRange(aggregateException.Flatten().InnerExceptions);
-				else
-					recordedExceptions.Add(e);
-			};
+        /// <see cref="IActionSubscriber.GetActionUnsubscriberAsIDisposable(object)"/>
+        public IDisposable GetActionUnsubscriberAsIDisposable(object subscriber) =>
+            ActionSubscriber.GetActionUnsubscriberAsIDisposable(subscriber);
 
-			// Execute all tasks. Some will execute synchronously and complete immediately,
-			// so we need to catch their exceptions in the loop so they don't prevent
-			// other effects from executing.
-			// It's then up to the UI to decide if any of those exceptions should cause
-			// the app to terminate or not.
-			foreach (IEffect effect in effectsToExecute)
-			{
-				try
-				{
-					executedEffects.Add(effect.HandleAsync(action, this));
-				}
-				catch (Exception e)
-				{
-					collectExceptions(e);
-				}
-			}
+        private void EndMiddlewareChange(IDisposable[] disposables)
+        {
+            lock (SyncRoot)
+            {
+                BeginMiddlewareChangeCount--;
+                if (BeginMiddlewareChangeCount == 0)
+                    disposables.ToList().ForEach(x => x.Dispose());
+            }
+        }
 
-			Task.Run(async() =>
-			{
-				try
-				{
-					await Task.WhenAll(executedEffects);
-				}
-				catch (Exception e)
-				{
-					collectExceptions(e);
-				}
+        private void TriggerEffects(object action)
+        {
+            var recordedExceptions = new List<Exception>();
+            var effectsWithoutStateToExecute = Effects
+                .Where(x => x.ShouldReactToAction(action))
+                .ToArray();
+            var effectsWithStateToExecute = EffectWithStates
+                .Where(x => x.ShouldReactToAction(action))
+                .ToArray();
 
-				// Let the UI decide if it wishes to deal with any unhandled exceptions.
-				// By default it should throw the exception if it is not handled.
-				foreach (Exception exception in recordedExceptions)
-					UnhandledException?.Invoke(this, new Exceptions.UnhandledExceptionEventArgs(exception));
-			});
-		}
+            var executedEffects = new List<Task>();
 
-		private async Task InitializeMiddlewaresAsync()
-		{
-			foreach (IMiddleware middleware in Middlewares)
-			{
-				await middleware.InitializeAsync(this);
-			}
-			Middlewares.ForEach(x => x.AfterInitializeAllMiddlewares());
-		}
+            Action<Exception> collectExceptions = e =>
+            {
+                if (e is AggregateException aggregateException)
+                    recordedExceptions.AddRange(aggregateException.Flatten().InnerExceptions);
+                else
+                    recordedExceptions.Add(e);
+            };
 
-		private void ExecuteMiddlewareBeforeDispatch(object actionAboutToBeDispatched)
-		{
-			foreach (IMiddleware middleWare in Middlewares)
-				middleWare.BeforeDispatch(actionAboutToBeDispatched);
-		}
+            // Execute all tasks. Some will execute synchronously and complete immediately,
+            // so we need to catch their exceptions in the loop so they don't prevent
+            // other effects from executing.
+            // It's then up to the UI to decide if any of those exceptions should cause
+            // the app to terminate or not.
+            foreach (IEffect effect in effectsWithoutStateToExecute)
+            {
+                try
+                {
+                    executedEffects.Add(effect.HandleAsync(action, this));
 
-		private void ExecuteMiddlewareAfterDispatch(object actionJustDispatched)
-		{
-			Middlewares.ForEach(x => x.AfterDispatch(actionJustDispatched));
-		}
+                }
+                catch (Exception e)
+                {
+                    collectExceptions(e);
+                }
+            }
 
-		private async Task ActivateStoreAsync()
-		{
-			if (HasActivatedStore)
-				return;
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await Task.WhenAll(executedEffects);
+                }
+                catch (Exception e)
+                {
+                    collectExceptions(e);
+                }
 
-			await InitializeMiddlewaresAsync();
+                // Let the UI decide if it wishes to deal with any unhandled exceptions.
+                // By default it should throw the exception if it is not handled.
+                foreach (Exception exception in recordedExceptions)
+                    UnhandledException?.Invoke(this, new Exceptions.UnhandledExceptionEventArgs(exception));
+            });
+        }
 
-			lock (SyncRoot)
-			{
-				HasActivatedStore = true;
-				DequeueActions();
-				InitializedCompletionSource.SetResult(true);
-			}
-		}
+        private async Task InitializeMiddlewaresAsync()
+        {
+            foreach (IMiddleware middleware in Middlewares)
+            {
+                await middleware.InitializeAsync(this);
+            }
+            Middlewares.ForEach(x => x.AfterInitializeAllMiddlewares());
+        }
 
-		private void DequeueActions()
-		{
-			if (IsDispatching)
-				return;
+        private void ExecuteMiddlewareBeforeDispatch(object actionAboutToBeDispatched)
+        {
+            foreach (IMiddleware middleWare in Middlewares)
+                middleWare.BeforeDispatch(actionAboutToBeDispatched);
+        }
 
-			IsDispatching = true;
-			try
-			{
-				while (QueuedActions.Count > 0)
-				{
-					object nextActionToProcess = QueuedActions.Dequeue();
+        private void ExecuteMiddlewareAfterDispatch(object actionJustDispatched)
+        {
+            Middlewares.ForEach(x => x.AfterDispatch(actionJustDispatched));
+        }
 
-					// Only process the action if no middleware vetos it
-					if (Middlewares.All(x => x.MayDispatchAction(nextActionToProcess)))
-					{
-						ExecuteMiddlewareBeforeDispatch(nextActionToProcess);
-						ActionSubscriber?.Notify(nextActionToProcess);
+        private async Task ActivateStoreAsync()
+        {
+            if (HasActivatedStore)
+                return;
 
-						// Notify all features of this action
-						foreach (var featureInstance in FeaturesByName.Values)
-							featureInstance.ReceiveDispatchNotificationFromStore(nextActionToProcess);
+            await InitializeMiddlewaresAsync();
 
-						ExecuteMiddlewareAfterDispatch(nextActionToProcess);
-						TriggerEffects(nextActionToProcess);
-					}
-				}
-			}
-			finally
-			{
-				IsDispatching = false;
-			}
-		}
-	}
+            lock (SyncRoot)
+            {
+                HasActivatedStore = true;
+                DequeueActions();
+                InitializedCompletionSource.SetResult(true);
+            }
+        }
+
+        private void DequeueActions()
+        {
+            if (IsDispatching)
+                return;
+
+            IsDispatching = true;
+            try
+            {
+                while (QueuedActions.Count > 0)
+                {
+                    object nextActionToProcess = QueuedActions.Dequeue();
+
+                    // Only process the action if no middleware vetos it
+                    if (Middlewares.All(x => x.MayDispatchAction(nextActionToProcess)))
+                    {
+                        ExecuteMiddlewareBeforeDispatch(nextActionToProcess);
+                        ActionSubscriber?.Notify(nextActionToProcess);
+
+                        // Notify all features of this action
+                        foreach (var featureInstance in FeaturesByName.Values)
+                            featureInstance.ReceiveDispatchNotificationFromStore(nextActionToProcess);
+
+                        ExecuteMiddlewareAfterDispatch(nextActionToProcess);
+                        TriggerEffects(nextActionToProcess);
+
+                        // TriggerEffectsWithStated of this action
+                        foreach (var featureInstance in FeaturesByName.Values)
+                            featureInstance.TriggerEffectsWithState(nextActionToProcess, EffectWithStates, this);
+
+                    }
+                }
+            }
+            finally
+            {
+                IsDispatching = false;
+            }
+        }
+
+    }
 }

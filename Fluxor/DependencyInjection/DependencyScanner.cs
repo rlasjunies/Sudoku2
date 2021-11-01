@@ -31,14 +31,24 @@ namespace Fluxor.DependencyInjection
 			DiscoveredEffectClass[] discoveredEffectClasses =
 				EffectClassessDiscovery.DiscoverEffectClasses(serviceCollection, allNonAbstractCandidateTypes);
 
+			DiscoveredEffectWithStateClass[] discoveredEffectWithStateClasses =
+				EffectWithStateClassessDiscovery.DiscoverEffectWithStateClasses(serviceCollection, allNonAbstractCandidateTypes);
+
 			// Method reducer/effects may belong to abstract classes
 			TypeAndMethodInfo[] allCandidateMethods = AssemblyScanSettings.FilterMethods(allCandidateTypes);
+			foreach (var t in allCandidateMethods)
+			{
+				Console.WriteLine($"DependencyScanner:{t.MethodInfo}");
+			}
 
 			DiscoveredReducerMethod[] discoveredReducerMethods =
 				ReducerMethodsDiscovery.DiscoverReducerMethods(serviceCollection, allCandidateMethods);
 
 			DiscoveredEffectMethod[] discoveredEffectMethods =
 				EffectMethodsDiscovery.DiscoverEffectMethods(serviceCollection, allCandidateMethods);
+
+			DiscoveredEffectWithStateMethod[] discoveredEffectWithStateMethods =
+				EffectWithStateMethodsDiscovery.DiscoverEffectWithStateMethods(serviceCollection, allCandidateMethods);
 
 			DiscoveredFeatureClass[] discoveredFeatureClasses =
 				FeatureClassesDiscovery.DiscoverFeatureClasses(
@@ -52,7 +62,9 @@ namespace Fluxor.DependencyInjection
 				options: options,
 				discoveredFeatureClasses: discoveredFeatureClasses,
 				discoveredEffectClasses: discoveredEffectClasses,
-				discoveredEffectMethods: discoveredEffectMethods);
+				discoveredEffectMethods: discoveredEffectMethods,
+				discoveredEffectWithStateClasses: discoveredEffectWithStateClasses,
+				discoveredEffectWithStateMethods: discoveredEffectWithStateMethods);
 		}
 
 		private static void GetCandidateTypes(
@@ -81,6 +93,10 @@ namespace Fluxor.DependencyInjection
 						.Where(t => !t.IsGenericType)
 						.Distinct()
 						.ToArray());
+            foreach (var t in allCandidateTypes)
+            {
+				Console.WriteLine($"DependencyScanner:{t.FullName}");	
+            }
 			allNonAbstractCandidateTypes = allCandidateTypes
 					.Where(t => !t.IsAbstract)
 					.ToArray();
@@ -91,7 +107,9 @@ namespace Fluxor.DependencyInjection
 			FluxorOptions options,
 			IEnumerable<DiscoveredFeatureClass> discoveredFeatureClasses,
 			IEnumerable<DiscoveredEffectClass> discoveredEffectClasses,
-			IEnumerable<DiscoveredEffectMethod> discoveredEffectMethods)
+			IEnumerable<DiscoveredEffectMethod> discoveredEffectMethods,
+			IEnumerable<DiscoveredEffectWithStateClass> discoveredEffectWithStateClasses,
+			IEnumerable<DiscoveredEffectWithStateMethod> discoveredEffectWithStateMethods)
 		{
 			// Register IDispatcher as an alias to Store
 			serviceCollection.AddScoped<IDispatcher>(serviceProvider => serviceProvider.GetService<Store>());
@@ -120,6 +138,18 @@ namespace Fluxor.DependencyInjection
 				{
 					IEffect effect = EffectWrapperFactory.Create(serviceProvider, discoveredEffectMethod);
 					store.AddEffect(effect);
+				}
+
+				foreach (DiscoveredEffectWithStateClass discoveredEffectWithStateClass in discoveredEffectWithStateClasses)
+				{
+					var effectWithState = (IEffectWithState)serviceProvider.GetService(discoveredEffectWithStateClass.ImplementingType);
+					store.AddEffectWithState(effectWithState);
+				}
+
+				foreach (DiscoveredEffectWithStateMethod discoveredEffectWithStateMethod in discoveredEffectWithStateMethods)
+				{
+					IEffectWithState effectWithState = EffectWithStateWrapperFactory.Create(serviceProvider, discoveredEffectWithStateMethod);
+					store.AddEffectWithState(effectWithState);
 				}
 
 				foreach (Type middlewareType in options.MiddlewareTypes)
