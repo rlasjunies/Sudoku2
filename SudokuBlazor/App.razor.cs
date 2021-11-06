@@ -20,7 +20,7 @@ namespace Sudoku
         //public override void task OnInitializedAsync()
         protected override void OnInitialized()
         {
-            Logger?.LogDebug($"{this.GetType().FullName} APPPPPPPPPPPPPPPPPPPPPPPPPPPPP initialization");
+            Logger?.LogDebug($"{this.GetType().FullName} App initialization");
             Dispatcher.Dispatch(new Store::Actions.RetrieveAppInformation());
             base.OnInitialized();
         }
