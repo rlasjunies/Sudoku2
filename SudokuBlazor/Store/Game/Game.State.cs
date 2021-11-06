@@ -8,7 +8,7 @@ namespace Sudoku.Store.Game
 {
     public static class Const
     {
-        // TODO candidate to move to OneOf<NotCelleSelected, or [0-80]
+        // TODO candidate to move to OneOf<NotCellSelected, or [0-80]
         public const int NoCellSelected = -1;
         public const int NoValueInTheCell = 0;
         public const int NothingSolved = -1;

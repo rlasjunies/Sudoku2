@@ -24,7 +24,7 @@ namespace Sudoku.Store.Game.Reducers
 
             if (currentCell == Sudoku.Store.Game.Const.NoCellSelected)
             {
-                // noting done
+                // nothing to do
             }
             else if (newBoard.cells[currentCell].seed) 
             {

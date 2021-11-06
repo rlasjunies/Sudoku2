@@ -1,12 +1,5 @@
 ﻿using Fluxor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Components;
-using System.Reflection;
 
 namespace Sudoku.Store.Game.Effects
 {
