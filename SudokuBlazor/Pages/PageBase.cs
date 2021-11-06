@@ -26,6 +26,7 @@ namespace Sudoku.Pages
 
         private void StateChanged(Object sender, TState state)
         {
+            this.State = State;
             InvokeAsync(StateHasChanged);
         }
 

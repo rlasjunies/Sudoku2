@@ -6,30 +6,32 @@ using System.Threading.Tasks;
 
 namespace Sudoku.Shared.Storage
 {
-    //public class LocalStateStorageSudoku : IStringStateStorage
-    //{
+    public class LocalStateStorageSudoku : IStringStateStorage
+    {
 
-    //    private ILocalStorageService LocalStorage { get; set; }
-    //    private readonly ILogger<LocalStateStorageSudoku> _logger;
-    //    public LocalStateStorageSudoku(ILocalStorageService localStorage, ILogger<LocalStateStorageSudoku> logger)
-    //    {
-    //        LocalStorage = localStorage;
-    //        _logger = logger;
-    //    }
+        private ILocalStorageService _localstorage { get; set; }
+        private readonly ILogger<LocalStateStorageSudoku> _logger;
 
-    //    public async ValueTask<string> GetStateJsonAsync(string statename)
-    //    {
-    //        // string readstring = await LocalStorage.GetItemAsStringAsync(statename); ... bug?
-    //        var readstring = await LocalStorage.GetItemAsync<string>(statename);
-    //        _logger.LogDebug($"get store key:@{statename} - value@{readstring}");
-    //        return readstring;
-    //    }
+        public LocalStateStorageSudoku(ILocalStorageService localstorage, ILogger<LocalStateStorageSudoku> logger)
+        {
+            _localstorage = localstorage;
+            _logger = logger;
+        }
 
-    //    public async ValueTask StoreStateJsonAsync(string statename, string json)
-    //    {
-    //        await LocalStorage.SetItemAsync(statename, json);
-    //        _logger.LogDebug($"store key:@{statename} - value@{json}");
-    //    }
-    //}
+        public async ValueTask<string> GetStateJsonAsync(string statename)
+        {
+            // string readstring = await localstorage.getitemasstringasync(statename); ... bug?
+            var readstring = await _localstorage.GetItemAsync<string>(statename);
+            //_logger.LogDebug($"get store key:@{statename} - value@{readstring}");
+            return readstring;
+        }
+
+        public async ValueTask StoreStateJsonAsync(string statename, string json)
+        {
+            await _localstorage.SetItemAsync(statename, json);
+            _logger.LogDebug($"store key:@{statename} - value@{json}");
+        }
+
+    }
 }
 

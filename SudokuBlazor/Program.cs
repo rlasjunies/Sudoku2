@@ -25,10 +25,9 @@ namespace Sudoku
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            //builder.Services.AddScoped<IStringStateStorage, LocalStateStorageSudoku>();
-            //builder.Services.AddScoped<IObjectStateStorage, InMemoryStateStorageSudoku>();
-            //builder.Services.AddScoped<IStoreHandler, JsonStoreHandlerSudoku>();
-            // builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
+            builder.Services.AddBlazoredLocalStorage(config => config.JsonSerializerOptions.WriteIndented = false);
+            builder.Services.AddScoped<IStringStateStorage, LocalStateStorage>();
+            builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
 
             AddLoggingService(builder);
             AddFluxorService(builder);
@@ -45,9 +44,9 @@ namespace Sudoku
                         .ScanAssemblies(currentAssembly)
                         .UseRouting()
                         .AddMiddleware<LoggingMiddleware>()
-                        // .UsePersist()
+                        //.UsePersist()
                         // .UsePersist(options => options.UseInclusionApproach())
-                        // .UsePersist(x => x.SetWhiteList(new string[] { "StateCounter", "StateGame" }))
+                        .UsePersist(x => x.SetWhiteList(new string[] { "StateGame" }))
                         //.UseReduxDevTools()
                    );
             }
@@ -56,7 +55,11 @@ namespace Sudoku
             {
                 builder.Services.AddLogging(builder => builder
                     .AddBrowserConsole()
-                    .SetMinimumLevel(LogLevel.Information)
+                    .SetMinimumLevel(LogLevel.Debug)
+                    .AddFilter("Microsoft", LogLevel.Warning)
+                    //.AddFilter("Microsoft", LogLevel.Debug)
+                    .AddFilter("System", LogLevel.Warning)
+                    //.AddFilter("Fluxor", LogLevel.Warning)
                 );
             }
 

@@ -1,9 +1,11 @@
 ﻿using Fluxor.Persist.Middleware;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+//using System.Text.Json;
+//using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Newtonsoft;
+using Newtonsoft.Json;
 
 namespace Fluxor.Persist.Storage
 {
@@ -31,9 +33,13 @@ namespace Fluxor.Persist.Storage
                 Logger?.LogDebug($"Deserializing type {feature.GetStateType().ToString()}");
                 try
                 {
-                    object stronglyTypedFeatureState = JsonSerializer.Deserialize(
+                    //object stronglyTypedFeatureState = JsonSerializer.Deserialize(
+                    //    json,
+                    //    feature.GetStateType());
+                    object stronglyTypedFeatureState = JsonConvert.DeserializeObject(
                         json,
                         feature.GetStateType());
+
                     if (stronglyTypedFeatureState == null)
                     {
                         Logger?.LogError($"Deserialize returned null");
@@ -53,12 +59,13 @@ namespace Fluxor.Persist.Storage
         public async Task SetState(IFeature feature)
         {
             var state = feature.GetState();
-            var options = new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-            };
-            string serializedState = JsonSerializer.Serialize(state, options);
+            //var options = new JsonSerializerOptions
+            //{
+            //    WriteIndented = true,
+            //    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            //};
+            //string serializedState = JsonSerializer.Serialize(state, options);
+            string serializedState = JsonConvert.SerializeObject(state);
             await LocalStorage.StoreStateJsonAsync(feature.GetName(), serializedState);
         }
     }

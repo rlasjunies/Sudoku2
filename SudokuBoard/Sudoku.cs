@@ -30,6 +30,7 @@ namespace Sudoku.Board
         public int[] remainingNumbers { get; set; }
     }
 
+    [Serializable]
     public record SudokuBoardCell
     {
         public int value { get; set; }
@@ -39,6 +40,7 @@ namespace Sudoku.Board
         public int expectedValue { get; set; }
     }
 
+    [Serializable]
     public enum SudokuLevelType { easy, medium, complex, veryComplex }
 
     public static class Board
