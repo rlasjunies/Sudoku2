@@ -141,7 +141,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-2gAbxbe5Sdv+jR8yWH1QdKYxsFmpzXq841BMxaxsaws=",
+      "hash": "sha256-VkEb9rwJRNDL4mxlPm1PX2LUX6UCynbBwKU54uy2vRs=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -153,19 +153,19 @@
       "url": "_framework\/Blazored.LocalStorage.dll"
     },
     {
-      "hash": "sha256-sWu8XuF8smfhvuXEpUNhEm0NokPFFK5w8m9b64HhSc0=",
+      "hash": "sha256-NDb8MqEXlZ2h+t5uROgFrfrNu4eMTbGw\/TbZDnbG60Q=",
       "url": "_framework\/Fluxor.Blazor.Web.dll"
     },
     {
-      "hash": "sha256-rfGelp0RA\/VEKvuR73zeYSMK9DFas6Vq1IFgIFmfRQs=",
+      "hash": "sha256-\/74rpSawXO9VfO94pN4e9J4Dyy8wsApUZrvr2PHncPU=",
       "url": "_framework\/Fluxor.Blazor.Web.ReduxDevTools.dll"
     },
     {
-      "hash": "sha256-hBS8GqI7B2OWG7am8v45mY93RMeu3e7pMpG8j\/\/c5Vs=",
+      "hash": "sha256-DXfeTrr1wYNMXkINGG+tyBYnTCQp\/C5CdZCgvpgURZA=",
       "url": "_framework\/Fluxor.dll"
     },
     {
-      "hash": "sha256-WSmJ8dkkeSQO5wTUbP4ehLDlNcxZWFNKCJBqQpM1dz4=",
+      "hash": "sha256-4sC9UwXqMn2du9r76kcKzysdKSjEWaaI6u+mfkmxgIw=",
       "url": "_framework\/Fluxor.Persist.dll"
     },
     {
@@ -205,27 +205,27 @@
       "url": "_framework\/Microsoft.Extensions.Configuration.Json.dll"
     },
     {
-      "hash": "sha256-nq1iVn96zKSoBOp1Na2oyXDpHPgJHRc4p1fIZ8EYT2w=",
+      "hash": "sha256-pLAUyBOac2XlPaqdqq9C5QaktB7RKkbXHIqNaxkg+eo=",
       "url": "_framework\/Microsoft.Extensions.DependencyInjection.Abstractions.dll"
     },
     {
-      "hash": "sha256-nKm\/esNvc9Hhf3BhkcSMInA6gCqDbZIOoTE2KePQCBM=",
+      "hash": "sha256-Yh2T9rhuC58\/a6pf191k0vHP3qGr6jwmPAUjaBqbKLc=",
       "url": "_framework\/Microsoft.Extensions.DependencyInjection.dll"
     },
     {
-      "hash": "sha256-tL47ojwzIuf9CZ0XoE5XCLaaBJOUi9bJpZjp0CeIMWg=",
+      "hash": "sha256-GSydZilrySPipTv4rRybHs7ZOkYdm3+Zg4hhZ5cYmyE=",
       "url": "_framework\/Microsoft.Extensions.Logging.Abstractions.dll"
     },
     {
-      "hash": "sha256-HdJrmS5P3551ZyAuaPS8sSXEhFun4QVZlS6pgB86B5M=",
+      "hash": "sha256-SPHuLt1xV7VxVM1CUQaf5xNtc6Ls1cQn2tffl9E+Vr8=",
       "url": "_framework\/Microsoft.Extensions.Logging.dll"
     },
     {
-      "hash": "sha256-WZTDdjVI+RCyJzl3BXTLeLL9EGee+fKu2DDVzdsKV+0=",
+      "hash": "sha256-18bHBkondG9aSV3+sBAyURsEp087Fxkor\/DXy4Ve1qc=",
       "url": "_framework\/Microsoft.Extensions.Options.dll"
     },
     {
-      "hash": "sha256-PqwMlNQen4hkSv\/QHnkeBh8I92Jc9FNuzPjjWHCEQWw=",
+      "hash": "sha256-x78akTZi8gS99VFtd3mo5t+TqAMNsg095whYeUa6Hgs=",
       "url": "_framework\/Microsoft.Extensions.Primitives.dll"
     },
     {
@@ -245,11 +245,11 @@
       "url": "_framework\/Newtonsoft.Json.dll"
     },
     {
-      "hash": "sha256-XOk7H7lZqD0TNlUyrRx5WU9ju9jDbSPrOF0g7sWhkA0=",
+      "hash": "sha256-XKGbjZ8p0FMpk8S+MBTca9TIMJ0mWAA25OlPowfrRgc=",
       "url": "_framework\/Sudoku.dll"
     },
     {
-      "hash": "sha256-8e\/HvZ5FpGR5ebi28t9CgrhXLVd82AByGhjJthQJ++o=",
+      "hash": "sha256-DCsi1ZWZ4cNjCUtHK3CrGn\/FROqmT9sUmXImIv7h8q4=",
       "url": "_framework\/SudokuBoard.dll"
     },
     {
@@ -405,5 +405,5 @@
       "url": "_content\/Fluxor.Blazor.Web\/scripts\/index.js"
     }
   ],
-  "version": "NKBszRD2"
+  "version": "kv3FdqhJ"
 };
