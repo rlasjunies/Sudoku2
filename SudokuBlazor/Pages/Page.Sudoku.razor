@@ -8,30 +8,32 @@
         @if (GameInPause)
         {
             <div id="play"
-                    @onclick="ResumeGame">
-                <img src="assets/source_icons_play-outline.svg"/>
+             @onclick="ResumeGame">
+                <img src="assets/source_icons_play-outline.svg" />
             </div>
         }
         else
         {
             <div id="pause"
-                    @onclick="PauseGame">
+             @onclick="PauseGame">
                 <img src="assets/source_icons_pause-outline.svg" />
             </div>
         }
         <div id="settings"
-                   @onclick="NavigateToConfiguration">
+             @onclick="NavigateToConfiguration">
             <img src="assets/source_icons_settings.svg" />
         </div>
     </AccHeader>
     <div id="game"
          class=@(GameInPause ? "displayNone" : "displayYes")>
 
-        <SudokuBoard id="sudokuboard"
+        @if (Board is not null)
+        {
+            <SudokuBoard id="sudokuboard"
                      board=@(Board)
-                     cellSelected=@(CellSelected)
+                     selectedCell=@(CellSelected)
                      lastCellOfTheGame=@(LastCellOfTheGame)
-                     incorrectCells=@(IncorrectCells)
+                     @*incorrectCells=@(IncorrectCells)*@
                      solvedRow=@(RowSolved)
                      solvedCol=@(ColSolved)
                      solvedBlock=@(BlockSolved)
@@ -39,22 +41,23 @@
                      solutionsByRules=@(SolutionsByRules)
                      wizardConfiguration=@(WizardConfiguration)
                      OnCellSelection="(cellNumberCustomEvent) => dispatchCellSelection(cellNumberCustomEvent)">
-        </SudokuBoard>
+            </SudokuBoard>
 
             <SudokuKeyboard id="keyboard"
-                            class=@(GameOnGoing ? "displayYes" : "displayNone")
-                            OnClearClicked="ClearCellClicked"
-                            OnUndoClicked="UndoClicked"
-                            OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
-                            OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
-                            remainingNumbers=@(RemainingNumbers)
-                            hideClearKey=@(ShouldHideClearKey())
-                            hideUndoKey=@(!GameOnGoing)>
+                        class=@(GameOnGoing ? "displayYes" : "displayNone")
+                        OnClearClicked="ClearCellClicked"
+                        OnUndoClicked="UndoClicked"
+                        OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
+                        OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
+                        remainingNumbers=@(RemainingNumbers)
+                        hideClearKey=@(ShouldHideClearKey())
+                        hideUndoKey=@(!GameOnGoing)>
             </SudokuKeyboard>
+        }
         <div id="newGame"
              class=@(GameOnGoing ? "displayNone" : "displayYes")>
             <p>Good game! Play again?</p>
-            <AccButton id="newGame" 
+            <AccButton id="newGame"
                        stylesuccess
                        OnClickCallback="NavigateToNewboard">
                 Newboard

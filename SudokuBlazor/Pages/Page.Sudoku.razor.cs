@@ -20,8 +20,6 @@ namespace Sudoku.Pages
         // or it accept not initialized board
         public int[] RemainingNumbers => new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
-        public bool[] IncorrectCells => State.Value.board.incorrectCells;
-
         public bool ShouldHideClearKey() {
             if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return true;
             if (Board.cells[CellSelected].seed) return true;
@@ -37,7 +35,7 @@ namespace Sudoku.Pages
         public int RowSolved => State.Value.rowSolved;
         public int BlockSolved => State.Value.blockSolved;
         //public bool BoardSolved => State.Value.boardSolved;
-        
+
         public bool _BoardSolved = false;
         public bool BoardSolved
         {

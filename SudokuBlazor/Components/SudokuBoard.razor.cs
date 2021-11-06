@@ -20,15 +20,15 @@ namespace Sudoku.Components
         [Parameter]
         public EventCallback<int> OnCellSelection { get; set; }
 
-        private int _SolvedRow;
+        private int _solvedRow;
         [Parameter]
-        public int SolvedRow { 
-            get => _SolvedRow;
+        public int solvedRow { 
+            get => _solvedRow;
             set {
                 // Logger.LogDebug($"SolvedRow:{value} OldSolvedRow:{_SolvedRow}");
-                if (_SolvedRow != value)
+                if (_solvedRow != value)
                 {
-                    _SolvedRow = value;
+                    _solvedRow = value;
                 }; 
         }
 }
@@ -122,13 +122,11 @@ namespace Sudoku.Components
         // }
 
         [Parameter]
-        public int cellSelected { get; set; } = Sudoku.Store.Game.Const.NoCellSelected;
+        public int selectedCell { get; set; } = Sudoku.Store.Game.Const.NoCellSelected;
 
         [Parameter]
         public int lastCellOfTheGame { get; set; } = Sudoku.Store.Game.Const.NoCellSelected;
 
-        [Parameter]
-        public bool[] incorrectCells { get; set; } = new bool[81];
 
         // TODO centralize initializer for SolutionByRules or support null
         [Parameter]
@@ -245,86 +243,94 @@ namespace Sudoku.Components
 
         // classboard:string[] = []
 
-
         protected string returnClassForTheCell(int cell)
         {
-            //console.log("this.cellSelected",this.cellSelected);
-
-            //logger.LogDebug($"cell[{cell}] - cellSelected:{this.cellSelected}");
-
-            var isCellSelectedCorrect = (cellSelected != Sudoku.Store.Game.Const.NoCellSelected);
-
-            // conversion to .ENT var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : null;
-            var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : Sudoku.Store.Game.Const.NoValueInTheCell;
-            var cellValue = this.board.cells[cell].value;
-
-            // conversion to .NET var modeEntry = isNullOrEmpty(selectedCellValue) ;
-            var modeEntry = selectedCellValue == Sudoku.Store.Game.Const.NoValueInTheCell;
-
-            var modeHighlightNumber = !modeEntry;
-            // testEnvironment && console.debug(...BOARD_DEV_MODE,`cellSelected:${this.cellSelected} - SelectedValue:${selectedCellValue} - cellValue:${cellValue} - modeEntry:${modeEntry}`);
-
-            var colOfCell = hlpr.colOfCellNumber(cell);
-            var rowOfCell = hlpr.rowOfCellNumber(cell);
-            var blockOfCell = hlpr.blockOfCellNumber(cell);
-
-            var colOfCellSelected = hlpr.colOfCellNumber(cellSelected);
-            var rowOfCellSelected = hlpr.rowOfCellNumber(cellSelected);
-            var blockOfCellSelected = hlpr.blockOfCellNumber(cellSelected);
-
-            // TODO not so sure about this conversion ... need to be double checked
-            var isIncorrectCell = wizardConfiguration.showErrornousCells ? incorrectCells[cell] : false;
-            //logger.LogDebug($"cell[{cell}] - isIncorrectCells:{incorrectCells[cell]}");
-            var incorrectClass = isIncorrectCell ? " incorrect " : "";
-
-            var isNotTheSelectedCell = this.cellSelected != cell;
-            var isTheSelectedCell = this.cellSelected == cell;
-            //logger.LogDebug($"cell[{cell}] - isTheCellSelected:{isTheSelectedCell}");
-
-            var isColRowOrBlockSelected = (colOfCell == colOfCellSelected) || (rowOfCell == rowOfCellSelected) || (blockOfCell == blockOfCellSelected);
-        
-
-            var areaSelectedClass = (modeEntry && isCellSelectedCorrect && isNotTheSelectedCell && isColRowOrBlockSelected) ? " area-selected " : "";
-            var cellSelectedClass = isTheSelectedCell ? " selected " : "";
-            var sameValueAsTheSelectedCellClass = modeHighlightNumber
-                                                    && cellValue == selectedCellValue
-                                                    && this.wizardConfiguration.showIdenticalNumber ? " sameValueAsTheOneSelected " : "";
-
-            // testEnvironment && console.debug(...BOARD_DEV_MODE,`modeHighlightNumber: ${modeHighlightNumber} - sameValueAsTheSelectedCellClass:${sameValueAsTheSelectedCellClass}`);
-            // const sameValueAsTheOneSelected = 
-            //     (
-            //         (selectedCellValue !== "null") &&
-            //         (selectedCellValue == cellValue) &&
-            //         (selectedCellValue !== "undefined") &&
-            //         (cellValue !== "undefined")
-            //     ) ? " selected " : "";
-            // TODO: console.log(`selectCellValue:${selectedCellValue} - cellValue:${cellValue} - ${sameValueAsTheSelectedCellClass} - ${typeof (selectedCellValue)} - ${typeof (cellValue)}`);
-
-            var isSolution_UniqueOccurenceInZoneClass = "";
-            var isSolution_UniquePossibleValueClass = "";
-
-            if (wizardConfiguration.showUniquePossibleValueInRowOrColumn)
+            if (this.board is not null)
             {
-                var isSolution_UniquePossibleValue = solutionsByRules.uniquePossibleValue.FindAll(solution => solution.cell == cell).Count > 0;
-                isSolution_UniquePossibleValueClass = isSolution_UniquePossibleValue ? " UniquePossibleValue" : "";
-            }
-            if (this.wizardConfiguration.showUniquePossibleValueInZones)
-            {
-                var isSolution_UniquePossibleValueInZone = solutionsByRules.uniqueOccurrenceInZone.FindAll(solution => solution.cell == cell).Count > 0;
-                isSolution_UniqueOccurenceInZoneClass = isSolution_UniquePossibleValueInZone ? " UniqueOccurenceInZone" : "";
-            }
+                //Logger.LogDebug($".....cell[{cell}] - cellSelected:{selectedCell}");
+                //if (selectedCell != Sudoku.Store.Game.Const.NoCellSelected ) Logger.LogDebug($"cell[{cell}] - board.cells[selectedCell].value:{board.cells[selectedCell].value}");
+                //Logger.LogDebug($"cell[{cell}] - board.cells[cell].value:{board.cells[cell].value}");
 
-            return $"cell" +
-                $" cell{cell} " +
-                $" row{rowOfCell} " +
-                $" column{colOfCell} " +
-                $" block{blockOfCell}" +
-                incorrectClass +
-                (isIncorrectCell ? "" : areaSelectedClass) +
-                (isIncorrectCell ? "" : cellSelectedClass) +
-                (isIncorrectCell ? "" : sameValueAsTheSelectedCellClass) +
-                (isIncorrectCell ? "" : isSolution_UniquePossibleValueClass) +
-                (isIncorrectCell ? "" : isSolution_UniqueOccurenceInZoneClass);
+                var isCellSelectedCorrect = (selectedCell != Sudoku.Store.Game.Const.NoCellSelected);
+
+                // conversion to .ENT var selectedCellValue = isCellSelectedCorrect ? board.cells[cellSelected].value : null;
+                var selectedCellValue = isCellSelectedCorrect ? board.cells[selectedCell].value : Sudoku.Store.Game.Const.NoValueInTheCell;
+                var cellValue = board.cells[cell].value;
+
+                // conversion to .NET var modeEntry = isNullOrEmpty(selectedCellValue) ;
+                var modeEntry = selectedCellValue == Sudoku.Store.Game.Const.NoValueInTheCell;
+
+                var modeHighlightNumber = !modeEntry;
+                // testEnvironment && console.debug(...BOARD_DEV_MODE,`cellSelected:${this.cellSelected} - SelectedValue:${selectedCellValue} - cellValue:${cellValue} - modeEntry:${modeEntry}`);
+
+                var colOfCell = hlpr.colOfCellNumber(cell);
+                var rowOfCell = hlpr.rowOfCellNumber(cell);
+                var blockOfCell = hlpr.blockOfCellNumber(cell);
+
+                var colOfCellSelected = hlpr.colOfCellNumber(selectedCell);
+                var rowOfCellSelected = hlpr.rowOfCellNumber(selectedCell);
+                var blockOfCellSelected = hlpr.blockOfCellNumber(selectedCell);
+
+                // TODO not so sure about this conversion ... need to be double checked
+                var isIncorrectCell = wizardConfiguration.showErrornousCells ? this.board.incorrectCells[cell] : false;
+                //logger.LogDebug($"cell[{cell}] - isIncorrectCells:{incorrectCells[cell]}");
+                var incorrectClass = isIncorrectCell ? " incorrect " : "";
+
+                var isNotTheSelectedCell = this.selectedCell != cell;
+                var isTheSelectedCell = this.selectedCell == cell;
+                //logger.LogDebug($"cell[{cell}] - isTheCellSelected:{isTheSelectedCell}");
+
+                var isColRowOrBlockSelected = (colOfCell == colOfCellSelected) || (rowOfCell == rowOfCellSelected) || (blockOfCell == blockOfCellSelected);
+
+
+                var areaSelectedClass = (modeEntry && isCellSelectedCorrect && isNotTheSelectedCell && isColRowOrBlockSelected) ? " area-selected " : "";
+                var cellSelectedClass = isTheSelectedCell ? " selected " : "";
+                var sameValueAsTheSelectedCellClass = modeHighlightNumber
+                                                        && cellValue == selectedCellValue
+                                                        && this.wizardConfiguration.showIdenticalNumber ? " sameValueAsTheOneSelected " : "";
+
+                // testEnvironment && console.debug(...BOARD_DEV_MODE,`modeHighlightNumber: ${modeHighlightNumber} - sameValueAsTheSelectedCellClass:${sameValueAsTheSelectedCellClass}`);
+                // const sameValueAsTheOneSelected = 
+                //     (
+                //         (selectedCellValue !== "null") &&
+                //         (selectedCellValue == cellValue) &&
+                //         (selectedCellValue !== "undefined") &&
+                //         (cellValue !== "undefined")
+                //     ) ? " selected " : "";
+                // TODO: console.log(`selectCellValue:${selectedCellValue} - cellValue:${cellValue} - ${sameValueAsTheSelectedCellClass} - ${typeof (selectedCellValue)} - ${typeof (cellValue)}`);
+
+                var isSolution_UniqueOccurenceInZoneClass = "";
+                var isSolution_UniquePossibleValueClass = "";
+
+                if (wizardConfiguration.showUniquePossibleValueInRowOrColumn)
+                {
+                    var isSolution_UniquePossibleValue = solutionsByRules.uniquePossibleValue.FindAll(solution => solution.cell == cell).Count > 0;
+                    isSolution_UniquePossibleValueClass = isSolution_UniquePossibleValue ? " UniquePossibleValue" : "";
+                }
+                if (this.wizardConfiguration.showUniquePossibleValueInZones)
+                {
+                    var isSolution_UniquePossibleValueInZone = solutionsByRules.uniqueOccurrenceInZone.FindAll(solution => solution.cell == cell).Count > 0;
+                    isSolution_UniqueOccurenceInZoneClass = isSolution_UniquePossibleValueInZone ? " UniqueOccurenceInZone" : "";
+                }
+
+                return $"cell" +
+                    $" cell{cell} " +
+                    $" row{rowOfCell} " +
+                    $" column{colOfCell} " +
+                    $" block{blockOfCell}" +
+                    incorrectClass +
+                    (isIncorrectCell ? "" : areaSelectedClass) +
+                    (isIncorrectCell ? "" : cellSelectedClass) +
+                    (isIncorrectCell ? "" : sameValueAsTheSelectedCellClass) +
+                    (isIncorrectCell ? "" : isSolution_UniquePossibleValueClass) +
+                    (isIncorrectCell ? "" : isSolution_UniqueOccurenceInZoneClass);
+
+            }
+            else
+            {
+                Logger.LogDebug($"!!!!!!!!!! Board is not initialized yet");
+                return "";
+            }
         }
 
         protected void cellSelectedHandler(int cell)
