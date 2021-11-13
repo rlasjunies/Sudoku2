@@ -1,15 +1,16 @@
 @inherits AccHeaderBase
 
-<div class="AccHeader">
+<MudAppBar>
     @if (backbutton)
     {
-        <button id="back"
-            @onclick = "onClickBackButtonHandler">
-            <img id="backimg" src="assets/source_icons_nav-arrow-left.svg" />
-        </button>
+        <MudIconButton 
+            Icon="@Icons.Filled.ArrowBackIosNew" 
+            aria-label="back"
+            OnClick = "onClickBackButtonHandler"
+        ></MudIconButton>
         <span id="slot">@ChildContent</span>
     }
     else {
         @ChildContent
     }
-</div>
+</MudAppBar>

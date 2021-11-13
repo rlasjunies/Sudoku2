@@ -14,6 +14,7 @@ using Fluxor.Persist.Storage;
 using Sudoku.Shared.Storage;
 using Sudoku;
 using Sudoku.Shared;
+using MudBlazor.Services;
 
 namespace Sudoku
 {
@@ -30,6 +31,7 @@ namespace Sudoku
             builder.Services.AddScoped<IStringStateStorage, LocalStateStorage>();
             builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
             builder.Services.AddScoped<ITimer, TimerHandler>();
+            builder.Services.AddMudServices();
 
             AddLoggingService(builder);
             AddFluxorService(builder);

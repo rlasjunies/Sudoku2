@@ -2,25 +2,45 @@
 @page "/home"
 @inherits Sudoku.Pages.HomePage
 
-<AccPage>
-    <div id="title">
-        <div>Sudoku</div>
-        <div>Master</div>
-    </div>
 
-    <div id="bottom">
-        @if (GameOnGoing)
-        {
-            <AccButton id="Continue" 
-                success
-                OnClickCallback="NavigateToSudokuPage">Continue</AccButton>
-        }
-        <AccButton id="NewGame" 
-            success=@(!GameOnGoing)
-            info=@(GameOnGoing)
-            OnClickCallback="NavigateToCreateNewBoardPage">New Game</AccButton>
-        <AccButton id="About" 
-            info 
-            OnClickCallback="NavigateToAboutPage">About</AccButton>
-    </div>
-</AccPage>
+<MudPaper id="title"
+    Class="pa-4 ma-2" 
+    Elevation="0" >
+        <MudText Typo="Typo.h1" Align="Align.Center">Sudoku</MudText>
+        <MudText Typo="Typo.h1" Align="Align.Center">Master</MudText>
+</MudPaper>
+
+<MudPaper id="bottom"
+    Class="pa-4 ma-2" 
+    Elevation="0">
+    @if (GameOnGoing)
+    {
+        <MudButton id="Continue"
+            Variant="Variant.Filled"
+            Class="pa-4 ma-4"
+               FullWidth="true"
+               Color=Color.Primary
+               Size=Size.Large
+               OnClick="NavigateToSudokuPage">
+            Continue
+        </MudButton>
+    }
+    <MudButton id="NewGame"
+            Class="pa-4 ma-4"
+               Variant="Variant.Filled"
+               FullWidth="true"
+               Size=Size.Large
+               Color=@(!GameOnGoing ? Color.Primary : Color.Secondary)
+               OnClick="NavigateToCreateNewBoardPage">
+        New Game
+    </MudButton>
+
+    <MudButton id="About"
+    Class="pa-4 ma-4"
+               Variant="Variant.Filled"
+               FullWidth="true"
+               Size=Size.Large
+               OnClick="NavigateToAboutPage">
+        About
+    </MudButton>
+</MudPaper>

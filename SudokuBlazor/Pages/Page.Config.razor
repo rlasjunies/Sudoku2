@@ -1,29 +1,71 @@
 ﻿@page "/config"
 @inherits ConfigPage
 
-<AccPage>
-    <AccHeader backbutton OnClickBackButton="NavigateToGame">
-        Need an help?
-    </AccHeader>
-    <div id="content">
-        <AccSwitch id="showidenticalnumber"
-                   class="switch"
-                   valueChecked="@ShowIdenticalNumber"
-                   OnChangeCallback="ToggleShowIdenticalNumber">Show identical number</AccSwitch>
+<MudAppBar Class="pl-0 ml-0">
+    <MudIconButton 
+        Class="pl-0 ml-0"
+        Color=Color.Inherit
+        Icon="@Icons.Filled.ArrowBackIosNew"
+                   aria-label="back"
+                   Size=MudBlazor.Size.Large
+                   OnClick="NavigateToGame"></MudIconButton>
+    <MudText Typo="Typo.h5" Align="Align.Center">Need an help?</MudText>
+</MudAppBar>
 
-        <AccSwitch id="showerrornouscells"
-                   class="switch"
-                   valueChecked="@ShowErrornousCells"
-                   OnChangeCallback="ToggleShowErrornousCells">Show errornous cells</AccSwitch>
+<MudPaper Class="pa-4 ma-2"
+          Elevation="0">
+    <MudList>
+        <MudListItem 
+            Avatar="@Icons.Outlined.Lightbulb">
+            Helpers
+        </MudListItem>
+        <MudDivider DividerType="DividerType.Inset" />
+        <MudListItem>
+            <MudToggleIconButton id="showidenticalnumber"
+                                 Icon="@Icons.Filled.CheckBoxOutlineBlank"
+                                 Title="Show identical number"
+                                 ToggledIcon="@Icons.Filled.CheckBox"
+                                 ToggledTitle="Do not show identical number"
+                                 Toggled="ShowIdenticalNumber"
+                                 ToggledChanged="ToggleShowIdenticalNumber" />
+            <span>Highlight same number</span>
+        </MudListItem>
+        <MudListItem>
+            <MudToggleIconButton id="showerrornouscells"
+                                 Icon="@Icons.Filled.CheckBoxOutlineBlank"
+                                 Title="Show errornous cells"
+                                 ToggledIcon="@Icons.Filled.CheckBox"
+                                 ToggledTitle="Do not shows the errornous cells"
+                                 Toggled="ShowErrornousCells"
+                                 ToggledChanged="ToggleShowErrornousCells" />
+            <span>Show errornous cells</span>
 
-        <AccSwitch id="highlightuniquecandidateinzone"
-                   class="switch"
-                   valueChecked="@HighlightCellWithUniqueCandidate"
-                   OnChangeCallback="ToggleHighlightCellWithUniqueCandidate">Show errornous cells</AccSwitch>
+        </MudListItem>
+        <MudListItem Avatar="">
+            <MudToggleIconButton id="highlightuniquecandidateinzone"
+                                 Icon="@Icons.Filled.CheckBoxOutlineBlank"
+                                 Title="Highlight cells with unique candidate"
+                                 ToggledIcon="@Icons.Filled.CheckBox"
+                                 ToggledTitle="Do not highlight cells with unique candidate"
+                                 Toggled="HighlightCellWithUniqueCandidate"
+                                 ToggledChanged="ToggleHighlightCellWithUniqueCandidate" />
+            <span>Highlight cells with unique candidate</span>
+        </MudListItem>
 
-        <AccSwitch id="devmode"
-                   class="switch"
-                   valueChecked="@DevMode"
-                   OnChangeCallback="ToggleDevMode">Switch in development mode</AccSwitch>
-    </div>
-</AccPage>
+        <MudListItem 
+            Avatar="@Icons.Filled.DeveloperMode">
+            Development mode
+        </MudListItem>
+        <MudDivider DividerType="DividerType.Inset" />
+        <MudListItem>
+            <MudToggleIconButton id="devmode"
+                                 Icon="@Icons.Filled.CheckBoxOutlineBlank"
+                                 Title="Developer mode"
+                                 ToggledIcon="@Icons.Filled.CheckBox"
+                                 ToggledTitle="Normal user mode"
+                                 Toggled="DevMode"
+                                 ToggledChanged="ToggleDevMode" />
+            <span>Developer mode</span>
+        </MudListItem>
+    </MudList>
+</MudPaper>

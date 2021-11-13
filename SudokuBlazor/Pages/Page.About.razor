@@ -3,9 +3,18 @@
 
 @inherits AboutPage
 
-<AccPage>
-    <AccHeader backbutton OnClickBackButton="NavigateToHome">
-        About
-    </AccHeader>
-    <h1>Version: @State.Value.Version</h1>
-</AccPage>
+<MudAppBar 
+    Class="pl-0">
+    <MudIconButton 
+        Icon="@Icons.Filled.ArrowBackIosNew"
+        Color=Color.Inherit
+        Class="pl-0 ml-0"
+        Size=MudBlazor.Size.Large
+        OnClick="NavigateToHome"></MudIconButton>
+    <MudText Typo="Typo.h5" Align="Align.Center">About</MudText>
+</MudAppBar>
+<MudPaper id="aboutContent"
+          Class="pa-4 ma-2"
+          Elevation="0">
+    <MudText Typo="Typo.h5" Align="Align.Start">Version: @State.Value.Version</MudText>
+</MudPaper>
