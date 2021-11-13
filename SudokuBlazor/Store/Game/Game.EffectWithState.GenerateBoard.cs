@@ -6,10 +6,11 @@ namespace Sudoku.Store.Game.Effects
     public class GenerateBoard
     {
 
-        [EffectMethod]
-        public async Task GenerateBoardEffect(Actions.GenerateBoard action, IDispatcher dispatcher)
+        [EffectWithStateMethod]
+        public async Task GenerateBoardEffect(Actions.GenerateBoard action, StateGame state, IDispatcher dispatcher)
         {
-            var board = Sudoku.Board.Board.generateSudokuBoard(action.level);
+            var board = Sudoku.Board.Board.generateSudokuBoard(action.level,state.devMode) ;
+
             dispatcher.Dispatch(new Actions.BoardGenerated
             {
                 board = board,

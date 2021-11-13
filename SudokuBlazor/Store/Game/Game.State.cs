@@ -29,9 +29,10 @@ namespace Sudoku.Store.Game
         public int lastCellOfTheGame;
         public bool gameInPause;
         public int timer; //seconds
-        public bool timerOn;
+        //public bool timerOn;
         public SolutionByRules solutionsByRules;
         public SudokuWizardConfiguration wizardConfiguration;
+        public bool devMode;
     }
 }
 

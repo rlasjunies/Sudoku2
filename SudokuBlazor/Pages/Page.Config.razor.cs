@@ -12,6 +12,8 @@ namespace Sudoku.Pages
         public bool ShowIdenticalNumber => State.Value.wizardConfiguration.showIdenticalNumber;
         public bool ShowErrornousCells => State.Value.wizardConfiguration.showErrornousCells;
         public bool HighlightCellWithUniqueCandidate => State.Value.wizardConfiguration.showUniquePossibleValueInRowOrColumn;
+        public bool DevMode => State.Value.devMode;
+
 
         protected void ToggleShowIdenticalNumber(){
             Dispatcher.Dispatch(new Store::Actions.ToggleShowIdenticalNumber());
@@ -22,6 +24,11 @@ namespace Sudoku.Pages
         protected void ToggleHighlightCellWithUniqueCandidate(){
             Dispatcher.Dispatch(new Store::Actions.ToggleHighlightCellWithUniqueCandidate());
         }
+        protected void ToggleDevMode()
+        {
+            Dispatcher.Dispatch(new Store::Actions.ToggleDevMode());
+        }
+
         protected void NavigateToGame()
         {
             Dispatcher.Dispatch(new GoAction(Pages.Sudoku));

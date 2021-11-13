@@ -7,22 +7,23 @@
     </AccHeader>
     <div id="content">
         <AccSwitch id="showidenticalnumber"
-            class="switch"
-            valueChecked="@ShowIdenticalNumber"
-            OnChangeCallback="ToggleShowIdenticalNumber">Show identical number</AccSwitch>
+                   class="switch"
+                   valueChecked="@ShowIdenticalNumber"
+                   OnChangeCallback="ToggleShowIdenticalNumber">Show identical number</AccSwitch>
 
         <AccSwitch id="showerrornouscells"
-            class="switch"
-            valueChecked="@ShowErrornousCells"
-            OnChangeCallback="ToggleShowErrornousCells"
-            >Show errornous cells</AccSwitch>
+                   class="switch"
+                   valueChecked="@ShowErrornousCells"
+                   OnChangeCallback="ToggleShowErrornousCells">Show errornous cells</AccSwitch>
 
         <AccSwitch id="highlightuniquecandidateinzone"
-            class="switch"
+                   class="switch"
+                   valueChecked="@HighlightCellWithUniqueCandidate"
+                   OnChangeCallback="ToggleHighlightCellWithUniqueCandidate">Show errornous cells</AccSwitch>
 
-            valueChecked="@HighlightCellWithUniqueCandidate"
-            OnChangeCallback="ToggleHighlightCellWithUniqueCandidate"
-            >Show errornous cells</AccSwitch>
-
+        <AccSwitch id="devmode"
+                   class="switch"
+                   valueChecked="@DevMode"
+                   OnChangeCallback="ToggleDevMode">Switch in development mode</AccSwitch>
     </div>
 </AccPage>

@@ -29,7 +29,7 @@ namespace Sudoku.Store.Game
                 boardJustFinish = false,
                 gameInPause = false,
                 timer = 0,
-                timerOn = true,
+                //timerOn = true,
                 solutionsByRules = new Board.SolutionByRules()
                 {
                     uniqueOccurrenceInZone = new List<Board.Solution>(),
@@ -42,7 +42,8 @@ namespace Sudoku.Store.Game
                     showUniquePossibleValueInRowOrColumn = false,
                     showErrornousCells = true,
                     showIdenticalNumber = true
-                }
+                },
+                devMode = false
 			};
 	}
 }

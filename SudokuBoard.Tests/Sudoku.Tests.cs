@@ -9,7 +9,7 @@ namespace Sudoku.Board
         public void should_create_new_board()
         {
             // 1
-            var board = Sudoku.Board.Board.generateSudokuBoard(Sudoku.Board.SudokuLevelType.easy);
+            var board = Sudoku.Board.Board.generateSudokuBoard(Sudoku.Board.SudokuLevelType.easy, true);
 
             // 2 
 

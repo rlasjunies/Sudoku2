@@ -18,6 +18,9 @@ You could have access to an online version of the blazor sudoku via the [github 
   - [x] bUnit
   - [ ] SpecFlow / cucumber
   - [ ] e2e
+  - [ ] code coverage via coverlet 
+		- https://www.youtube.com/watch?v=xwMWGYD8rgk
+		- https://www.youtube.com/watch?v=K9XSl3xMilE
 - [x] About page
 - [x] Home page
 - [x] New Board page

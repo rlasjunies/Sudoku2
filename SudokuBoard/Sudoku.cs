@@ -84,7 +84,7 @@ namespace Sudoku.Board
             throw new NotImplementedException();
         }
 
-        public static SudokuBoard generateSudokuBoard(SudokuLevelType level)
+        public static SudokuBoard generateSudokuBoard(SudokuLevelType level, bool devMode)
         {
             var solvedBoard = Generator.generateBoard();
             // var sudokuBoard = { ...solvedBoard };
@@ -107,9 +107,8 @@ namespace Sudoku.Board
             // TODO
             // TODO
             // TODO
-            bool testEnvironment = true;
 
-            var numberOfComplexity = (level.ToString(), testEnvironment) switch
+            var numberOfComplexity = (level.ToString(), devMode) switch
             {
                 (_, true) => 81 - 78,
                 ("easy", _) => 81 - 62,
