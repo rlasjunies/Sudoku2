@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuBoard", "SudokuBoard\SudokuBoard.csproj", "{D4994708-D4F5-4759-BB14-0208FDD1C715}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper", "Helper\Helper.csproj", "{46BDE132-462F-4806-9AA0-D20AE32B6969}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper_", "Helper\Helper_.csproj", "{46BDE132-462F-4806-9AA0-D20AE32B6969}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper.Tests", "Helper.Tests\Helper.Tests.csproj", "{5D026BF5-BFBE-4749-8C89-376FED8228C3}"
 EndProject

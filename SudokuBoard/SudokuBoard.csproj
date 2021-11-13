@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\Helper\Helper.csproj" />
+    <ProjectReference Include="..\Helper\Helper_.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

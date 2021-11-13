@@ -26,7 +26,7 @@ You could have access to an online version of the blazor sudoku via the [github 
 - [x] New Board page
 - [x] Config page
 - [x] Game page
-- [ ] Timer Service
+- [x] Timer Service
 - [ ] Layout / UX / Styling
 - [ ] Localization
 
