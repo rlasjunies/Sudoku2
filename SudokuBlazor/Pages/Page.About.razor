@@ -4,17 +4,19 @@
 @inherits AboutPage
 
 <MudAppBar 
-    Class="pl-0">
+    Class="pa-0 ma-0">
     <MudIconButton 
         Icon="@Icons.Filled.ArrowBackIosNew"
         Color=Color.Inherit
-        Class="pl-0 ml-0"
+        Class="pa-0 ma-0"
         Size=MudBlazor.Size.Large
         OnClick="NavigateToHome"></MudIconButton>
-    <MudText Typo="Typo.h5" Align="Align.Center">About</MudText>
+        <MudContainer >
+            <MudText Typo="Typo.h5" Align="Align.Center">About</MudText>
+        </MudContainer>
 </MudAppBar>
 <MudPaper id="aboutContent"
-          Class="pa-4 ma-2"
+          Class="pa-4 mt-2"
           Elevation="0">
     <MudText Typo="Typo.h5" Align="Align.Start">Version: @State.Value.Version</MudText>
 </MudPaper>

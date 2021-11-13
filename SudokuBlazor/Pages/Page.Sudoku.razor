@@ -2,37 +2,40 @@
 @inherits SudokuPage
 @using Sudoku.Components
 
-<MudAppBar
-    Class="pl-0">
-    <MudIconButton 
-        Class="pl-0 ml-0"
-        Icon="@Icons.Filled.ArrowBackIosNew"
+<MudAppBar Class="pl-0">
+    <MudIconButton Class="pl-0 ml-0"
+                   Icon="@Icons.Filled.ArrowBackIosNew"
                    aria-label="back"
                    Color=Color.Inherit
                    Size=MudBlazor.Size.Large
-                   OnClick="NavigateToHome"></MudIconButton>
-    <MudText Typo="Typo.h5" Align="Align.Center">@(TimerValueString)</MudText>
-    @if (GameInPause)
-    {
-        <MudIconButton Icon="@Icons.Filled.PlayCircleOutline"
-        Color=Color.Inherit
-                   aria-label="play"
-                   Size=MudBlazor.Size.Large
-                   OnClick="NavigateToHome"></MudIconButton>
-    }else
-    {
-        <MudIconButton Icon="@Icons.Filled.PauseCircleOutline"
-        Color=Color.Inherit
-                   aria-label="pause"
-                   Size=MudBlazor.Size.Large
-                   OnClick="NavigateToHome"></MudIconButton>
-    }
+                   OnClick="NavigateToHome">
+    </MudIconButton>
+    @*<MudContainer MaxWidth=MaxWidth.ExtraLarge>*@
+        <MudText Typo="Typo.h5" Align="Align.Center">@(TimerValueString)</MudText>
+        @if (GameInPause)
+        {
+            <MudIconButton Icon="@Icons.Filled.PlayCircleOutline"
+                       Color=Color.Inherit
+                       aria-label="play"
+                       Size=MudBlazor.Size.Large
+                       OnClick="NavigateToHome"></MudIconButton>
+        }
+        else
+        {
+            <MudIconButton Icon="@Icons.Filled.PauseCircleOutline"
+                       Color=Color.Inherit
+                       aria-label="pause"
+                       Size=MudBlazor.Size.Large
+                       OnClick="NavigateToHome"></MudIconButton>
+        }
 
-    <MudIconButton Icon="@Icons.Filled.Settings"
-    Color=Color.Inherit
-                   aria-label="setting"
-                   Size=MudBlazor.Size.Large
-                   OnClick="NavigateToConfiguration"></MudIconButton>
+        <MudIconButton Icon="@Icons.Filled.Settings"
+                       Color=Color.Inherit
+                       aria-label="setting"
+                       Size=MudBlazor.Size.Large
+                       OnClick="NavigateToConfiguration">
+        </MudIconButton>
+    @*</MudContainer>*@
 
 </MudAppBar>
 

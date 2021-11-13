@@ -1,18 +1,18 @@
 ﻿@page "/config"
 @inherits ConfigPage
 
-<MudAppBar Class="pl-0 ml-0">
+<MudAppBar 
+    Class="pl-0">
     <MudIconButton 
+        Icon="@Icons.Filled.ArrowBackIosNew"
         Class="pl-0 ml-0"
         Color=Color.Inherit
-        Icon="@Icons.Filled.ArrowBackIosNew"
-                   aria-label="back"
-                   Size=MudBlazor.Size.Large
-                   OnClick="NavigateToGame"></MudIconButton>
+        aria-label="back"
+        OnClick="NavigateToGame"></MudIconButton>
     <MudText Typo="Typo.h5" Align="Align.Center">Need an help?</MudText>
 </MudAppBar>
 
-<MudPaper Class="pa-4 ma-2"
+<MudPaper Class="pa-4 mt-2"
           Elevation="0">
     <MudList>
         <MudListItem 

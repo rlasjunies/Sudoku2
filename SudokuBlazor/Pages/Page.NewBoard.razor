@@ -1,26 +1,78 @@
 ﻿@page "/newboard"
 @inherits NewBoardPage
 
-<AccPage>
-    <AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">
-        Start a new Board
-    </AccHeader>
-    <div id="content">
-        <h1>Which challenge will you succeed?</h1>
-        <AccButton id="easy" 
-            info 
-            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">Easy
-        </AccButton>
-        <AccButton id="medium"
-            info 
-            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">Medium
-        </AccButton>
-        <AccButton id="expert" info
-            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">Expert
-        </AccButton>
-        <AccButton id="master" info
-            OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">Master
-        </AccButton>
+@*<AccPage>*@
+    @*<AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">*@
+        @*Start a new Board*@
+    @*</AccHeader>*@
 
-    </div>
-</AccPage>
+<MudAppBar Class="pl-0" Elevation=0>
+    <MudIconButton Icon="@Icons.Filled.ArrowBackIosNew"
+                   Color=Color.Inherit
+                   Class="pl-0 ml-0"
+                   Size=MudBlazor.Size.Large
+                   OnClick="NavigateToHome"></MudIconButton>
+    <MudText Typo="Typo.h5" Align="Align.Center">Start a new game</MudText>
+</MudAppBar>
+<MudContainer>
+    <MudText Align=Align.Center Typo=Typo.h3>Which challenge will you succeed?</MudText>
+    <MudButton id="easy"
+               Variant="Variant.Filled"
+               Class="pa-4 mt-4"
+               FullWidth="true"
+               Color=Color.Primary
+               Size=Size.Large
+               OnClick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">
+        Easy
+    </MudButton>
+    <MudButton id="medium"
+               Variant="Variant.Filled"
+               Class="pa-4 mt-4"
+               FullWidth="true"
+               Color=Color.Primary
+               Size=Size.Large
+               OnClick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">
+        Medium
+    </MudButton>
+    <MudButton id="expert"
+               Variant="Variant.Filled"
+               Class="pa-4 mt-4"
+               FullWidth="true"
+               Color=Color.Primary
+               Size=Size.Large
+               OnClick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">
+        Expert
+    </MudButton>
+    <MudButton id="master"
+               Variant="Variant.Filled"
+               Class="pa-4 mt-4"
+               FullWidth="true"
+               Color=Color.Primary
+               Size=Size.Large
+               OnClick="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">
+        Expert
+    </MudButton>
+</MudContainer>
+@*<div id="content">*@
+    @*<h1>Which challenge will you succeed?</h1>*@
+    @*<AccButton id="easy"*@
+               @*info*@
+               @*OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.easy) )">*@
+        @*Easy*@
+    @*</AccButton>*@
+    @*<AccButton id="medium"
+               info
+               OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.medium) )">
+        Medium
+    </AccButton>*@
+    @*<AccButton id="expert" info
+               OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.complex) )">
+        Expert
+    </AccButton>
+    <AccButton id="master" info
+               OnClickCallback="@( e => CreateNewBoardAndNavigateToTheGamePage(Board.SudokuLevelType.veryComplex) )">
+        Master
+    </AccButton>*@
+
+@*</div>*@
+@*</AccPage>*@
