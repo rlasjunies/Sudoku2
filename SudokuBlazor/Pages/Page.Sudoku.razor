@@ -4,7 +4,7 @@
 
 <AccPage>
     <AccHeader id="header" backbutton OnClickBackButton="NavigateToHome">
-        <span>Timer tick here</span>
+        <span>@(TimerValueString)</span>
         @if (GameInPause)
         {
             <div id="play"

@@ -13,6 +13,7 @@ using Fluxor.Persist.Middleware;
 using Fluxor.Persist.Storage;
 using Sudoku.Shared.Storage;
 using Sudoku;
+using Sudoku.Shared;
 
 namespace Sudoku
 {
@@ -28,6 +29,7 @@ namespace Sudoku
             builder.Services.AddBlazoredLocalStorage(config => config.JsonSerializerOptions.WriteIndented = false);
             builder.Services.AddScoped<IStringStateStorage, LocalStateStorage>();
             builder.Services.AddScoped<IStoreHandler, JsonStoreHandler>();
+            builder.Services.AddScoped<ITimer, TimerHandler>();
 
             AddLoggingService(builder);
             AddFluxorService(builder);
@@ -47,7 +49,7 @@ namespace Sudoku
                         //.UsePersist()
                         // .UsePersist(options => options.UseInclusionApproach())
                         .UsePersist(x => x.SetWhiteList(new string[] { "StateGame" }))
-                        //.UseReduxDevTools()
+                        .UseReduxDevTools()
                    );
             }
 

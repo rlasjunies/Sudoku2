@@ -5,13 +5,17 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Sudoku.Board;
+using Sudoku.Shared;
+using Sudoku.Store.Game;
 using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages
 {
     public partial class SudokuPage : PageBase<Store::StateGame, SudokuPage>, IDisposable
     {
-        // TODO important test case, when the board is not loaded
+
+        [Inject]
+        protected ITimer Timer { get; set; }
 
         public Sudoku.Board.SudokuBoard Board => State.Value.board;
 
@@ -20,7 +24,8 @@ namespace Sudoku.Pages
         // or it accept not initialized board
         public int[] RemainingNumbers => new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
-        public bool ShouldHideClearKey() {
+        public bool ShouldHideClearKey()
+        {
             if (CellSelected == Sudoku.Store.Game.Const.NoCellSelected) return true;
             if (Board.cells[CellSelected].seed) return true;
             if (Board.cells[CellSelected].value == 0) return true;
@@ -44,7 +49,7 @@ namespace Sudoku.Pages
             {
                 Logger?.LogDebug($"BoardSolved 6 property:_BoardSolved={_BoardSolved} StateValue={value}");
 
-                if ( !_BoardSolved && value)
+                if (!_BoardSolved && value)
                 {
                     _BoardSolved = true;
                     Dispatcher.Dispatch(new Store::Actions.EndGame());
@@ -54,7 +59,9 @@ namespace Sudoku.Pages
         }
 
         public bool GameOnGoing => State.Value.gameOnGoing;
-        public int Timer => State.Value.timer;
+        // public int TimerValue => State.Value.timer;
+        public int TimerValue { get; set; }
+        public string TimerValueString { get; set; }
         public bool GameInPause => State.Value.gameInPause;
         public SolutionByRules SolutionsByRules => State.Value.solutionsByRules;
         public SudokuWizardConfiguration WizardConfiguration => State.Value.wizardConfiguration;
@@ -65,20 +72,72 @@ namespace Sudoku.Pages
             base.OnInitialized();
         }
 
+        protected override void OnAfterRender(bool firstRender)
+        {
+            if (firstRender)
+            {
+                if (State is not null)
+                {
+                    DoWeNeedToStartTheTimer((StateGame)State.Value);
+                    InvokeAsync(StateHasChanged);
+                }
+                else
+                {
+                    Logger?.LogWarning($"OnAfterRender State is null");
+                }
+            }
+            base.OnAfterRender(firstRender);
+        }
+
+        private bool isTimerOn = false;
+        private void timerTick(object state)
+        {
+            //Dispatcher.Dispatch(new Store::Actions.TimerTick());
+            TimerValue += 1;
+            TimeSpan time = TimeSpan.FromSeconds(TimerValue);
+
+            //here backslash is must to tell that colon is
+            //not the part of format, it just a character that we want in output
+            TimerValueString = time.ToString(@"hh\:mm\:ss");
+            InvokeAsync(StateHasChanged);
+        }
+
         private void StateChanged(Object sender, Store::StateGame state)
         {
-            //Logger?.LogDebug($"{this.GetType().FullName} State Is changing");
+            //Logger?.LogDebug($"{ this.GetType().FullName}State Is changing");
             this.BoardSolved = state.boardSolved;
+            DoWeNeedToStartTheTimer(state);
+            DoWeNeedToStopTheTimer(state);
+
             InvokeAsync(StateHasChanged);
+
+            void DoWeNeedToStopTheTimer(Store.Game.StateGame state)
+            {
+                if ((!state.gameOnGoing || state.gameInPause) && this.isTimerOn)
+                {
+                    Timer.StopTimer();
+                    Dispatcher.Dispatch( new Store::Actions.TimerUpdateValue { TimerValue = this.TimerValue });
+                    isTimerOn = false;
+                }
+            }
+        }
+
+        private void DoWeNeedToStartTheTimer(Store.Game.StateGame state)
+        {
+            if (state.gameOnGoing && !state.gameInPause && !this.isTimerOn)
+            {
+                TimerValue = state.timer;
+                Timer.StartTimer(timerTick, 1000);
+                this.isTimerOn = true;
+            }
         }
 
         void IDisposable.Dispose()
         {
             Logger?.LogDebug($"{this.GetType().FullName} dispose handler");
+            Dispatcher.Dispatch(new Store::Actions.TimerUpdateValue { TimerValue = this.TimerValue });
             State.StateChanged -= StateChanged;
         }
-
-
 
         protected void dispatchCellSelection(int cell)
         {
@@ -111,18 +170,6 @@ namespace Sudoku.Pages
             Dispatcher.Dispatch(new Store::Actions.Undo());
         }
 
-        protected void onTimerSwitch()
-        {
-            if (GameInPause)
-            {
-                //   store.dispatch(resumeGame_ResumeTimer.action());
-            }
-            else
-            {
-                //   store.dispatch(pauseGame_PauseTimer.action());
-            }
-        }
-
         protected void NavigateToNewboard()
         {
             Dispatcher.Dispatch(new GoAction(Pages.NewBoard));
@@ -132,7 +179,6 @@ namespace Sudoku.Pages
         {
             // store.dispatch(autoCalculatePossibleValuesAction.action());
         }
-
 
         protected void NavigateToHome()
         {
