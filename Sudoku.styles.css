@@ -98,7 +98,7 @@ button[b-3ovlsysl72] {
     }
   } */
 /* /Components/AccHeader.razor.rz.scp.css */
-[b-pvhxaak432][b-3n1kn2mqlp] {
+[b-pvhxaak432wwwwwwwwwwwwwwwwww][b-3n1kn2mqlp] {
     /* overflow: hidden; */
     display: flex;
     flex-direction: row;
@@ -152,12 +152,12 @@ button[b-3ovlsysl72] {
   border-bottom: none;
 }
 /* /Components/AccPage.razor.rz.scp.css */
-[b-nlucmekph4][b-p72rhd97rp] {
+/*[b-nlucmekph4] {
   min-height: 98vh;
   max-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+}*/
 /* /Components/AccSwitch.razor.rz.scp.css */
 /* The switch - the box around the slider */
 [b-88y00dqlk6][b-dcl621964r] {
@@ -613,7 +613,7 @@ button[b-3ovlsysl72] {
     padding: 5px;
 }
 /* /Pages/Page.Home.razor.rz.scp.css */
-#title[b-riltciwhlx] {
+/*#title {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -625,43 +625,34 @@ button[b-3ovlsysl72] {
     align-self: center;
     padding: 5px;
     align-items: center;
-    /* margin:auto; */
+*/    /* margin:auto; */
     /* padding:15px; */
     /* align-content: center; */
     /* align-items: center; */
-}
+/*}*/
 
-[b-riltciwhlx] #bottom {
-    /* flex: 1; */
+/*::deep #bottom {
     display: flex;
     flex-direction: column;
     align-content: flex-end;
-    /* color: #ff11ff; */
     background-color: cyan;
 }
 
-[b-riltciwhlx] button {
+::deep button {
     height: 15vh;
     font-size: 6vh;
     color: white;
-    /* background-color: chartreuse; */
     margin: 5px 0px 5px 0px;
-    /* border-radius: 10px; */
-    /* padding: 0px 5px 0px 5px; */
-    /* padding: 5px; */
-    /* font-size: xx-larger; */
 }
 
 
-#version[b-riltciwhlx] {
+#version {
     flex: 1;
     display: flex;
     color: darkgray;
     flex-direction: column;
-    /* align-self: center; */
-    /* align-content: center; */
     text-align: center;
-}
+}*/
 /* /Pages/Page.NewBoard.razor.rz.scp.css */
 #content[b-57m9811mcb] {
     display: flex;
