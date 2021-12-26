@@ -1,7 +1,9 @@
 ﻿@inherits LayoutComponentBase
 <MudThemeProvider/>
 <MudLayout>
-    <MudMainContent>
+    <MudMainContent id="maincontent"
+        Class="d-flex flex-column"
+        Style="height: 100vh">
         @Body
     </MudMainContent>
 </MudLayout>

@@ -10,11 +10,18 @@
                    Size=MudBlazor.Size.Large
                    OnClick="NavigateToHome">
     </MudIconButton>
-    @*<MudContainer MaxWidth=MaxWidth.ExtraLarge>*@
-        <MudText Typo="Typo.h5" Align="Align.Center">@(TimerValueString)</MudText>
+
+    <MudContainer Class="d-flex align-center">
+        <MudText Class="d-flex flex-grow-1"
+                 Typo="Typo.h5"
+                 Align="Align.Center">
+            @(TimerValueString)
+        </MudText>
+
         @if (GameInPause)
         {
-            <MudIconButton Icon="@Icons.Filled.PlayCircleOutline"
+            <MudIconButton Class="d-flex"
+                       Icon="@Icons.Filled.PlayCircleOutline"
                        Color=Color.Inherit
                        aria-label="play"
                        Size=MudBlazor.Size.Large
@@ -22,65 +29,69 @@
         }
         else
         {
-            <MudIconButton Icon="@Icons.Filled.PauseCircleOutline"
+            <MudIconButton Class="d-flex"
+                       Icon="@Icons.Filled.PauseCircleOutline"
                        Color=Color.Inherit
                        aria-label="pause"
                        Size=MudBlazor.Size.Large
                        OnClick="NavigateToHome"></MudIconButton>
         }
 
-        <MudIconButton Icon="@Icons.Filled.Settings"
+        <MudIconButton Class="d-flex"
+                       Icon="@Icons.Filled.Settings"
                        Color=Color.Inherit
                        aria-label="setting"
                        Size=MudBlazor.Size.Large
                        OnClick="NavigateToConfiguration">
         </MudIconButton>
-    @*</MudContainer>*@
 
+    </MudContainer>
 </MudAppBar>
 
-<div id="game"
-     class=@(GameInPause ? "displayNone" : "displayYes")>
+<MudContainer>
+    <div id="game"
+         class=@(GameInPause ? "displayNone" : "displayYes")>
 
-    @if (Board is not null)
-    {
-        <SudokuBoard id="sudokuboard"
-                 board=@(Board)
-                 selectedCell=@(CellSelected)
-                 lastCellOfTheGame=@(LastCellOfTheGame)
-                 @*incorrectCells=@(IncorrectCells)*@
-                 solvedRow=@(RowSolved)
-                 solvedCol=@(ColSolved)
-                 solvedBlock=@(BlockSolved)
-                 gameOnGoing=@(GameOnGoing)
-                 solutionsByRules=@(SolutionsByRules)
-                 wizardConfiguration=@(WizardConfiguration)
-                 OnCellSelection="(cellNumberCustomEvent) => dispatchCellSelection(cellNumberCustomEvent)">
-        </SudokuBoard>
+        @if (Board is not null)
+        {
+            <SudokuBoard id="sudokuboard"
+                     board=@(Board)
+                     selectedCell=@(CellSelected)
+                     lastCellOfTheGame=@(LastCellOfTheGame)
+                     @*incorrectCells=@(IncorrectCells)*@
+                     solvedRow=@(RowSolved)
+                     solvedCol=@(ColSolved)
+                     solvedBlock=@(BlockSolved)
+                     gameOnGoing=@(GameOnGoing)
+                     solutionsByRules=@(SolutionsByRules)
+                     wizardConfiguration=@(WizardConfiguration)
+                     OnCellSelection="(cellNumberCustomEvent) => dispatchCellSelection(cellNumberCustomEvent)">
+            </SudokuBoard>
 
-        <SudokuKeyboard id="keyboard"
-                    class=@(GameOnGoing ? "displayYes" : "displayNone")
-                    OnClearClicked="ClearCellClicked"
-                    OnUndoClicked="UndoClicked"
-                    OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
-                    OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
-                    remainingNumbers=@(RemainingNumbers)
-                    hideClearKey=@(ShouldHideClearKey())
-                    hideUndoKey=@(!GameOnGoing)>
-        </SudokuKeyboard>
-    }
-    <div id="newGame"
-         class=@(GameOnGoing ? "displayNone" : "displayYes")>
-        <p>Good game! Play again?</p>
-        <AccButton id="newGame"
-                   stylesuccess
-                   OnClickCallback="NavigateToNewboard">
-            Newboard
-        </AccButton>
+            <SudokuKeyboard id="keyboard"
+                        class=@(GameOnGoing ? "displayYes" : "displayNone")
+                        OnClearClicked="ClearCellClicked"
+                        OnUndoClicked="UndoClicked"
+                        OnNumberClicked="(keyCustomeEvent) => NumberTyped(keyCustomeEvent)"
+                        OnDraftNumberClicked="(draftNumberClicked) => DraftNumberTyped(draftNumberClicked)"
+                        remainingNumbers=@(RemainingNumbers)
+                        hideClearKey=@(ShouldHideClearKey())
+                        hideUndoKey=@(!GameOnGoing)>
+            </SudokuKeyboard>
+        }
+        <div id="newGame"
+             class=@(GameOnGoing ? "displayNone" : "displayYes")>
+            <p>Good game! Play again?</p>
+            <AccButton id="newGame"
+                       stylesuccess
+                       OnClickCallback="NavigateToNewboard">
+                Newboard
+            </AccButton>
+        </div>
     </div>
-</div>
-<div id="bigplay"
-     class=@(GameInPause ? "displayYes" : "displayNone")
-     @onclick="ResumeGame">
-    <img id="playimg" src="assets/source_icons_play-outline.svg" />
-</div>
+    <div id="bigplay"
+         class=@(GameInPause ? "displayYes" : "displayNone")
+         @onclick="ResumeGame">
+        <img id="playimg" src="assets/source_icons_play-outline.svg" />
+    </div>
+</MudContainer>

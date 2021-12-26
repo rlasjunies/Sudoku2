@@ -1,22 +1,23 @@
 ﻿@page "/config"
 @inherits ConfigPage
 
-<MudAppBar 
-    Class="pl-0">
-    <MudIconButton 
-        Icon="@Icons.Filled.ArrowBackIosNew"
-        Class="pl-0 ml-0"
-        Color=Color.Inherit
-        aria-label="back"
-        OnClick="NavigateToGame"></MudIconButton>
-    <MudText Typo="Typo.h5" Align="Align.Center">Need an help?</MudText>
+<MudAppBar Class="pl-0">
+    <MudIconButton Icon="@Icons.Filled.ArrowBackIosNew"
+                   Class="pl-0 ml-0"
+                   Color=Color.Inherit
+                   aria-label="back"
+                   OnClick="NavigateToGame"></MudIconButton>
+    <MudContainer Class="d-flex justify-center">
+        <MudText Typo="Typo.h5">
+            Need an help?
+        </MudText>
+    </MudContainer>
 </MudAppBar>
 
 <MudPaper Class="pa-4 mt-2"
           Elevation="0">
     <MudList>
-        <MudListItem 
-            Avatar="@Icons.Outlined.Lightbulb">
+        <MudListItem Avatar="@Icons.Outlined.Lightbulb">
             Helpers
         </MudListItem>
         <MudDivider DividerType="DividerType.Inset" />
@@ -52,8 +53,7 @@
             <span>Highlight cells with unique candidate</span>
         </MudListItem>
 
-        <MudListItem 
-            Avatar="@Icons.Filled.DeveloperMode">
+        <MudListItem Avatar="@Icons.Filled.DeveloperMode">
             Development mode
         </MudListItem>
         <MudDivider DividerType="DividerType.Inset" />

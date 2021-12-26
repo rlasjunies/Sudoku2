@@ -3,17 +3,17 @@
 
 @inherits AboutPage
 
-<MudAppBar 
-    Class="pa-0 ma-0">
-    <MudIconButton 
-        Icon="@Icons.Filled.ArrowBackIosNew"
-        Color=Color.Inherit
-        Class="pa-0 ma-0"
-        Size=MudBlazor.Size.Large
-        OnClick="NavigateToHome"></MudIconButton>
-        <MudContainer >
-            <MudText Typo="Typo.h5" Align="Align.Center">About</MudText>
-        </MudContainer>
+<MudAppBar Class="pa-0 ma-0">
+    <MudIconButton Icon="@Icons.Filled.ArrowBackIosNew"
+                   Color=Color.Inherit
+                   Class="pa-0 ma-0"
+                   Size=MudBlazor.Size.Large
+                   OnClick="NavigateToHome"></MudIconButton>
+    <MudContainer Class="d-flex justify-center">
+        <MudText Typo="Typo.h5">
+            About
+        </MudText>
+    </MudContainer>
 </MudAppBar>
 <MudPaper id="aboutContent"
           Class="pa-4 mt-2"

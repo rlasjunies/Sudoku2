@@ -3,14 +3,15 @@
 @inherits Sudoku.Pages.HomePage
 
 
-<MudPaper id="title"
-    Class="pa-4 mt-2" 
-    Elevation="0" >
+<MudContainer id="title"
+    Class="pa-4 mt-2 flex-grow-1" 
+    Elevation="0" 
+    Fixed>
         <MudText Typo="Typo.h1" Align="Align.Center">Sudoku</MudText>
         <MudText Typo="Typo.h1" Align="Align.Center">Master</MudText>
-</MudPaper>
+</MudContainer>
 
-<MudPaper id="bottom"
+<MudContainer id="bottom"
     Class="pa-4 ma-2" 
     Elevation="0">
     @if (GameOnGoing)
@@ -43,4 +44,4 @@
                OnClick="NavigateToAboutPage">
         About
     </MudButton>
-</MudPaper>
+</MudContainer>
