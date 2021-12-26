@@ -4,10 +4,6 @@
     src: url("/assets/icon/fontawesome-free-5.11.2-web/webfonts/fa-solid-900.woff2") format("woff2")
 }
 
-@font-face {
-    font-family: "draft";
-    src: url("/assets/fonts/cheveuxdange.medium.ttf")
-}
 
 body {
     margin: 0px;

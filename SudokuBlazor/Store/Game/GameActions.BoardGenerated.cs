@@ -36,6 +36,7 @@ namespace Sudoku.Store.Game.Reducers
                 cellSelected = Sudoku.Store.Game.Const.NoCellSelected,
                 gameOnGoing = true,
                 gameInPause = false, // TODO check if gameOnGoing and GameInPause are not equivalent
+                timer = 0
             };
         }
     }

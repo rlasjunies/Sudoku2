@@ -12,31 +12,18 @@
     </MudIconButton>
 
     <MudContainer Class="d-flex align-center">
-        <MudText Class="d-flex flex-grow-1"
+        <MudText Class="d-flex flex-grow-1 justify-space-around"
                  Typo="Typo.h5"
                  Align="Align.Center">
             @(TimerValueString)
         </MudText>
 
-        @if (GameInPause)
-        {
-            <MudIconButton Class="d-flex"
-                       Icon="@Icons.Filled.PlayCircleOutline"
-                       Color=Color.Inherit
-                       aria-label="play"
-                       Size=MudBlazor.Size.Large
-                       OnClick="NavigateToHome"></MudIconButton>
-        }
-        else
-        {
             <MudIconButton Class="d-flex"
                        Icon="@Icons.Filled.PauseCircleOutline"
                        Color=Color.Inherit
                        aria-label="pause"
                        Size=MudBlazor.Size.Large
                        OnClick="NavigateToHome"></MudIconButton>
-        }
-
         <MudIconButton Class="d-flex"
                        Icon="@Icons.Filled.Settings"
                        Color=Color.Inherit
@@ -50,7 +37,7 @@
 
 <MudContainer>
     <div id="game"
-         class=@(GameInPause ? "displayNone" : "displayYes")>
+         class="displayYes">
 
         @if (Board is not null)
         {
@@ -88,10 +75,5 @@
                 Newboard
             </AccButton>
         </div>
-    </div>
-    <div id="bigplay"
-         class=@(GameInPause ? "displayYes" : "displayNone")
-         @onclick="ResumeGame">
-        <img id="playimg" src="assets/source_icons_play-outline.svg" />
     </div>
 </MudContainer>

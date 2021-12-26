@@ -1,12 +1,9 @@
-using System;
-using Fluxor;
 using Fluxor.Blazor.Web.Middlewares.Routing;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Sudoku.Board;
 using Sudoku.Shared;
-using Sudoku.Store.Game;
+using System;
 using Store = Sudoku.Store.Game;
 
 namespace Sudoku.Pages
@@ -19,9 +16,6 @@ namespace Sudoku.Pages
 
         public Sudoku.Board.SudokuBoard Board => State.Value.board;
 
-        // TODO trial to avoid control explosion when no Board is loaded
-        // TODO replace to have centralized initialized or be sure there is something in the control at loading time
-        // or it accept not initialized board
         public int[] RemainingNumbers => new int[] { 9, 9, 9, 9, 9, 9, 9, 9, 9 };
 
         public bool ShouldHideClearKey()
@@ -62,7 +56,6 @@ namespace Sudoku.Pages
         // public int TimerValue => State.Value.timer;
         public int TimerValue { get; set; }
         public string TimerValueString { get; set; }
-        public bool GameInPause => State.Value.gameInPause;
         public SolutionByRules SolutionsByRules => State.Value.solutionsByRules;
         public SudokuWizardConfiguration WizardConfiguration => State.Value.wizardConfiguration;
 
@@ -74,69 +67,33 @@ namespace Sudoku.Pages
 
         protected override void OnAfterRender(bool firstRender)
         {
-            if (firstRender)
-            {
-                if (State is not null)
-                {
-                    DoWeNeedToStartTheTimer((StateGame)State.Value);
-                    InvokeAsync(StateHasChanged);
-                }
-                else
-                {
-                    Logger?.LogWarning($"OnAfterRender State is null");
-                }
-            }
+            this.Timer.StartTimer(timerTick,1000);
             base.OnAfterRender(firstRender);
         }
 
-        private bool isTimerOn = false;
         private void timerTick(object state)
         {
-            //Dispatcher.Dispatch(new Store::Actions.TimerTick());
-            TimerValue += 1;
-            TimeSpan time = TimeSpan.FromSeconds(TimerValue);
-
-            //here backslash is must to tell that colon is
-            //not the part of format, it just a character that we want in output
-            TimerValueString = time.ToString(@"hh\:mm\:ss");
-            InvokeAsync(StateHasChanged);
+            Dispatcher.Dispatch(new Store::Actions.TimerTick());
         }
 
         private void StateChanged(Object sender, Store::StateGame state)
         {
             //Logger?.LogDebug($"{ this.GetType().FullName}State Is changing");
             this.BoardSolved = state.boardSolved;
-            DoWeNeedToStartTheTimer(state);
-            DoWeNeedToStopTheTimer(state);
+            this.TimerValue = state.timer;
+            TimeSpan time = TimeSpan.FromSeconds(TimerValue);
+
+            //TimerValueString = this.TimerValue.ToString(@"hh\:mm\:ss");
+            TimerValueString = time.ToString(@"hh\:mm\:ss");
 
             InvokeAsync(StateHasChanged);
-
-            void DoWeNeedToStopTheTimer(Store.Game.StateGame state)
-            {
-                if ((!state.gameOnGoing || state.gameInPause) && this.isTimerOn)
-                {
-                    Timer.StopTimer();
-                    Dispatcher.Dispatch( new Store::Actions.TimerUpdateValue { TimerValue = this.TimerValue });
-                    isTimerOn = false;
-                }
-            }
-        }
-
-        private void DoWeNeedToStartTheTimer(Store.Game.StateGame state)
-        {
-            if (state.gameOnGoing && !state.gameInPause && !this.isTimerOn)
-            {
-                TimerValue = state.timer;
-                Timer.StartTimer(timerTick, 1000);
-                this.isTimerOn = true;
-            }
         }
 
         void IDisposable.Dispose()
         {
             Logger?.LogDebug($"{this.GetType().FullName} dispose handler");
-            Dispatcher.Dispatch(new Store::Actions.TimerUpdateValue { TimerValue = this.TimerValue });
             State.StateChanged -= StateChanged;
+            Timer.StopTimer();
         }
 
         protected void dispatchCellSelection(int cell)
