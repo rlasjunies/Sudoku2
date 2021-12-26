@@ -1,8 +1,8 @@
 #keyboard {
-  margin: 0px;
-  border: none;
-  /*display: flex;*/
-  flex-direction: column;
+    margin: 0px;
+    border: none;
+    /*display: flex;*/
+    flex-direction: column;
 }
 
 .keyicon {
@@ -10,45 +10,62 @@
     line-height: var(--keyboard-value-icon-fontsize);
     color: var(--keyboard-value-color);
     display: flex;
-    flex:1;
+    flex: 1;
 }
 
 .value {
-  /* background-color: aqua; */
-  font-size: var(--keyboard-value-fontsize);
-  line-height: var(--keyboard-value-fontsize);
-  color: var(--keyboard-value-color);
-  /* margin: auto; */
+    /* background-color: aqua; */
+    font-size: var(--keyboard-value-fontsize);
+    line-height: var(--keyboard-value-fontsize);
+    color: var(--keyboard-value-color);
+    /* margin: auto; */
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
+.row-keyvalue {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .row-keyvalue .key {
+        border-radius: 1vw;
+        font-size: var(--keyboard-value-fontsize);
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        display: flex;
+        overflow: hidden;
+        /*align-content: center;*/
+    }
+
 .row .key {
-  /* background-color: aqua; */
-  /* align-items: stretch;
+    /* background-color: aqua; */
+    /* align-items: stretch;
   align-content: center; */
-  /* border-style: dotted; */
-  border-radius: 1vw;
-  font-size: var(--keyboard-value-fontsize);
-  /* min-width: 9vw; */
-  /* max-width: 9vw; */
-  /* min-height: 5vh; */
-  /* max-height: 5vh; */
-  flex: 1;
-  /* margin: 0.3vw; */
-  display: flex;
-  justify-content: center;
-  display: flex;
-  overflow: hidden;
+    /* border-style: dotted; */
+    border-radius: 1vw;
+    font-size: var(--keyboard-value-fontsize);
+    /* min-width: 9vw; */
+    /* max-width: 9vw; */
+    /* min-height: 5vh; */
+    /* max-height: 5vh; */
+    flex: 1;
+    /* margin: 0.3vw; */
+    display: flex;
+    justify-content: center;
+    display: flex;
+    overflow: hidden;
 }
 
 
 .key:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
-  transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .1);
+    transform: translateY(-2px);
 }
 
 /* .key-board .hidden {
@@ -57,66 +74,66 @@
 
 
 .draftkey {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin: 1px;
-  border-style: dotted;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 1px;
+    border-style: dotted;
 }
 
 .draftkeyrow {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin: 0px;
-  /* background-color: aqua; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* flex-direction: column;   */
-  /* text-align: center; */
-  /* vertical-align: middle; */
-  /* margin: auto; */
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+    /* background-color: aqua; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* flex-direction: column;   */
+    /* text-align: center; */
+    /* vertical-align: middle; */
+    /* margin: auto; */
 }
 
 
- .draftkeyvalue {
-  /* background-color: yellow; */
-  flex: 1;
-  margin: 0px;
-  font-family: 'draft';
-  font-size: var(--keyboard-draftvalue-fontsize);
-  color: var(--keyboard-draftvalue-color);
+.draftkeyvalue {
+    /* background-color: yellow; */
+    flex: 1;
+    margin: 0px;
+    font-family: 'draft';
+    font-size: var(--keyboard-draftvalue-fontsize);
+    color: var(--keyboard-draftvalue-color);
 }
 
- .ripplex {
-  position: absolute;
-  background: rgba(0, 0, 0, .25);
-  border-radius: 100%;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  pointer-events: none;
+.ripplex {
+    position: absolute;
+    background: rgba(0, 0, 0, .25);
+    border-radius: 100%;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    pointer-events: none;
 }
 
- .ripplex.show {
-  -webkit-animation: ripple .5s ease-out;
-  animation: ripple .5s ease-out;
-}
+    .ripplex.show {
+        -webkit-animation: ripple .5s ease-out;
+        animation: ripple .5s ease-out;
+    }
 
 @-webkit-keyframes ripple {
-  to {
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
-    opacity: 0;
-  }
+    to {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
 
 @keyframes ripple {
-  to {
-    -webkit-transform: scale(1.5);
-    transform: scale(1.5);
-    opacity: 0;
-  }
+    to {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+        opacity: 0;
+    }
 }
