@@ -36,10 +36,10 @@ namespace Fluxor.DependencyInjection
 
 			// Method reducer/effects may belong to abstract classes
 			TypeAndMethodInfo[] allCandidateMethods = AssemblyScanSettings.FilterMethods(allCandidateTypes);
-			foreach (var t in allCandidateMethods)
-			{
-				Console.WriteLine($"DependencyScanner:{t.MethodInfo}");
-			}
+			//foreach (var t in allCandidateMethods)
+			//{
+			//	Console.WriteLine($"DependencyScanner:{t.MethodInfo}");
+			//}
 
 			DiscoveredReducerMethod[] discoveredReducerMethods =
 				ReducerMethodsDiscovery.DiscoverReducerMethods(serviceCollection, allCandidateMethods);
@@ -93,10 +93,10 @@ namespace Fluxor.DependencyInjection
 						.Where(t => !t.IsGenericType)
 						.Distinct()
 						.ToArray());
-            foreach (var t in allCandidateTypes)
-            {
-				Console.WriteLine($"DependencyScanner:{t.FullName}");	
-            }
+
+    //        {
+				//Console.WriteLine($"DependencyScanner:{t.FullName}");	
+    //        }
 			allNonAbstractCandidateTypes = allCandidateTypes
 					.Where(t => !t.IsAbstract)
 					.ToArray();
