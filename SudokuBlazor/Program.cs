@@ -59,10 +59,10 @@ namespace Sudoku
             {
                 builder.Services.AddLogging(builder => builder
                     .AddBrowserConsole()
-                    .SetMinimumLevel(LogLevel.Debug)
-                    .AddFilter("Microsoft", LogLevel.Warning)
+                    //.SetMinimumLevel(LogLevel.Debug)
+                    //.AddFilter("Microsoft", LogLevel.Warning)
                     //.AddFilter("Microsoft", LogLevel.Debug)
-                    .AddFilter("System", LogLevel.Warning)
+                    //.AddFilter("System", LogLevel.Warning)
                     //.AddFilter("Fluxor", LogLevel.Warning)
                 );
             }
