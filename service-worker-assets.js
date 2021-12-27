@@ -97,12 +97,12 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-xubz3hG3pgZ0wx8S2TYcXpN2UPzs7yNxusLqZZOtRq4=",
+      "hash": "sha256-celP2UpSfwqfTQA1WDO+hXqlGJ8pByEKSy6QsJlZhsE=",
       "url": "index.html"
     },
     {
       "hash": "sha256-0TdAtLTnqSuJKjnNgkK40yX0+9NFM7a1QeqX\/xrr4x8=",
-      "url": "manifest.json"
+      "url": "manifest.webmanifest"
     },
     {
       "hash": "sha256-4Yh4OTT5TEAPNyXEzOG+n5l2HPK294WFItz4SIelj88=",
@@ -141,7 +141,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-Ytg1UQcWuyUsKO3jYxbLGialXm39PKU6OgfTu7jjNWc=",
+      "hash": "sha256-fkSUyUoe8UtaJxsLYZNphFV+SV71k4tXX40mNEwP56o=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -161,7 +161,7 @@
       "url": "_framework\/Fluxor.Blazor.Web.ReduxDevTools.dll"
     },
     {
-      "hash": "sha256-DXfeTrr1wYNMXkINGG+tyBYnTCQp\/C5CdZCgvpgURZA=",
+      "hash": "sha256-9iByoY7t1AZXpziglIl24Vfe0PU1g1Z++Wmoa85nb18=",
       "url": "_framework\/Fluxor.dll"
     },
     {
@@ -221,7 +221,7 @@
       "url": "_framework\/Microsoft.Extensions.Logging.Abstractions.dll"
     },
     {
-      "hash": "sha256-DzY7wDAvDWnIaO3w\/7kUWkrqAjcBqdGrqyy7WfZWvQk=",
+      "hash": "sha256-dFBoJEJX00adPZ+T\/6W8WzKM\/SptDpr8Gm6oBzbDtsY=",
       "url": "_framework\/Microsoft.Extensions.Logging.dll"
     },
     {
@@ -253,7 +253,7 @@
       "url": "_framework\/Newtonsoft.Json.dll"
     },
     {
-      "hash": "sha256-79ORuyRHll9RJWhzG30jvrV7nPFxM2NVzi3aliTx44I=",
+      "hash": "sha256-mSUiWYR5Wt1GArZCrPP2CfMSFT5lGZnRXTALucNkRtk=",
       "url": "_framework\/Sudoku.dll"
     },
     {
@@ -413,7 +413,7 @@
       "url": "_framework\/System.Threading.dll"
     },
     {
-      "hash": "sha256-cdIPSxvSgWOM98YTRS0OHGdDbOJrw0nnT2BmgaGJ9Wc=",
+      "hash": "sha256-aJraJprUMFyZ7m3SJnXjGEvv0pSwI9FSeGc+6bq8CvE=",
       "url": "Sudoku.styles.css"
     },
     {
@@ -433,5 +433,5 @@
       "url": "_content\/Fluxor.Blazor.Web\/scripts\/index.js"
     }
   ],
-  "version": "xVKZFHQ8"
+  "version": "TGrp3Gv5"
 };

@@ -512,12 +512,14 @@ button[b-3ovlsysl72] {
 .row[b-ff6bp2mnsi] {
     display: flex;
     flex-direction: row;
+    height:10vh;
 }
 
 .row-keyvalue[b-ff6bp2mnsi] {
     display: flex;
     flex-direction: row;
     align-items: center;
+    height: 10vh;
 }
 
     .row-keyvalue .key[b-ff6bp2mnsi] {
@@ -532,18 +534,9 @@ button[b-3ovlsysl72] {
     }
 
 .row .key[b-ff6bp2mnsi] {
-    /* background-color: aqua; */
-    /* align-items: stretch;
-  align-content: center; */
-    /* border-style: dotted; */
     border-radius: 1vw;
     font-size: var(--keyboard-value-fontsize);
-    /* min-width: 9vw; */
-    /* max-width: 9vw; */
-    /* min-height: 5vh; */
-    /* max-height: 5vh; */
     flex: 1;
-    /* margin: 0.3vw; */
     display: flex;
     justify-content: center;
     display: flex;
